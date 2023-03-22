@@ -1,0 +1,66 @@
+.Nav-bar1{
+    width: 100%;
+    height: 115px;
+    background-color: #FF4848;
+    display:inline-grid;
+    grid-template-columns:  auto auto;
+    column-gap:30px ;
+    align-items: end;
+    align-content: space-between;
+    margin-bottom: -2px;
+    padding: 20px 0px;
+    
+
+}
+.logo{
+    height:90px;
+    width: 150px;
+    margin-left: 60px;
+
+}
+a{
+    text-decoration: none;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    width: fit-content; 
+    height: fit-content;
+    display:inline-grid;
+    grid-template-rows: auto auto ;
+}
+
+a span{
+    width: 0px;
+    height: 4px;
+    border-radius: 6px;
+    background-color:#FFE794 ;
+    transition: all ease-in-out .5s;
+}
+a:hover span{
+    width:100%;
+}
+.active-nav-link span{
+    width: 100%;
+}
+.NavInfo{
+    display: inline-grid;
+    grid-template-columns: auto auto auto auto auto;
+    column-gap: 30px;
+    align-content: space-around;
+
+}
+.ConnectButton{
+    border-radius: 30px;
+    height:45px ;
+    width: 150px ;
+    background-color: #ffffff27;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 45px;  
+    transition: all ease-in-out .5s;
+}
+.ConnectButton:hover{
+    background-color: #FFF;
+    color:#FF4848 ;
+    
+}

@@ -1,0 +1,87 @@
+.programme-container{
+    width: 100%;
+    display: inline-grid;
+    grid-template-rows: auto auto;
+    row-gap: 60px;
+    justify-items: center;
+}
+.programme-container p{
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 76px;
+    color: #FF4848;
+}
+.wave{
+    width: 100%;
+}
+.programme-cards{
+    display: inline-grid;
+    grid-template-columns: auto auto auto;
+    column-gap: 60px;
+}
+.prog-card{
+    width: 320px;
+    display: inline-grid;
+    grid-template-rows: auto auto;
+    row-gap: 30px;
+    justify-items: center;
+    border-radius: 30px;
+    padding: 30px 0px;
+}
+.prog-card img{
+    height: 250px;
+    width: 250px;
+}
+.card-txt{
+    display: inline-grid;
+    grid-template-rows: auto auto auto;
+    justify-items: center;
+    row-gap: 20px;
+    color: #FFF;
+}
+.card-txt p{
+    color: #FFF;
+    font-size: 38px;
+}
+.card-txt span{
+    width: 300px;
+}
+.card-txt span , .card-txt a{
+    color: #FFF;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    text-align: center;
+
+}
+.reg-inter{
+    background-color: #FDDC6B;
+}
+.prog-gene{
+    background-color: #FFB585;
+}
+.prog-spe{
+    background-color: #FF5959;
+}
+.card-txt a{
+    height: 45px;
+    border-radius: 30px;
+    border: 2px solid #FFF;
+    vertical-align: middle;
+    line-height: 45px;
+    transition: all ease-in-out .5s;
+    padding: 0px 50px
+}
+.card-txt a:hover{
+
+    background-color: #ffffff;
+}
+
+.reg-inter a:hover{
+    color: #FDDC6B;
+}
+.prog-gene a:hover{
+    color: #FFB585;
+}
+.prog-spe a:hover{
+    color: #FF5959;
+}
+
