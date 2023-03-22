@@ -1,6 +1,15 @@
-div{
-    font-family: 'Bubblegum Sans', cursive;
+*{
+    margin: 0px;
+    padding: 0;
 }
-p{
-    font-family: 'Poppins', sans-serif;
+body{
+    background-image: url("./assets/background.png");
+    background-repeat: repeat-y;
+    background-position: center;
+    background-size: contain;
+    height: 100%;
+    width: auto;
+}
+html {
+    scroll-behavior: smooth;
 }
