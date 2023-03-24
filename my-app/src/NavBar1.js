@@ -1,7 +1,10 @@
 import './NavBar1.css';
 import CrecheLogo from "./assets/logo.png"
+import Logout from '@mui/icons-material/Logout';
 import { NavLink } from 'react-router-dom';
+import { useState } from 'react';
 const NavBar1 = () => {
+    let [show , setShow] = useState(true);
     return ( 
         <div className="Nav-bar1">
             <img src={CrecheLogo} alt="logo" className="logo"/>
@@ -32,9 +35,21 @@ const NavBar1 = () => {
                     <p>Contactez nous</p>
                     <span></span>
                 </a>
-                <a href="/" className="ConnectButton">
-                    <p>Se connecter</p>   
-                </a>
+                
+                {!show && 
+                    <a href="/" className="ConnectButton">
+                        <p>Se connecter</p>   
+                    </a> 
+                }
+                
+                {show && 
+                    <div className='monCompte'>
+                        <a href="/" className="monCompteButton">
+                            <p>Mon Compte</p>   
+                        </a>
+                        <button onClick={()=>{setShow(false)}}><Logout></Logout></button>
+                    </div> 
+               }
             </div>
         </div>
      );
