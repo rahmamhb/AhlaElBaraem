@@ -44,9 +44,9 @@ const NavBar1 = () => {
                 
                 {show && 
                     <div className='monCompte'>
-                        <a href="/" className="monCompteButton">
+                        <NavLink to="/Nourrice" className={({isActive})=>{return isActive? "active-mon-compte ConnectButton":"monCompteButton"}}>
                             <p>Mon Compte</p>   
-                        </a>
+                        </NavLink>
                         <button onClick={()=>{setShow(false)}}><Logout></Logout></button>
                     </div> 
                }
