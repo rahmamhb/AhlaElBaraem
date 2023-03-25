@@ -1,0 +1,39 @@
+:root{
+    --rowNum : 10 ;
+}
+.list-page .list-enfant-container{
+    display: inline-grid;
+    grid-template-rows: repeat(var(--rowNum) , auto);
+    padding: 20px 0px 65px 0px;
+}
+ .enfant-info{
+    display: inline-grid;
+    grid-template-columns: auto auto auto auto auto;
+    column-gap: 40px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    color: #555;
+    font-size: 20px;
+    padding: 20px 0px;
+    border-bottom: solid 2px #FF4848;
+}
+.enfant-info button{
+    border: 0;
+    color: #fff;
+    background-color: #FDDC6B;
+    padding: 5px 25px;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all .3 ease;
+}
+.enfant-info button:hover{
+    background-color: #fddb6bd5;
+}
+.list-page{
+    display: inline-grid;
+    grid-template-rows: auto auto ;
+    justify-items: center;
+    width: 100%;
+}
