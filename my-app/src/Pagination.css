@@ -1,0 +1,41 @@
+li{
+    display: list-item;
+}
+.page-link{
+    color: #FF4848;
+    border: 1px #dee2e6 solid ;
+    padding:  0.375rem 0.75rem;
+    position: relative;
+    display: block;
+    text-decoration: none;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+}
+.page-link:hover{
+    color: #FF4848;
+    background-color: #e9ecef;
+    border-color: #e9ecef;
+}
+.page-link:focus {
+    color:  #FF4848;
+    background-color: #e9ecef;
+}
+.page-link:active{
+    color: #fff;
+    background-color: #FF4848;
+    border-color: #FF4848;
+}
+.page-link:disabled{
+    color: #6c757d;
+    background-color: #fff;
+    border-color: #dee2e6;
+}
+.pagination {
+    font-size: 1rem;
+    color: #FF4848;
+    background-color: #fff;
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    border-radius: 0.375rem;
+}
