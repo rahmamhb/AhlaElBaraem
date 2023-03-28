@@ -1,0 +1,129 @@
+:root{
+    --matiereColor:#FFB585;
+    --rowNumMat:1;
+}
+.matiere-page{
+    display: inline-grid;
+    grid-template-rows: auto auto;
+    row-gap: 60px;
+    padding: 40px 25px;
+}
+.matieres , .matieres-of-the-day{
+    display: inline-grid;
+    grid-template-rows: auto auto;
+    row-gap: 70px;
+
+}
+.matieres p , .matieres-of-the-day p{
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 55px;
+    color: #FF4848;
+}
+.matiere-container{
+    display: inline-grid;
+    grid-template-rows: auto auto;
+    justify-items: end;
+    row-gap: 20px;
+}
+.matiere-container button svg{
+ color: #FFB585;
+ height:60px ;
+ width: 60px;   
+}
+.matiere-container button{
+    border: 0;
+    background-color: #FFF;
+    cursor: pointer;
+
+}
+.mats , .matieres-of-the-day-container{
+    display: inline-grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: repeat(var(--rowNumMat,auto));
+    gap: 30px;
+    margin-left: 350px;
+}
+.mat{
+    display: inline-grid;
+    grid-template-rows: auto auto auto;
+    justify-items: center;
+    color: rgb(var(--matiereColor));
+    font-family: 'Poppins', sans-serif;
+    border-radius: 35px;
+    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.1);
+    padding: 20px 45px;
+}
+.mat span{
+    border-radius: 50%;
+    background-color: rgb(var(--matiereColor) / 20%);;
+    height: 90px;
+    width: 90px;
+    text-align: center;
+    line-height: 120px;
+    vertical-align: middle;
+}
+
+.mat span svg{
+    height: 46px;
+    width: 46px;
+    color: rgb(var(--matiereColor));
+}
+.mat h3{
+    font-size:20px;
+}
+.mat p{
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    color: #555;
+}
+.matieres-of-the-day-container span{
+    border-radius: 20px;
+    height: 70px;
+}
+.matieres-of-the-day-container span p{
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight:bold ;
+}
+
+.matiere-of-the-day{
+    border: solid 2px #FFE794;
+    background-color: #FFF;
+    text-align: center;
+    line-height: 70px;
+    vertical-align: middle;
+    transition: all .3 ease;
+    cursor: pointer;
+}
+.matiere-of-the-day:hover{
+    background-color: #ffe89470;
+    
+}
+.matiere-of-the-day p{
+    color: #9d9d9d;
+}
+.activeMatiere {
+    background-color: #FFE794;
+    display: inline-grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    justify-items: center;
+    column-gap: 20px;
+}
+.activeMatiere  p{
+    color: #FFF;
+}
+.activeMatiere button{
+    border: 0;
+    border-left: solid 3px #fff;
+    background-color: #FFE794;
+    cursor: pointer;
+
+}
+.activeMatiere button svg{
+    color: #FFF;
+    height: 30px;
+    width: 30px;
+}
+
+
