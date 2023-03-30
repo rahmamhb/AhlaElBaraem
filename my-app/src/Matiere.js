@@ -1,82 +1,118 @@
 import SchoolIcon from '@mui/icons-material/School';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import CloseIcon from '@mui/icons-material/Close';
+import ChevronLeft from '@mui/icons-material/ChevronLeftRounded';
 import "./Matiere.css"
 import { useState } from 'react';
-const data = [
-    {
-        matiereName :"Dessin",
-        color:"255 181 133",
-        activities : ["Dessin libre","Dessin avec des objets","Dessin à partir d'une histoire","Dessin de portraits"],
 
-    },
-    {
-        matiereName :"Math",
-        color:"255 231 148",
-        activities : [],
-
-    },
-    {
-        matiereName :"educ civil",
-        color:"255 72 72",
-        activities : [],
-
-    },
-    {
-        matiereName :"educ islamic",
-        color:"154 219 255",
-        activities : [],
-
-    },
-    {
-        matiereName :"arabe",
-        color:"255 189 167",
-        activities : [],
-
-    },
-    {
-        matiereName :"francais",
-        color:"255 153 0",
-        activities : [],
-
-    },
-]
-
-function setRowNb(nbr){
-    document.documentElement.style.setProperty("--rowNumMat",nbr);
+function setRowNb(property,nbr ){
+    document.documentElement.style.setProperty(property,nbr);
 }
 
-const Matiere = () => {
+const Matiere = ({data}) => {
+
     const [selectedItems, setSelectedItems] = useState([]);
 
-  const handleClick = (item) => {
-    if (selectedItems.includes(item)) {
-      setSelectedItems(selectedItems.filter((selectedItem) => selectedItem !== item));
-    } else {
-      setSelectedItems([...selectedItems, item]);
-    }
-    console.log(selectedItems)
-  };
-    
+    const handleClick = (item) => {
+        if (selectedItems.includes(item)) {
+        setSelectedItems(selectedItems.filter((selectedItem) => selectedItem !== item));
+        } else {
+        setSelectedItems([...selectedItems, item]);
+        }
+        console.log(selectedItems)
+    };
+    const [currentOverlayIndex, setCurrentOverlayIndex] = useState(null);
+    const [overlay , setOverlay] = useState(false);
+
     return ( 
         <div className="matiere-page">
             <div className="matieres">
                 <p>Les matieres</p>
                 <div className="matiere-container">
-                    <div className="mats" onChange={()=>setRowNb(Math.ceil(data.length/3))}>  
+                    <div className="mats" onChange={()=>setRowNb(Math.ceil("--rowNumMat",data.length/3))}>  
                         {
                             data.map((item,index)=>{
                                 return(
-                                    <button className="mat" style={{"--matiereColor": item.color}} key={index}>
-                                        <span><SchoolIcon></SchoolIcon></span>
-                                        <h3>{item.matiereName}</h3>
-                                        <p>{`${item.activities.length} activités`}</p>
-                                    </button>
+                                    <div>
+                                        <div className={currentOverlayIndex === index ? "comportement-overlay open" : "comportement-overlay"}  key={index}>
+                                            <div className='more-about-matiere'>
+                                                <span className='matiere-header'>
+                                                    <button onClick={() => setCurrentOverlayIndex(null)}><ChevronLeft></ChevronLeft></button>
+                                                    <h3>{item.matiereName}</h3>
+                                                </span>
+                                                <div className='activities'>
+                                                    {item.activities.map((activity,index)=>{
+                                                        return(
+                                                            <div className='activity'onChange={setRowNb("--rowNbAct",item.activities.length)}>
+                                                                <span className='circle'></span>
+                                                                <span className='text'> {activity}</span>
+                                                            </div>
+                                                        )
+                                                    })}
+                                                </div>
+                                                <form >
+                                                    <input type="text" placeholder='Ajouter une activité'></input>
+                                                    <button><AddCircleIcon></AddCircleIcon></button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <button className="mat" style={{"--matiereColor": item.color}} onClick={() => setCurrentOverlayIndex(index)} key={index}>
+                                            <span><SchoolIcon></SchoolIcon></span>
+                                            <h3>{item.matiereName}</h3>
+                                            <p>{`${item.activities.length} activités`}</p>
+                                        </button>
+                                    </div>
+                                    
                                 )
                             })
                         }
                     </div>
-                    <button><AddCircleIcon></AddCircleIcon></button>
+                    <button onClick={()=>setOverlay(true)}><AddCircleIcon></AddCircleIcon></button>
+                    <div className={overlay ? "comportement-overlay open" : "comportement-overlay"}>
+                        <div className='add-matiere'>
+                            <span className='matiere-header'>
+                                <button onClick={() => setOverlay(false)}><ChevronLeft></ChevronLeft></button>
+                                <h3 style={{fontSize:"20px"}}>Ajouter une matière</h3>
+                            </span>
+                            <form>
+                                <input type="text" placeholder='nom de la matiere'></input>
+                                <input type="text" placeholder='activité 1'></input>
+                                <input type="text" placeholder='activité 2'></input>
+                                <input type="text" placeholder='activité 3'></input>
+                                
+                                <div className="colors">
+                                    <p>Choisissez une couleur :</p>
+                                    <div className='circleContainer'>
+                                        <label >
+                                            <input class="radio" type="radio" name="review" id="9" value="255 181 133"/>
+                                            <span className="first"></span>
+                                        </label>
+                                        <label >
+                                            <input class="radio" type="radio" name="review" id="10" value="255 231 148"/>
+                                            <span className="second"></span>
+                                        </label>
+                                        <label >
+                                            <input class="radio" type="radio" name="review" id="20" value="255 72 72"/>
+                                            <span className="third"></span>
+                                        </label>
+                                        <label>
+                                            <input class="radio" type="radio" name="review" id="30" value="154 219 255"/>
+                                            <span className="forth"></span>
+                                        </label>
+                                        <label>
+                                            <input class="radio" type="radio" name="review" id="40" value="255 189 167"/>
+                                            <span className="fifth"></span>
+                                        </label>
+                                        <label>
+                                            <input class="radio" type="radio" name="review" id="50" value="255 153 0"/>
+                                            <span className="sixth"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <button className='confirmer'>Confirmer</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div className="matieres-of-the-day">

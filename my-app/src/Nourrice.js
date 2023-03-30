@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import wave from "./assets/wave.png"
 import waveTopWhite from "./assets/wavetopwhite.png"
 import waveBottomWhite from "./assets/wavebottomwhite.png"
@@ -10,10 +9,50 @@ import NavBar1 from "./NavBar1";
 import ListEnfant from "./ListEnfants";
 import NourriceComment from "./NourriceComment";
 import Matiere from "./Matiere";
+
+const MatieresData = [
+    {
+        matiereName :"Dessin",
+        color:"255 181 133",
+        activities : ["Dessin libre","Dessin avec des objets","Dessin à partir d'une histoire","Dessin de portraits"],
+
+    },
+    {
+        matiereName :"Math",
+        color:"255 231 148",
+        activities : [],
+
+    },
+    {
+        matiereName :"educ civil",
+        color:"255 72 72",
+        activities : [],
+
+    },
+    {
+        matiereName :"educ islamic",
+        color:"154 219 255",
+        activities : [],
+
+    },
+    {
+        matiereName :"arabe",
+        color:"255 189 167",
+        activities : [],
+
+    },
+    {
+        matiereName :"francais",
+        color:"255 153 0",
+        activities : [],
+
+    },
+]
+
 const Nourrice = () => {
-    let [list , setList] = useState(true);
+    let [list , setList] = useState(false);
     let [comment , setComment] = useState(false);
-    let [matiere , setMatiere] = useState(false);
+    let [matiere , setMatiere] = useState(true);
     return ( 
         <div className="nourrice-page">
             <div className="nourHeader"> {/*in the header section i put the navBar and the wave*/}
@@ -33,9 +72,9 @@ const Nourrice = () => {
                     <img src={waveTopWhite} alt="wave-top"></img>
                 </div>
                 <div className="nour-content"> {/*wtbdli hnaya 3la hssab la page ta3k*/}
-                    {list && <ListEnfant></ListEnfant>}
+                    {list && <ListEnfant MatierData={MatieresData}></ListEnfant>}
                     {comment && <NourriceComment></NourriceComment>}
-                    {matiere && <Matiere></Matiere>}
+                    {matiere && <Matiere data={MatieresData}></Matiere>}
                 </div>
                 <div className="wave-bottom"> {/*wl wave adi */}
                     <img src={waveBottomWhite} alt="wave-bottom"></img>
