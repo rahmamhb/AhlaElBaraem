@@ -15,6 +15,7 @@
     align-items: center;
     justify-content: center;
     padding: 30px 0px;
+    margin: 0px;
 }
 .text-info{
     height: auto;
@@ -24,7 +25,7 @@
     row-gap: 50px;
 }
 .text-info p {
-    font-family: 'Bubblegum Sans', cursive;
+    font-family: 'Bubblegum Sans', 'cursive';
     font-size: 76px;
     word-wrap: break-word;
     width: 650px;

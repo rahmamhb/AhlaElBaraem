@@ -1,0 +1,56 @@
+.child-info img{
+    width: 200px ;
+    height: 200px ;
+    margin-right: 25px;
+    margin-left: 25%;
+    
+}
+.child-info{
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+
+
+.section{
+    font-family: 'Poppins', sans-serif;
+    color: #555555;
+}
+
+.bold{
+    font-weight: 600;
+    font-size: 22px;
+    margin: 35px;
+    }
+
+.notbold{
+    font-weight: 400;
+}
+
+.info{
+
+    text-align: left;
+}
+p{
+    margin: 20px auto;
+}
+.container{
+    float: left;
+}
+
+.left{
+    text-align: left;
+    margin-right: 20px;
+}
+
+.right{
+    text-align: left;
+}
+
+.parent-info{
+    margin-bottom: 30px;
+    text-align: left;
+    margin-left: 22%;
+    float: left;
+}
