@@ -24,6 +24,18 @@ const Matiere = ({data}) => {
     const [currentOverlayIndex, setCurrentOverlayIndex] = useState(null);
     const [overlay , setOverlay] = useState(false);
 
+    const [act , setAct] = useState("");
+    const [act1 , setAct1] = useState("");
+    const [act2 , setAct2] = useState("");
+    const [act3 , setAct3] = useState("");
+    const [mat , setMat] = useState("");
+    const [matColor , setMatColor] = useState("");
+    const [isPending , setIsPending] = useState(false)
+    const handleSubmit = (e)=>{
+        e.preventDefault();
+        setIsPending(true)
+    }
+
     return ( 
         <div className="matiere-page">
             <div className="matieres">
@@ -50,8 +62,8 @@ const Matiere = ({data}) => {
                                                         )
                                                     })}
                                                 </div>
-                                                <form >
-                                                    <input type="text" placeholder='Ajouter une activité'></input>
+                                                <form onSubmit={handleSubmit}>
+                                                    <input type="text" placeholder='Ajouter une activité' value={act} onChange={(e)=>{ setAct(e.target.value)}}></input>
                                                     <button><AddCircleIcon></AddCircleIcon></button>
                                                 </form>
                                             </div>
@@ -74,37 +86,37 @@ const Matiere = ({data}) => {
                                 <button onClick={() => setOverlay(false)}><ChevronLeft></ChevronLeft></button>
                                 <h3 style={{fontSize:"20px"}}>Ajouter une matière</h3>
                             </span>
-                            <form>
-                                <input type="text" placeholder='nom de la matiere'></input>
-                                <input type="text" placeholder='activité 1'></input>
-                                <input type="text" placeholder='activité 2'></input>
-                                <input type="text" placeholder='activité 3'></input>
+                            <form onSubmit={handleSubmit}>
+                                <input type="text" placeholder='nom de la matiere'value={mat} onChange={(e)=>{ setMat(e.target.value)}} ></input>
+                                <input type="text" placeholder='activité 1' value={act1} onChange={(e)=>{ setAct1(e.target.value)}}></input>
+                                <input type="text" placeholder='activité 2'value={act2} onChange={(e)=>{ setAct2(e.target.value)}}></input>
+                                <input type="text" placeholder='activité 3' value={act3} onChange={(e)=>{ setAct3(e.target.value)}}></input>
                                 
                                 <div className="colors">
                                     <p>Choisissez une couleur :</p>
                                     <div className='circleContainer'>
                                         <label >
-                                            <input class="radio" type="radio" name="review" id="9" value="255 181 133"/>
+                                            <input class="radio" type="radio" name="review" id="9" value="255 181 133" onChange={(e)=>{ setMatColor(e.target.value)}}/>
                                             <span className="first"></span>
                                         </label>
                                         <label >
-                                            <input class="radio" type="radio" name="review" id="10" value="255 231 148"/>
+                                            <input class="radio" type="radio" name="review" id="10" value="255 231 148" onChange={(e)=>{ setMatColor(e.target.value)}}/>
                                             <span className="second"></span>
                                         </label>
                                         <label >
-                                            <input class="radio" type="radio" name="review" id="20" value="255 72 72"/>
+                                            <input class="radio" type="radio" name="review" id="20" value="255 72 72" onChange={(e)=>{ setMatColor(e.target.value)}}/>
                                             <span className="third"></span>
                                         </label>
                                         <label>
-                                            <input class="radio" type="radio" name="review" id="30" value="154 219 255"/>
+                                            <input class="radio" type="radio" name="review" id="30" value="154 219 255" onChange={(e)=>{ setMatColor(e.target.value)}}/>
                                             <span className="forth"></span>
                                         </label>
                                         <label>
-                                            <input class="radio" type="radio" name="review" id="40" value="255 189 167"/>
+                                            <input class="radio" type="radio" name="review" id="40" value="255 189 167" onChange={(e)=>{ setMatColor(e.target.value)}}/>
                                             <span className="fifth"></span>
                                         </label>
                                         <label>
-                                            <input class="radio" type="radio" name="review" id="50" value="255 153 0"/>
+                                            <input class="radio" type="radio" name="review" id="50" value="255 153 0" onChange={(e)=>{ setMatColor(e.target.value)}}/>
                                             <span className="sixth"></span>
                                         </label>
                                     </div>

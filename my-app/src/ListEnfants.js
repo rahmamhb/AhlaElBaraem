@@ -47,6 +47,18 @@ const ListEnfant = ({MatierData}) => {
         const selectedMatiereName = event.target.value;
         const selectedMatiere = MatierData.find(matiere => matiere.matiereName === selectedMatiereName);
         setSelectedMatiere(selectedMatiere);
+        setChoosenMat(selectedMatiereName)
+    }
+
+    const [emojiValue , setEmojiValue] = useState("");
+    const [choosenMat , setChoosenMat] = useState("");
+    const [choosenAct , setChoosenAct] = useState("");
+    const [level , setLevel] = useState("");
+    const [comment , setComment] = useState("");
+    const [isPending , setIsPending] = useState(false)
+    const handleSubmit = (e)=>{
+        e.preventDefault();
+        setIsPending(true)
     }
     return ( 
         
@@ -67,7 +79,7 @@ const ListEnfant = ({MatierData}) => {
                                             </div>
                                         </div>  
                                     </span>
-                                    <form>
+                                    <form onSubmit={handleSubmit}>
                                         <div className="comportement-of-the-day">
                                             <h3>Comportement d’aujourd'hui</h3>
                                             <div class="container">
@@ -75,7 +87,7 @@ const ListEnfant = ({MatierData}) => {
                                                     return(
                                                         <div class="item">
                                                             <label >
-                                                                <input class="radio" type="radio" name="feedback" id={index} value={index}/>
+                                                                <input class="radio" type="radio" name="feedback" id={index} value={emoji}  onChange={(e)=>{ setEmojiValue(e.target.value)}} />
                                                                 <span>{emoji}</span>
                                                             </label>
                                                         </div>
@@ -94,7 +106,7 @@ const ListEnfant = ({MatierData}) => {
                                             </div>
                                             <div className="select-activity">
                                                 <h3>Activites</h3>
-                                                <select>
+                                                <select onChange={(e)=>{ setChoosenAct(e.target.value)}}>
                                                 {selectedMatiere.activities.map(activity => (
                                                     <option key={activity} value={activity}>{activity}</option>
                                                 ))}
@@ -103,32 +115,32 @@ const ListEnfant = ({MatierData}) => {
                                             <div className="review-activity container">
                                                 <div class="item">
                                                     <label >
-                                                        <input class="radio" type="radio" name="review" id="9" value="9"/>
+                                                        <input class="radio" type="radio" name="review" id="9" value="red" onChange={(e)=>{ setLevel(e.target.value)}}/>
                                                         <span className="colorSpan first"></span>
                                                     </label>
                                                 </div>
                                                 <div class="item">
                                                     <label >
-                                                        <input class="radio" type="radio" name="review" id="10" value="10"/>
+                                                        <input class="radio" type="radio" name="review" id="10" value="orange" onChange={(e)=>{ setLevel(e.target.value)}}/>
                                                         <span className="colorSpan second"></span>
                                                     </label>
                                                 </div>
                                                 <div class="item">
                                                     <label >
-                                                        <input class="radio" type="radio" name="review" id="20" value="20"/>
+                                                        <input class="radio" type="radio" name="review" id="20" value="yellow" onChange={(e)=>{ setLevel(e.target.value)}}/>
                                                         <span className="colorSpan third"></span>
                                                     </label>
                                                 </div>
                                                 <div class="item">
                                                     <label>
-                                                        <input class="radio" type="radio" name="review" id="30" value="30"/>
+                                                        <input class="radio" type="radio" name="review" id="30" value="yellowgreen" onChange={(e)=>{ setLevel(e.target.value)}}/>
                                                         <span className="colorSpan forth"></span>
                                                     </label>
                                                 </div>
                                             </div>
                                             <div className="add-comment">
                                                     <h3>Commentaire</h3>
-                                                    <textarea></textarea>
+                                                    <textarea value={comment} onChange={(e)=>{ setComment(e.target.value)}}></textarea>
                                             </div>
                                             
                                         </div>

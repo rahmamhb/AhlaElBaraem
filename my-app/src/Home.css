@@ -5,6 +5,7 @@
     row-gap: 70px;
     justify-items: center;
 }
+
 .home-page .container{
     background-color: #FF4848;
     width: 100%;
@@ -54,10 +55,98 @@
     width: 380px;
 }
 .header .wave{
-    margin-top: -1px;
+    margin-top: -2px;
     margin-left: -1px;
     width: 100%;
 
+}
+/* Responsive styling for screens with max width of 767px */
+@media screen and (max-width:960px){
+    .home-page  .container {
+        grid-template-columns: auto;
+        column-gap: 0px;
+        justify-content: center;
+        padding: 30px 20px;
+        justify-items: center;
+    }
+
+    .text-info p {
+        font-size: 36px;
+        width: auto;
+        text-align: center;
+    }
+
+    .text-info span {
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .BaraemHeader {
+        height: 150px;
+        width: 250px;
+        margin-top: 50px;
+    }
+
+    .header .wave {
+        display: none;
+    }
+}
+
+/* Responsive styling for screens with min width of 768px and max width of 1023px */
+@media only screen and (min-width:961px) and (max-width: 1023px) {
+    .home-page  .container {
+        column-gap: 100px;
+        padding: 30px 20px;
+        justify-items: center;
+    }
+
+    .text-info p {
+        font-size: 56px;
+        width: auto;
+    }
+
+    .text-info span {
+        font-size: 18px;
+    }
+
+    .BaraemHeader {
+        height: 200px;
+        width: 300px;
+        margin-top: 50px;
+    }
+}
+@media only screen and (min-width: 1024px) {
+
+    .home-page .container {
+    column-gap: 80px;
+    }
+    
+    .text-info p {
+    font-size: 96px;
+    width: 800px;
+    }
+    
+    .text-info {
+    row-gap: 60px;
+    }
+    
+    .button-connecter {
+    height: 50px;
+    width: 200px;
+    font-size: 20px;
+    }
+    
+    .BaraemHeader {
+    height: 350px;
+    width: 520px;
+    }
+    
+    .header .wave {
+    margin-top: -2px;
+    margin-left: -1px;
+    width: calc(100% + 2px);
+    }
+    
 }
 .a-propos{
     height: max-content;
@@ -103,6 +192,60 @@
 .children:hover {
     filter: contrast(0.6);
 }
+/* For screens up to 767px */
+@media only screen and (max-width: 960px) {
+    .a-propos {
+        grid-template-columns: 1fr;
+        text-align: center;
+        justify-items: center;
+        width: max-content;
+    }
+    .text-apropos p {
+      font-size: 36px;
+    }
+    .text-apropos span {
+      font-size: 16px;
+      text-align: center;
+    }
+    .children {
+      height: 250px;
+      width: 250px;
+    }
+  }
+  @media only screen and (min-width: 961px) and (max-width: 1023px){
+    .a-propos{
+        column-gap: 20px;
+        justify-content: center
+    }
+    .children {
+        height: 270px;
+        width: 270px;
+      }
+    .text-apropos span {
+        width: 450px;
+    }
+     
+  }
+  /* For screens 1024px and above */
+  @media only screen and (min-width: 1024px) {
+    .a-propos {
+        justify-content: center;
+        column-gap: 5%;
+    }
+    .text-apropos p {
+      font-size: 72px;
+    }
+    .text-apropos span {
+      font-size: 22px;
+      width: 550px;
+      text-align: left;
+    }
+    .children {
+      height: 430px;
+      width: 430px;
+    }
+  }
+  
 .notre-equipe{
     display: inline-grid;
     grid-template-rows: auto auto;
