@@ -6,9 +6,9 @@ body{
     background-image: url("./assets/background.png");
     background-repeat: repeat-y;
     background-position: center;
-    background-size: contain;
+    background-size: auto;
     height: 100%;
-    width: auto;
+    max-width: 100%;
 }
 html {
     scroll-behavior: smooth;

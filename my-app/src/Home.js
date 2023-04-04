@@ -12,7 +12,16 @@ import { Link } from "react-router-dom";
 import NavBar1 from "./NavBar1";
 import Footer from "./Footer";
 import Avis from "./Avis";
+import { useState } from "react";
 const Home = () => {
+    const [nom , setNom] = useState("");
+    const [email , setEmail] = useState("");
+    const [msg , setMsg] = useState("");
+    const [isPending , setIsPending] = useState(false)
+    const handleSubmit = (e)=>{
+        e.preventDefault();
+        setIsPending(true)
+    }
     const dataEquipe=[
         {
             name : "NomPrenom",
@@ -39,7 +48,7 @@ const Home = () => {
            
             <div className="header"> 
                 
-                <NavBar1></NavBar1>
+                <NavBar1 showBtn={false}></NavBar1>
                 <div className="container">
                     <div className="text-info">
                         <p>Créche maternelle Ahla el Baraem</p>
@@ -148,20 +157,20 @@ const Home = () => {
                         </div>
                     </div>
                     <div className="form">
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             <div className="field">
                                 <label>Nom</label>
-                                <input type="text" className="field-int"></input>
+                                <input type="text" className="field-int" value={nom}  onChange={(e)=>{ setNom(e.target.value)}}></input>
                                 <span className="separator"> </span>
                             </div>
                             <div className="field">
                                 <label>email</label>
-                                <input type="text" className="field-int"></input>
+                                <input type="email" className="field-int" value={email}  onChange={(e)=>{ setEmail(e.target.value)}}></input>
                                 <span className="separator"> </span>
                             </div>
                             <div className="field message">
                                 <label>message</label>
-                                <input type="text" className="field-int"></input>
+                                <input type="text" className="field-int" value={msg}  onChange={(e)=>{ setMsg(e.target.value)}}></input>
                                 <span className="separator"> </span>
                             </div>
                             <button> 

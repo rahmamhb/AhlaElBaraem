@@ -18,7 +18,7 @@
     border-bottom: solid 2px #FF4848;
     width: 100%;
 }
-.enfant-info button{
+.enfant-info button ,.envoyer {
     border: 0;
     color: #fff;
     background-color: #FDDC6B;
@@ -29,7 +29,7 @@
     cursor: pointer;
     transition: all .3 ease;
 }
-.enfant-info button:hover{
+.enfant-info button:hover , .comportement-container .envoyer:hover{
     background-color: #fddb6bd5;
 }
 .list-page{
@@ -61,11 +61,15 @@
     transform: scale(1);
 }
 .comportement-container{
+    height: 680px;
     display: inline-grid;
     grid-template-rows: auto auto;
     border-radius: 30px;
     background-color: #fff;
+    overflow-y: auto;
+    scrollbar-width: 10px;
 }
+
 .comportement-header{
     padding: 10px 35px;
     display: inline-grid;
@@ -73,7 +77,7 @@
     justify-items: start;
     row-gap: 10px;
     background-color: #FFE794;
-    border-radius: 30px 30px 0px 0px;
+    border-radius: 30px 0px 0px 0px;
 }
 .comportement-header button{
     color: #555;
@@ -84,6 +88,7 @@
 .comportement-header button svg{
     height: 40px;
     width: 40px;
+    cursor: pointer;
 }
 .about-enfant{
     display: inline-grid;
@@ -110,13 +115,16 @@
 }
 .comportement-container form{
     background-color: #fff;
-    padding: 15px 45px
+    padding: 15px 45px;
+    display :inline-grid;
+    grid-template-rows: auto auto auto ;
+    justify-items: start;
 }
 .comportement-of-the-day{
     display: inline-grid;
     grid-template-rows: auto auto;
 }
-.comportement-of-the-day h3{
+.comportement-of-the-day h3 ,.select-matiere h3 , .select-activity h3 ,.add-comment h3 {
     color:#555;
     font-family: "Poppins","sans-serif";
     text-decoration: underline;
@@ -150,4 +158,81 @@
     filter: grayscale(0);
     font-size: 4rem;
   }
+
+.selecter{
+    display: inline-grid;
+    grid-template-rows: auto auto auto;
+    row-gap: 40px;
+}
+.select-matiere , .select-activity , .add-comment{
+    display: inline-grid;
+    grid-template-rows: auto auto;
+    row-gap: 15px;
+}
+select{
+    border: 0;
+    font-family: 'Poppins';
+    font-size: 18px;
+    padding: 16px 15px;
+    color: #555;
+    box-shadow: 0px 4px 14px 0px #d8cfcf87;
+    border-radius: 6px;
+}
+.review-activity span{
+    border: solid 2px red;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    display: block;
+    filter: none;
+}
+.colorSpan.second{border:solid 2px orange;}
+.colorSpan.third{border:solid 2px yellow;}
+.colorSpan.forth{border:solid 2px yellowgreen;}
+
+.radio:checked + .colorSpan.first {
+    background-color: red;
+}
   
+.radio:checked + .colorSpan.second {
+background-color: orange;
+}
+
+.radio:checked + .colorSpan.third {
+background-color: yellow;
+}
+
+.radio:checked + .colorSpan.forth {
+background-color: yellowgreen;
+}
+textarea{
+    font-family: "Poppins";
+    min-height: 150px;
+}
+.envoyer{
+    padding: 10px 25px;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+
+    width: 15px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
