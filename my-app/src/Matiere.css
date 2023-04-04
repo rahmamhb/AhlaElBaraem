@@ -197,6 +197,7 @@
     background: #fff;
     border-bottom: solid 2px #555;
     margin: 0;
+    color: #555;
 }
 .more-about-matiere form input[type="text"]:focus , .add-matiere form input[type="text"]:focus{
     color: #555;

@@ -7,7 +7,7 @@ import waveBottomWhite from "./assets/wavebottomwhite.png"
 import "./Nourrice.css"
 import NavBar1 from "./NavBar1";
 import ListEnfant from "./ListEnfants";
-import NourriceComment from "./NourriceComment";
+import NourriceComment from "./Comment";
 import Matiere from "./Matiere";
 
 const MatieresData = [
@@ -48,6 +48,28 @@ const MatieresData = [
 
     },
 ]
+let CommentData = [
+    {
+        childName :"nom prénom",
+        commentContent : " Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inv",   
+        addingDate : new Date(),
+    },
+    {
+        childName :"nom prénom",
+        commentContent : " Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inv",   
+        addingDate : new Date(),
+    },
+    {
+        childName :"nom prénom",
+        commentContent : " Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inv",   
+        addingDate : new Date(),
+    },
+    {
+        childName :"nom prénom",
+        commentContent : " Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inv",   
+        addingDate : new Date(),
+    }
+]
 
 const Nourrice = () => {
     let [list , setList] = useState(false);
@@ -56,7 +78,7 @@ const Nourrice = () => {
     return ( 
         <div className="nourrice-page">
             <div className="nourHeader"> {/*in the header section i put the navBar and the wave*/}
-                <NavBar1></NavBar1>
+                <NavBar1 showBtn={true}></NavBar1>
                 <div className="wave-top">
                     <img src={wave} alt="wave" className="wave"/>
                 </div>
@@ -73,7 +95,7 @@ const Nourrice = () => {
                 </div>
                 <div className="nour-content"> {/*wtbdli hnaya 3la hssab la page ta3k*/}
                     {list && <ListEnfant MatierData={MatieresData}></ListEnfant>}
-                    {comment && <NourriceComment></NourriceComment>}
+                    {comment && <NourriceComment data={CommentData}></NourriceComment>}
                     {matiere && <Matiere data={MatieresData}></Matiere>}
                 </div>
                 <div className="wave-bottom"> {/*wl wave adi */}
