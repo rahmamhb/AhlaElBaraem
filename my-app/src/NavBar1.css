@@ -1,94 +1,267 @@
-.Nav-bar1{
-    width: 100%;
-    height: 115px;
-    background-color: #FF4848;
-    display:inline-grid;
-    grid-template-columns:  auto auto;
-    column-gap:30px ;
-    align-items: end;
-    align-content: space-between;
-    margin-bottom: -2px;
-    padding: 20px 0px;
-    
-
-}
-.logo{
-    height:90px;
-    width: 150px;
-    margin-left: 60px;
-
-}
-a{
-    text-decoration: none;
-    font-size: 18px;
-    font-family: 'Poppins', sans-serif;
-    color: #fff;
-    width: fit-content; 
-    height: fit-content;
-    display:inline-grid;
-    grid-template-rows: auto auto ;
+.Nav-bar1 {
+  display: flex;
+  align-items: center;
+  column-gap: 30%;
+  background-color: #FF4848;
+  padding: 30px 20px;
+  margin-bottom: -2px;
+  width: 100%;
 }
 
+.logo {
+  margin-left: 60px;
+  height:90px;
+  width: 150px;
+}
+
+.NavInfo {
+  display: inline-grid;
+  grid-template-columns: auto auto auto auto auto;
+  column-gap: 65px;
+  align-items: center;
+  justify-items: start;
+}
+
+a {
+  width: fit-content;
+  height: fit-content;
+  display: inline-grid;
+  grid-template-rows: auto auto;
+  text-decoration: none;
+  font-size: 18px;
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+}
 a span{
-    width: 0px;
-    height: 4px;
-    border-radius: 6px;
-    background-color:#FFE794 ;
-    transition: all ease-in-out .5s;
+  width: 0px;
+  height: 4px;
+  border-radius: 6px;
+  background-color:#FFE794 ;
+  transition: all ease-in-out .5s;
 }
 a:hover span{
-    width:100%;
+  width:100%;
 }
 .active-nav-link span{
-    width: 100%;
-}
-.NavInfo{
-    display: inline-grid;
-    grid-template-columns: auto auto auto auto auto;
-    column-gap: 30px;
-    align-items: center;
-    justify-items: start;
-
+  width: 100%;
 }
 .ConnectButton{
-    background-color: #ffffff27;
+  background-color: #ffffff27;
 }
-.ConnectButton ,.monCompteButton{
-    border-radius: 30px;
-    height:45px ;
-    width: 150px ;
-    text-align: center;
-    vertical-align: middle;
-    line-height: 45px;  
-    transition: all ease-in-out .5s;
+.ConnectButton,
+.monCompteButton {
+  height: 45px;
+  width: 150px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 45px;
+  border-radius: 30px;
+  transition: all ease-in-out .5s;
+}
+.ConnectButton:hover ,.monCompteButton:hover{
+  background-color: #FFF;
+  color:#FF4848 ;
+  
+}
+.monCompte {
+  display: inline-grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  column-gap: 25px;
 }
 
-.ConnectButton:hover ,.monCompteButton:hover{
-    background-color: #FFF;
-    color:#FF4848 ;
-    
+.monCompteButton {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #ff4848;
 }
-.monCompte{
-    display: inline-grid;
-    grid-template-columns: auto auto;
-    align-items: center;
-    column-gap: 25px;
+
+.active-mon-compte {
+  background-color: #fff;
+  color: #ff4848;
 }
-.monCompteButton{
-    background-color: rgba(255, 255, 255, 0.9);
-    color: #FF4848;
+
+.monCompte button {
+  border: 0;
+  color: white;
+  background-color: #ff4848;
+  cursor: pointer;
 }
-.active-mon-compte{
-    background-color: #FFF;
-    color: #FF4848;
+
+.monCompte svg {
+  height: 37px;
+  width: 40px;
 }
-.monCompte button{
-    border: 0;
-    color: white;
-    background-color: #ff4848;
-    cursor: pointer;
+.menu-icon{
+  display: none;
+  outline: none;
+  border: 0;
+  background: #ff4848;
+  color: #fff;
+  cursor: pointer;
 }
-.monCompte svg{
-    height: 37px;
-    width: 50px;
+.menu-icon svg{
+  height: 30px;
+  width: 30px;
+}
+
+
+
+  /* Large screens */
+  @media only screen and (min-width: 1024px) {
+    .Nav-bar1 {
+      display: flex;
+      align-items: center;
+      column-gap: 30%;
+      background-color: #FF4848;
+      margin-bottom: -2px;
+      width: 100%;
+    }
+  
+    .logo {
+      margin-left: 60px;
+      height:90px;
+      width: 150px;
+    }
+  
+    .NavInfo {
+      display: inline-grid;
+      grid-template-columns: auto auto auto auto auto;
+      column-gap: 65px;
+      align-items: center;
+      justify-items: start;
+    }
+  
+    a {
+      width: fit-content;
+      height: fit-content;
+      display: inline-grid;
+      grid-template-rows: auto auto;
+      text-decoration: none;
+      font-size: 18px;
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+    }
+    a span{
+      width: 0px;
+      height: 4px;
+      border-radius: 6px;
+      background-color:#FFE794 ;
+      transition: all ease-in-out .5s;
+    }
+    a:hover span{
+      width:100%;
+    }
+    .active-nav-link span{
+      width: 100%;
+    }
+    .ConnectButton{
+      background-color: #ffffff27;
+    }
+    .ConnectButton,
+    .monCompteButton {
+      height: 45px;
+      width: 150px;
+      text-align: center;
+      vertical-align: middle;
+      line-height: 45px;
+      border-radius: 30px;
+      transition: all ease-in-out .5s;
+    }
+    .ConnectButton:hover ,.monCompteButton:hover{
+      background-color: #FFF;
+      color:#FF4848 ;
+      
+    }
+    .monCompte {
+      display: inline-grid;
+      grid-template-columns: auto auto;
+      align-items: center;
+      column-gap: 25px;
+    }
+  
+    .monCompteButton {
+      background-color: rgba(255, 255, 255, 0.9);
+      color: #ff4848;
+    }
+  
+    .active-mon-compte {
+      background-color: #fff;
+      color: #ff4848;
+    }
+  
+    .monCompte button {
+      border: 0;
+      color: white;
+      background-color: #ff4848;
+      cursor: pointer;
+    }
+  
+    .monCompte svg {
+      height: 37px;
+      width: 40px;
+    }
+    .menu-icon{
+      display: none;
+      outline: none;
+      border: 0;
+      background: #ff4848;
+      color: #fff;
+      cursor: pointer;
+    }
+    .menu-icon svg{
+      height: 30px;
+      width: 30px;
+    }
+}
+@media screen and (max-width:960px){
+  .Nav-bar1{
+    position: relative;
+  }
+  .NavInfo{/*nav-menu*/  
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 500px;
+    position: absolute;
+    top: 80px;
+    left: -100%;
+    opacity: 1;
+    transition: all 0.5s ease;
+  }
+  .NavInfo.active{
+    background-color: #FF4848;
+    left: 0;
+    opacity: 1;
+    transition: all 0.5s ease;
+    z-index: 1;
+  }
+  .nav-link{
+    margin-top: 1px;
+    text-align: center;
+    padding: 2rem;
+    width: 100%;
+    display: table;
+  }
+  .logo{
+    width: 110px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(25%,5%);
+    height: 74px;
+  }
+  .menu-icon{
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(-100%,60%);
+    font-size: 1.8rem;
+  }
+  .ConnectButton,
+    .monCompteButton{
+      width: fit-content;
+      padding: 3px 18px;
+    }
+
 }

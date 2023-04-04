@@ -4,6 +4,8 @@ import reglInter from "./assets/reglement.png"
 import progGeneral from "./assets/normaux.png"
 import progSpe from "./assets/hautistes.png"
 import wave from "./assets/wave.png"
+import pdf1 from "./assets/Reglementinter.pdf"
+import pdf2 from "./assets/programmepédagogique.pdf"
 import "./Programme.css"
 
 const Programme = () => {
@@ -23,7 +25,7 @@ const Programme = () => {
                         <div className="card-txt">
                             <p>Reglement Interieur</p>
                             <span>Organiser la vie au sein de notre crèche</span>
-                            <a href="/" >Voir plus</a>
+                            <a href={pdf1}target="_blank" rel="noopener noreferrer" >Voir plus</a>
                         </div>
                     </div>
                     <div className="prog-gene prog-card">
@@ -31,7 +33,7 @@ const Programme = () => {
                         <div className="card-txt">
                             <p>Programme général</p>
                             <span>les objectifs éducatifs pour les enfants</span>
-                            <a href="/" >Voir plus</a>
+                            <a href={pdf2} target="_blank" rel="noopener noreferrer" >Voir plus</a>
                         </div>
                     </div>
                     <div className="prog-spe prog-card">
@@ -39,7 +41,7 @@ const Programme = () => {
                         <div className="card-txt">
                             <p>Programme autiste</p>
                             <span>les activités proposées pour les enfants spéciaux</span>
-                            <a href="/" >Voir plus</a>
+                            <a  href={pdf2} target="_blank" rel="noopener noreferrer">Voir plus</a>
                         </div>
                     </div>
                 </div>  

@@ -1,6 +1,7 @@
 :root{
     --matiereColor:#FFB585;
     --rowNumMat:1;
+    --rowNbAct:1;
 }
 .matiere-page{
     display: inline-grid;
@@ -126,4 +127,143 @@
     width: 30px;
 }
 
+.more-about-matiere ,.add-matiere{
+    row-gap: 35px;
+    display: inline-grid;
+    grid-template-rows: auto auto auto;
+    background-color: #FFF;
+    border-radius: 30px;
+    padding: 40px 20px;
+}
+.matiere-header{
+    display: inline-grid;
+    grid-template-columns: auto auto;
+}
+.matiere-header h3{
+    color: #555;
+    font-family: "Poppins","sans-serif";
+    text-decoration: underline;
+    font-size: 25px;
+    font-weight: normal;
+    width: fit-content;
+}
+.matiere-header button{
+    width: fit-content;
+    border-radius: 30px;
+}
+.matiere-header button svg{
+    color: #555;
+    height: 35px;
+    width: 35px;
+}
+.activities{
+    display: inline-grid;
+    grid-template-rows: repeat(var(--rowNbAct),auto);
+    row-gap: 25px;
+}
+.activity{
+    display: inline-grid;
+    grid-template-columns: auto auto;
+    justify-content: start;
+    align-items: center;
+    column-gap: 25px;
+}
+.activity .circle{
+    border-radius: 50%;
+    height: 15px;
+    width: 15px;
+    background-color: var(--matiereColor);
+}
+.activity .text{
+    padding: 0px 20px;
+    width: 280px;
+    border-radius: 30px;
+    height: 50px;
+    line-height: 50px;
+    text-align: start;
+    vertical-align: middle;
+    box-shadow: 0px 4px 10px 0px #0000001f;
+    font-family: poppins;
+    color: #555;
+}
+.more-about-matiere form {
+    grid-template-rows: none;
+    background-color: #fff;
+    display: inline-grid;
+    grid-template-columns: auto auto;
+    padding: unset;
+}
+.more-about-matiere form input[type="text"] , .add-matiere form input[type="text"]{
+    background: #fff;
+    border-bottom: solid 2px #555;
+    margin: 0;
+    color: #555;
+}
+.more-about-matiere form input[type="text"]:focus , .add-matiere form input[type="text"]:focus{
+    color: #555;
+}
 
+.more-about-matiere form svg{
+    color: #555;
+    height: 30px;
+    width: 30px;
+}
+.add-matiere form{
+    background-color: #FFF;
+    justify-items: baseline;
+    padding: 0px 30px;
+}
+
+.add-matiere .confirmer{
+    border-radius: 20px;
+    background-color: #FDDC6B;
+    color: #fff;
+    padding: 10px 15px;
+    transition: all .3 ease;
+}
+.confirmer:hover{
+    background-color: #fddb6bd5;
+}
+.colors{
+    display: inline-grid;
+    grid-template-rows: auto auto;
+    row-gap: 10px;
+}
+.colors p{
+    font-family: poppins;
+    font-size: 15px;
+    color: #555;
+}
+.circleContainer{
+    display: inline-grid;
+    grid-template-columns: repeat(6,auto);
+}
+.circleContainer span{
+    border: 0;
+    display: block;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    filter: none;
+}
+.circleContainer .first{
+    background-color:rgb(255 181 133) ;
+}
+.circleContainer .second{
+    background-color: rgb(255 231 148);
+}
+.circleContainer .third{
+    background-color:rgb(255 72 72) ;
+}
+.circleContainer .forth{
+    background-color: rgb(154 219 255);
+}
+.circleContainer .fifth{
+    background-color: rgb(255 189 167);
+}
+.circleContainer .sixth{
+    background-color: rgb(255 153 0);
+}
+.circleContainer .radio:checked ~ span {
+    transform: scale(1.5);
+  }
