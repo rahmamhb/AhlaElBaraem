@@ -38,13 +38,13 @@ const Footer = () => {
                             </div>
                         </div>
                         <div className="social-media">
-                            <a href="/"><Facebook></Facebook> </a>
-                            <a href="/"> <Instagram></Instagram></a>
-                            <a href="/"><YouTube></YouTube> </a>
+                            <a href="https://www.facebook.com/Cr%C3%A8che-Bara%C3%A9m-1817554448293433" target="_blank" rel="noopener noreferrer"><Facebook></Facebook> </a>
+                            <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"> <Instagram></Instagram></a>
+                            <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer"><YouTube></YouTube> </a>
                         </div>
                     </div>
                 </div>
-                <p>Copyright © 2023 créche maternelle Ahla el baraem</p>
+                <p>Copyright © 2023 créche maternelle Ahla el baraem <a href="/"> - </a></p>
             </div>
         </div>
      );

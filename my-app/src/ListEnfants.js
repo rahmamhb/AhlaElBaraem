@@ -4,7 +4,7 @@ import Pagination from "./Pagination"
 import { useEffect, useState } from "react"
 import ChevronLeft from '@mui/icons-material/ChevronLeftRounded';
 
-const ListEnfant = () => {
+const ListEnfant = ({MatierData}) => {
 
     let data = [{id:1,childName:"Matty",ParentEmail:"mbrydie0@skype.com",LastEditDate:new Date(),age : 3 ,childImg:"https://image.cnbcfm.com/api/v1/image/107081378-1656361235570-GettyImages-1225403728_2.jpg?v=1656361293&w=740&h=416&ffmt=webp&vtcrop=y"},
     {id:2,childName:"Rayna",ParentEmail:"rburgwyn1@webnode.com",LastEditDate:new Date(),age : 3,childImg:"https://image.cnbcfm.com/api/v1/image/107081378-1656361235570-GettyImages-1225403728_2.jpg?v=1656361293&w=740&h=416&ffmt=webp&vtcrop=y"},
@@ -40,6 +40,26 @@ const ListEnfant = () => {
     const paginate = (pageNumber) => setCurrentPage(pageNumber) ;
     const [currentOverlayIndex, setCurrentOverlayIndex] = useState(null);
     const emojis = ["😒","🙁","😊","🥰","👏"];
+
+    const [selectedMatiere, setSelectedMatiere] = useState(MatierData[0]);
+
+    function handleMatiereChange(event) {
+        const selectedMatiereName = event.target.value;
+        const selectedMatiere = MatierData.find(matiere => matiere.matiereName === selectedMatiereName);
+        setSelectedMatiere(selectedMatiere);
+        setChoosenMat(selectedMatiereName)
+    }
+
+    const [emojiValue , setEmojiValue] = useState("");
+    const [choosenMat , setChoosenMat] = useState("");
+    const [choosenAct , setChoosenAct] = useState("");
+    const [level , setLevel] = useState("");
+    const [comment , setComment] = useState("");
+    const [isPending , setIsPending] = useState(false)
+    const handleSubmit = (e)=>{
+        e.preventDefault();
+        setIsPending(true)
+    }
     return ( 
         
         <div className="list-page">
@@ -59,15 +79,15 @@ const ListEnfant = () => {
                                             </div>
                                         </div>  
                                     </span>
-                                    <form>
+                                    <form onSubmit={handleSubmit}>
                                         <div className="comportement-of-the-day">
                                             <h3>Comportement d’aujourd'hui</h3>
                                             <div class="container">
                                                 {emojis.map((emoji,index)=>{
                                                     return(
                                                         <div class="item">
-                                                            <label for={index}>
-                                                                <input class="radio" type="radio" name="feedback" id={index} value={index}/>
+                                                            <label >
+                                                                <input class="radio" type="radio" name="feedback" id={index} value={emoji}  onChange={(e)=>{ setEmojiValue(e.target.value)}} />
                                                                 <span>{emoji}</span>
                                                             </label>
                                                         </div>
@@ -75,6 +95,56 @@ const ListEnfant = () => {
                                             })}
                                             </div>
                                         </div>
+                                        <div className="selecter">
+                                            <div className="select-matiere">
+                                                <h3>Matieres</h3>
+                                                <select value={selectedMatiere.matiereName} onChange={handleMatiereChange}>
+                                                {MatierData.map(matiere => (
+                                                    <option key={matiere.matiereName} value={matiere.matiereName}>{matiere.matiereName}</option>
+                                                ))}
+                                                </select>
+                                            </div>
+                                            <div className="select-activity">
+                                                <h3>Activites</h3>
+                                                <select onChange={(e)=>{ setChoosenAct(e.target.value)}}>
+                                                {selectedMatiere.activities.map(activity => (
+                                                    <option key={activity} value={activity}>{activity}</option>
+                                                ))}
+                                                </select>
+                                            </div>
+                                            <div className="review-activity container">
+                                                <div class="item">
+                                                    <label >
+                                                        <input class="radio" type="radio" name="review" id="9" value="red" onChange={(e)=>{ setLevel(e.target.value)}}/>
+                                                        <span className="colorSpan first"></span>
+                                                    </label>
+                                                </div>
+                                                <div class="item">
+                                                    <label >
+                                                        <input class="radio" type="radio" name="review" id="10" value="orange" onChange={(e)=>{ setLevel(e.target.value)}}/>
+                                                        <span className="colorSpan second"></span>
+                                                    </label>
+                                                </div>
+                                                <div class="item">
+                                                    <label >
+                                                        <input class="radio" type="radio" name="review" id="20" value="yellow" onChange={(e)=>{ setLevel(e.target.value)}}/>
+                                                        <span className="colorSpan third"></span>
+                                                    </label>
+                                                </div>
+                                                <div class="item">
+                                                    <label>
+                                                        <input class="radio" type="radio" name="review" id="30" value="yellowgreen" onChange={(e)=>{ setLevel(e.target.value)}}/>
+                                                        <span className="colorSpan forth"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div className="add-comment">
+                                                    <h3>Commentaire</h3>
+                                                    <textarea value={comment} onChange={(e)=>{ setComment(e.target.value)}}></textarea>
+                                            </div>
+                                            
+                                        </div>
+                                        <button className="envoyer">envoyer</button>
                                     </form>
                                 </div>    
                             </div>
