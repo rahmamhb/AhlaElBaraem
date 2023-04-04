@@ -4,6 +4,7 @@ import Programme from "./Programme";
 import Gallery from "./Gallery";
 import Home from "./Home"
 import Nourrice from "./Nourrice";
+import Parent from './Parent';
 
 const App = () => {
     return ( 
@@ -16,6 +17,7 @@ const App = () => {
                     <Route path="/Annonces" element={<Annonces />}></Route>
                     <Route path="/Programmes" element={<Programme />}></Route>
                     <Route path="/Nourrice" element={<Nourrice />}></Route>
+                    <Route path="/Parent" element={<Parent />}></Route>
                 </Routes>   
             </div>
         </div>
