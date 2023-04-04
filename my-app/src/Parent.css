@@ -30,7 +30,7 @@
 .lastone{
     border-right:  0 !important;
 }
-.content-container img{
+.parent-content-container img{
     padding: 0;
     display: block;
     margin: 0 auto;

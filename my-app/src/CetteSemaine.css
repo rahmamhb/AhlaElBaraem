@@ -4,8 +4,13 @@
     align-items: center;
     justify-content: center;
 }
+
+.selectedemoji{
+    font-size: 100px;
+}
 .emoji{
-    width: 100px;
+    font-size: 80px;
+    width: 120px;
     display: flex;
     justify-content: center;
     align-items: center;

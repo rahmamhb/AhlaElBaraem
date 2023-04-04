@@ -1,13 +1,4 @@
-import happyEmoji from "./assets/happyEmoji.png";
-import happyEmojiActive from "./assets/happyEmojiActive.png";
-import satisfiedEmoji from "./assets/satisfiedEmoji.png"
-import satisfiedEmojiActive from "./assets/satisfiedEmojiActive.png"
-import normalEmojiActive from "./assets/normalEmojiActive.png"
-import normalEmoji from "./assets/normalEmoji.png"
-import sadEmoji from "./assets/sadEmoji.png"
-import sadEmojiActive from "./assets/sadEmojiActive.png"
-import dissapointedEmoji from "./assets/dissapointedEmoji.png"
-import dissapointedEmojiActive from "./assets/dissapointedEmojiActive.png"
+
 import Absent from "./assets/absent.png"
 import Present from "./assets/present.png"
 import Bud from "./assets/bud.png"
@@ -17,34 +8,8 @@ import Menu from './Menu'
 
 
 const CetteSemaine = () => {
-    const emojiList = [
-        {
-            src1 : dissapointedEmoji,
-            src2 : dissapointedEmojiActive,
-            isSelected : false
-        },
-        {
-            src1 : sadEmoji,
-            src2 : sadEmojiActive,
-            isSelected : false
-        },
-        {
-            src1 : normalEmoji,
-            src2 : normalEmojiActive,
-            isSelected : false
-        },
-        
-        {
-            src1 : satisfiedEmoji,
-            src2 : satisfiedEmojiActive,
-            isSelected : true
-        }, 
-        {
-            src1 : happyEmoji,
-            src2 : happyEmojiActive,
-            isSelected : false
-        }
-    ] 
+    const emojis = ["😒","🙁","😊","🥰","👏"];
+   
 
     const budsList = [
         {
@@ -57,7 +22,7 @@ const CetteSemaine = () => {
         },
         {
             day : "Mardi",
-            isPresent : "",
+            isPresent : true,
         },
         
         {
@@ -79,9 +44,9 @@ const CetteSemaine = () => {
                     <h2 className="second-title">d’aujourd’hui</h2>
                 </div>
                 <div class="emoji-container">
-                    {emojiList.map((emoji, index) => (
+                    {emojis.map((emoji, index) => (
                         <div className="emoji">
-                            <img key={index} src= {emoji.isSelected ? emoji.src2 : emoji.src1} alt="" /> 
+                            {emoji}
                         </div>
                    
                     ))}

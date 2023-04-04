@@ -6,6 +6,13 @@
     display: inline-grid;
     grid-template-rows: repeat(var(--rowNum),auto);
     row-gap: 50px;
+    margin-top: 110px;
+    
+}
+
+.messagerie-container{
+    background-image: url(./assets/background.png);
+    background-size: cover;
 }
 .message{
     display: inline-grid;

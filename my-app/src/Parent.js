@@ -35,9 +35,10 @@ const Parent = () => {
                 <button className={monenfant? "active-btn lastone" :"lastone"} onClick={()=>{setCetteSemaine(false) ; setCompétence(false);setMessagerie(false) ; setMonenfant(true)}} >mon enfant</button>
             </div>
 
-            <div className="content-container">
+            <div className="parent-content-container">
                 <div className="wave-top">
-                    <img src={waveTopWhite} alt="wave-top"></img>
+                    {monenfant && <img src={waveTopWhite} alt="wave-top"></img>}
+                    {cettesemaine && <img src={waveTopWhite} alt="wave-top"></img>}
                 </div>
                 <div className="parent-content">
                     {cettesemaine && <CetteSemaine></CetteSemaine>}
@@ -46,7 +47,8 @@ const Parent = () => {
                     {monenfant && <MonEnfant></MonEnfant>}
                 </div>
                 <div className="wave-bottom">
-                    <img src={waveBottomWhite} alt="wave-bottom"></img>
+                   {monenfant &&<img src={waveBottomWhite} alt="wave-bottom"></img>}
+                   {cettesemaine &&<img src={waveBottomWhite} alt="wave-bottom"></img>}
                  </div>
             </div>
             <Footer></Footer>
