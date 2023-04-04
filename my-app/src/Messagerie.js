@@ -3,6 +3,7 @@ import './Messagerie.css'
 
 
 
+
 const Messagerie = () => {
     const messages = [
             {
@@ -38,7 +39,8 @@ const Messagerie = () => {
 
     ]
     return ( 
-       <div className="messagerie">
+        <div className="messagerie-container" >
+            <div className="messagerie">
             {
                     messages.map((message,index)=>{
                         return(
@@ -57,6 +59,8 @@ const Messagerie = () => {
                     })
                 }
        </div>
+        </div>
+       
      );
 }
  

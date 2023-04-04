@@ -52,7 +52,7 @@ const Compétence = () => {
 ]
 
     return ( 
-        <div>
+        <div className='competence-container'>
             {
                 competences.map((competence,index)=>{
                     return(

@@ -17,6 +17,15 @@
     row-gap: 15px;
     font-weight: 400;
 
+
+}
+
+.competence-container{
+  
+        background-image: url(./assets/background.png);
+        background-size: cover;
+        margin-top: 110px;
+
 }
 
 .activite1 .activite{
