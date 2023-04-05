@@ -1,0 +1,59 @@
+.emoji-container{
+    display: flex;
+    column-gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.selectedemoji{
+    font-size: 100px;
+}
+.emoji{
+    font-size: 80px;
+    width: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 87px;
+
+}
+.title{
+    font-family: 'Bubblegum Sans', cursive;
+    color: #FF4848;
+}
+.first-title{
+    padding-top: 96px;
+    font-size: 52px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.second-title{
+    font-size: 30px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+} 
+.comportement{
+    gap : 87px;
+}
+.bud-container{
+    display: flex;
+    gap: 51px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.bud{
+    height: 100px;
+    width: 100px;
+    padding-top: 87px;
+}
+.day{
+    justify-content: center;
+    text-align: center;
+    padding-top: 10px;
+    color: #9D9D9D;
+}
