@@ -3,17 +3,11 @@ import CrecheLogo from "./assets/logo.png"
 import Logout from '@mui/icons-material/Logout';
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
-<<<<<<< HEAD
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 const NavBar1 = ({showBtn}) => {
     let [show , setShow] = useState(showBtn);
     let [state , setState] = useState(true)
-=======
-
-const NavBar1 = () => {
-    let [show , setShow] = useState(true);
->>>>>>> parent-interface
     return ( 
         <div className="Nav-bar1">
             <img src={CrecheLogo} alt="logo" className="logo"/>
@@ -43,12 +37,8 @@ const NavBar1 = () => {
                     <p>Annonces</p>
                     <span></span>
                 </NavLink>
-<<<<<<< HEAD
                 <a href="#contact-us" className='nav-link'>
-=======
 
-                <a href="#contact-us">
->>>>>>> parent-interface
                     <p>Contactez nous</p>
                     <span></span>
                 </a>
@@ -60,13 +50,9 @@ const NavBar1 = () => {
                 }
                 
                 {show && 
-<<<<<<< HEAD
                     <div className='monCompte nav-link'>
                         <NavLink to="/" className={({isActive})=>{return isActive? "active-mon-compte ConnectButton":"monCompteButton"}}>
-=======
-                    <div className='monCompte'>
-                        <NavLink to="/Parent" className={({isActive})=>{return isActive? "active-mon-compte ConnectButton":"monCompteButton"}}>
->>>>>>> parent-interface
+
                             <p>Mon Compte</p>   
                         </NavLink>
                         <button onClick={()=>{setShow(false)}}><Logout></Logout></button>
