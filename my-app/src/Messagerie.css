@@ -14,7 +14,7 @@
     background-image: url(./assets/background.png);
     background-size: cover;
 }
-.message{
+.messagerie .message{
     display: inline-grid;
     grid-template-rows:auto auto ;
     font-family: 'Poppins', sans-serif;
