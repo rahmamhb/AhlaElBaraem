@@ -16,11 +16,7 @@ const signUpSchema = new mongoose.Schema({
     age : {
         type : Number
       },
-      date_ajout : {
-        type : Date,
-        required : true
-    },
-      password : {
+    password : {
         type : String,
         required : true
       },

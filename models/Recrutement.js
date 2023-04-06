@@ -13,10 +13,6 @@ const recrutementSchema = new mongoose.Schema({
         type : Date,
         required : true
     },
-    date_ajout : {
-        type : Date,
-        required : true
-    },
     heure : {
         type : String,
         required : true

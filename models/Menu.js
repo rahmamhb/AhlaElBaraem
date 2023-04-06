@@ -1,10 +1,6 @@
 const mongoose = require("mongoose")
 
 const menuSchema = new mongoose.Schema({
-    date_ajout : {
-        type : Date,
-        required : true
-    },
     dimanche : {
         repas_01 : {
             type : String,

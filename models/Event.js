@@ -5,10 +5,6 @@ const eventSchema = new mongoose.Schema({
         type : String,
         required : true,
     },
-    date_ajout : {
-        type : Date,
-        required : true
-    },
     description : {
         type : String,
         required : true

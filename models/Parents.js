@@ -1,10 +1,6 @@
 const mongoose = require("mongoose")
 
 const parentsSchema = new mongoose.Schema({
-  date_ajout : {
-    type : Date,
-    required : true
-},
     nbr_enfants : {
        type : Number,
        required : true,
