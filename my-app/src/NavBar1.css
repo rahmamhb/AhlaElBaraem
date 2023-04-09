@@ -1,15 +1,19 @@
+
+.Nav-bar1 p {
+    margin: 0px;
+}
 .Nav-bar1 {
-  display: flex;
-  align-items: center;
-  column-gap: 30%;
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 10%;
   background-color: #FF4848;
-  padding: 30px 20px;
+  padding: 42px 0px;
   margin-bottom: -2px;
   width: 100%;
 }
 
 .logo {
-  margin-left: 60px;
+  margin-left: 120px;
   height:90px;
   width: 150px;
 }
@@ -17,7 +21,7 @@
 .NavInfo {
   display: inline-grid;
   grid-template-columns: auto auto auto auto auto;
-  column-gap: 65px;
+  column-gap: 49px;
   align-items: center;
   justify-items: start;
 }
@@ -66,8 +70,10 @@ a:hover span{
 .monCompte {
   display: inline-grid;
   grid-template-columns: auto auto;
+  column-gap: 10px;
   align-items: center;
-  column-gap: 25px;
+  justify-items: center;
+  justify-content: center;
 }
 
 .monCompteButton {
@@ -108,25 +114,11 @@ a:hover span{
 
   /* Large screens */
   @media only screen and (min-width: 1024px) {
-    .Nav-bar1 {
-      display: flex;
-      align-items: center;
-      column-gap: 30%;
-      background-color: #FF4848;
-      margin-bottom: -2px;
-      width: 100%;
-    }
-  
-    .logo {
-      margin-left: 60px;
-      height:90px;
-      width: 150px;
-    }
   
     .NavInfo {
       display: inline-grid;
       grid-template-columns: auto auto auto auto auto;
-      column-gap: 65px;
+      column-gap: 49px;
       align-items: center;
       justify-items: start;
     }
@@ -172,12 +164,6 @@ a:hover span{
       color:#FF4848 ;
       
     }
-    .monCompte {
-      display: inline-grid;
-      grid-template-columns: auto auto;
-      align-items: center;
-      column-gap: 25px;
-    }
   
     .monCompteButton {
       background-color: rgba(255, 255, 255, 0.9);
@@ -216,6 +202,7 @@ a:hover span{
 @media screen and (max-width:960px){
   .Nav-bar1{
     position: relative;
+    padding: 42px 20px;
   }
   .NavInfo{/*nav-menu*/  
     display: flex;

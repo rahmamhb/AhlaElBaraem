@@ -35,11 +35,11 @@ const Menu = () => {
                                 </div>
                                 <div className='card-content'>
                                     <h3 className='subtitle'> Petit-déjeuner </h3>
-                                    <h6 className='content'> {menuday.petitdejeuner} </h6>
+                                    <h6 className='cntnt'> {menuday.petitdejeuner} </h6>
                                     <h3 className='subtitle'> Déjeuner </h3>
-                                    <h6 className='content'> {menuday.dejeuner} </h6>
+                                    <h6 className='cntnt'> {menuday.dejeuner} </h6>
                                     <h3 className='subtitle'> Snack </h3>
-                                    <h6 className='content'> {menuday.snack} </h6>
+                                    <h6 className='cntnt'> {menuday.snack} </h6>
                                     
                                 </div>
                              

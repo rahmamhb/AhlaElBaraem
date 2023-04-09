@@ -1,3 +1,6 @@
+.content{
+    text-align: start;
+}
 .home-page{
     width: 100%;
     display: inline-grid;
@@ -93,7 +96,7 @@
     }
 }
 
-/* Responsive styling for screens with min width of 768px and max width of 1023px */
+/* Responsive styling for screens with min width of 961px and max width of 1023px */
 @media only screen and (min-width:961px) and (max-width: 1023px) {
     .home-page  .container {
         column-gap: 100px;
@@ -162,7 +165,6 @@
 }
 .text-apropos{
     display: inline-grid;
-    grid-template-rows: 20% auto;
     align-items: end;
 
 
@@ -288,6 +290,35 @@
     font-size: 20px;
     color:#555;
 }
+@media screen and (max-width: 960px) {
+    .notre-equipe p {
+        font-size: 36px;
+        margin: 0px;
+    }   
+    .notre-equipe-members {
+        grid-template-columns: auto auto;
+        grid-template-rows: auto;
+        column-gap: 35px;
+    }
+    .members img {
+        width: 130px;
+        margin-bottom: 0px;
+    }
+    .members p {
+        font-size: 20px;
+    }
+    .members h1 {
+        font-size: 16px;
+    }
+}
+@media screen and (max-width: 960px) {
+    p{
+        margin: 0px;
+    }
+    .wave-top , .wave-bottom{
+        display: none; 
+    }
+}
 .values{
     width: 100%;
     display: inline-grid;
@@ -383,6 +414,11 @@
     background-image: url("./assets/clock.png");
     background-size: 48px 40px;
 }
+@media screen and (max-width: 960px){
+    .container-values p {
+        font-size: 3em;
+    }
+}
 .contact-us-container{
     display: inline-grid;
     grid-template-columns: auto auto;
@@ -410,6 +446,8 @@
     font-size: 18px;
     width: 400px;
     word-wrap: break-word;
+    margin: 0px;
+    text-align: initial;
 }
 .contacts{
     display: inline-grid;
@@ -447,6 +485,7 @@ form{
 }
 .form label{
     font-size: 16px;
+    text-align: start;
 }
 :focus{
     outline: none;
@@ -506,6 +545,6 @@ input[type=text] ,input[type=email]  {
     border: none;
 }
 
-form .message input{
+form .message-home input{
     height: 180px;
 }

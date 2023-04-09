@@ -3,6 +3,9 @@
     --rowNumMat:1;
     --rowNbAct:1;
 }
+.matiere-page p {
+    margin: 0px;
+}
 .matiere-page{
     display: inline-grid;
     grid-template-rows: auto auto;
@@ -42,7 +45,6 @@
     grid-template-columns: auto auto auto;
     grid-template-rows: repeat(var(--rowNumMat,auto));
     gap: 30px;
-    margin-left: 350px;
 }
 .mat{
     display: inline-grid;

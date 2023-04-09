@@ -168,7 +168,7 @@ const Home = () => {
                                 <input type="email" className="field-int" value={email}  onChange={(e)=>{ setEmail(e.target.value)}}></input>
                                 <span className="separator"> </span>
                             </div>
-                            <div className="field message">
+                            <div className="field message-home">
                                 <label>message</label>
                                 <input type="text" className="field-int" value={msg}  onChange={(e)=>{ setMsg(e.target.value)}}></input>
                                 <span className="separator"> </span>

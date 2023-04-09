@@ -8,6 +8,7 @@ import Parent from './Parent';
 import Orthophonist from "./Orthophonist";
 import Psychologue from "./Psychologue";
 import NavBar1 from "./NavBar1";
+import Loader from "./Loader";
 
 const App = () => {
     return ( 
@@ -23,7 +24,8 @@ const App = () => {
                     <Route path="/Parent" element={<Parent />}></Route>
                     <Route path="/Orthophonist" element={<Orthophonist></Orthophonist>}></Route>
                     <Route path="/Psychologue" element={<Psychologue></Psychologue>}></Route>
-                    <Route path="/nav"l element={<NavBar1></NavBar1>}></Route>
+                    <Route path="/nav" element={<NavBar1></NavBar1>}></Route>
+                    <Route path="/loader" element={<Loader></Loader>}></Route>
 
                 </Routes>   
             </div>

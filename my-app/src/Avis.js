@@ -78,7 +78,6 @@ const Avis = () => {
                         <SwiperSlide>
                             <div className='avis-card'>
                                 <p className='parentName'>{`${item.ParentName} ,${item.childName}'s mom `}</p>
-                                <p className='userName'>{ item.userName}</p>
                                 <p className='avi-content'>{item.avis}</p>
                             </div>
                         </SwiperSlide>

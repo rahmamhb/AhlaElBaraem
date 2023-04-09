@@ -48,7 +48,7 @@ const infoPerso = () => {
             
         </div>
         <div className='parent-info'>
-            <div className='container'>
+            <div className='parent-info-container'>
                 <div className='left'>
                     <p>
                         <span  className='bold'>père:</span> 

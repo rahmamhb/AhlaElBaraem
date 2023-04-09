@@ -10,13 +10,13 @@
     grid-template-rows: auto auto;
     row-gap: 30px;
     justify-items: center;
-    margin-left: 19%;
 }
 .gallery-container p{
     font-family: 'Bubblegum Sans', cursive;
     font-size: 76px;
     color: #FF4848;
 }
+
 
 .images {
     width: 100%;

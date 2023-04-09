@@ -1,0 +1,9 @@
+
+.loader-page{
+    background: rgb(255, 255, 255)  url("./assets/roundedLoader.gif") no-repeat center center ;
+    background-size: 15%;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    z-index: 100;
+}

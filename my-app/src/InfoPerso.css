@@ -33,10 +33,7 @@
 
     text-align: left;
 }
-p{
-    margin: 20px auto;
-}
-.container{
+.parent-info-container{
     float: left;
 }
 

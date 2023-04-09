@@ -6,7 +6,6 @@
     display: inline-grid;
     grid-template-rows: repeat(var(--rowNum),auto);
     row-gap: 50px;
-    margin-left: 25%;
 }
 .comment{
     display: inline-grid;
@@ -21,7 +20,7 @@
     display: inline-grid;
     grid-template-rows: auto auto;
     row-gap: 15px;
-
+    text-align: start;
 }
 .comment-text .child-name{
     background-color:#FF9898 ;
