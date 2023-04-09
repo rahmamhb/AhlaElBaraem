@@ -41,8 +41,7 @@ const enfantsSchema = new mongoose.Schema({
               
             },
             photo : {
-              data : Buffer,
-              contenttype : String
+              data : String,
             }
         },
         infos_medicales : {

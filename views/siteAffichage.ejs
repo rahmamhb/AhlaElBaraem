@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>gestion du site</title>
+    <style>
+      /* style pour les cartes */
+      .card {
+        display: inline-block;
+        width: 300px;
+        height: 200px;
+        margin: 10px;
+        background-color: #F5F5F5;
+        border-radius: 5px;
+        box-shadow: 0 0 5px #888888;
+        padding: 10px;
+        text-align: center;
+      }
+      /* style pour les boutons */
+      .btn {
+        display: inline-block;
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        margin: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        text-align: center;
+      }
+      /* style pour le défilement horizontal */
+      .container {
+        overflow-x: scroll;
+        white-space: nowrap;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <% if (signUp && signUp.length > 0) { %>
+        <% signUp.forEach(function(signUp) { %>
+          <div class="card">
+            <h3>Nom complet de l'enfant</h3>
+            <p><%=signUp.nom%> <%=signUp.prenom %></p>
+            <h3>Nom complet du parent</h3>
+            <p>
+              <%=signUp.nom %>
+              <%=signUp.informations.infos_personnelles.parents.pere.prenom %>
+              <b>et</b>
+              <%=signUp.informations.infos_personnelles.parents.mere.nom %>
+              <%=signUp.informations.infos_personnelles.parents.mere.prenom %>
+            </p>
+            <h3>Âge</h3>
+            <p><%=signUp.age %></p>
+            <button class = "btn" id="delete-button" onclick="enfoncerDelete('<%= signUp._id %>');">Supprimer</button>
+            <form action = "#" method = "post">
+            <button class = "btn" id="add-button">accepter</button>
+            <input type="hidden" id="id" name="id" value= <%=signUp._id%>> <!-- pour le raliment backend-->
+            <input type="hidden" id="formId" name="formId" value= "demande"> <!-- pour le raliment backend-->
+            </form>
+          </div>
+        <% }); %>
+      <% } else { %>
+        <tr>
+          <td colspan="5">Aucune donnée trouvée.</td>
+        </tr>
+      <% } %>
+    <div>
+    <h1>formulaire menu</h1>
+    <form id="formMenu" action="/gestionDuSite" method="POST">
+        <label for="jour">jour :</label>
+        <select id="jour" name="jour" required>
+          <option value="" disabled selected>Sélectionnez le jour</option>
+          <option value="dimanche">dimanche</option>
+          <option value="lundi">lundi</option>
+          <option value="mardi">mardi</option>
+          <option value="mercredi">mercredi</option>
+          <option value="jeudi">jeudi</option>
+        </select>
+      <label for="repas01">repas 01:</label>
+      <input type="text" id="repas01" name="repas01" placeholder="Entrez le repas 01" required>
+       <br><br><br>
+      <label for="repas02">repas 02 :</label>
+      <input type="text" id="repas02" name="repas02" placeholder="Entrez le repas 02" required>
+      <br><br><br>
+      <label for="repas03">repas 03 :</label>
+      <input type="text" id="repas03" name="repas03" placeholder="Entrez le repas 03" required>
+      <input type="hidden" id="formId" name="formId" value="formMenu"> <!--reliement backend-->
+      <br><br><br><br><br><br>
+      <input type="submit" value="Envoyer">
+    </form>
+</div>
+<hr>
+    <div>
+    <h1>formulaire event</h1>
+    <form id="formEvent" action="/gestionDuSite" method="POST" enctype="multipart/form-data">
+        <label for="titre">titre :</label>
+        <input type="text" id="titre" name="titre" placeholder="Entrez le titre" required>
+         <br><br><br>
+        <label for="description">description :</label>
+        <input type="text" id="description" name="description" placeholder="Entrez la description" required>
+        <br><br><br>
+        <label for="photo">photos :</label>
+        <input type="file" id="photo" name="photo" accept=".jpg, .jpeg, .png" >
+        <br><br><br>
+        <label for="date">date :</label>
+        <input type="date" id="date" name="date" placeholder="Entrez la date" required>
+        <br><br><br>
+        <label for="date">heure :</label>
+        <input type="text" id="heure" name="heure" placeholder="Entrez l'heure" required>
+        <input type="hidden" id="formId" name="formId" value="formEvent"> <!--reliement backend-->
+        <br><br><br><br><br><br>
+        <input type="submit" value="Envoyer">
+    </form>
+    </div>
+<hr>
+    <div>
+    <h1>formulaire recrutement</h1>
+    <form id="formRecrutement" action="/gestionDuSite" method="POST">
+      <label for="titre">titre :</label>
+      <input type="text" id="titre" name="titre" placeholder="Entrez le titre" required>
+       <br><br><br>
+      <label for="description">description :</label>
+      <input type="text" id="description" name="description" placeholder="Entrez la description" required>
+      <br><br><br>
+      <label for="date">date :</label>
+      <input type="date" id="date" name="date" placeholder="Entrez la date" required>
+      <br><br><br>
+      <label for="date">heure :</label>
+      <input type="text" id="heure" name="heure" placeholder="Entrez l'heure" required>
+      <input type="hidden" id="formId" name="formId" value="formRecrutement"> <!--reliement backend-->
+      <br><br><br><br><br><br>
+      <input type="submit" value="Envoyer">
+    </form>
+</div>
+
+<script>
+  function enfoncerDelete(id) {
+  document.getElementById("delete-button").classList.add("active");
+  window.location.href = "http://localhost:8000/gestionDuSite/" + id + "/supprimer";
+}
+</script>
+  </body>
+</html>
+

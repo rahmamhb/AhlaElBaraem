@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>formulaire d'ajout du stuff</title>
+    <style>
+      
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 1.2em;
+      }
+
+      label {
+        margin: 10px 0;
+        width: 100%;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      select {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        margin-bottom: 20px;
+      }
+
+      input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #3e8e41;
+      }
+    </style>
+    <script>
+      // fonction que j'ai crée pour la redirection
+      function enfoncerAnnuler() {
+        document.getElementById("cancelButton").classList.add("active");
+        window.location.href = "http://localhost:8000/gestionDeLequipe";
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Mon formulaire</h1>
+    <form action="/gestionDelequipe/ajouter" method="POST"> <!--on doit préciser la methode et l'action-->
+      <label for="nom">Nom :</label>
+      <input type="text" id="nom" name="nom" placeholder="Entrez le nom" required>
+       <br><br><br>
+      <label for="prenom">Prénom :</label>
+      <input type="text" id="prenom" name="prenom" placeholder="Entrez le prénom" required>
+      <br><br><br>
+      <label for="email">Email :</label>
+      <input type="email" id="email" name="email" placeholder="Entrez l'adresse email" required>
+      <br><br><br>
+      <label for="password">password :</label>
+      <input type="text" id="password" name="password" placeholder="Entrez le mot de passe" required>
+      <br><br><br>
+      <label for="role">Rôle :</label>
+      <select id="role" name="role" required>
+        <option value="" disabled selected>Sélectionnez le rôle</option>
+        <option value="Nourrice">Nourrice</option>
+        <option value="Psychologue">Psychologue</option>
+        <option value="Orthophoniste">Orthophoniste</option>
+      </select>
+      <br><br><br><br><br><br>
+      <input type="submit" value="Envoyer">
+    </form>
+    <button id="cancelButton" onclick="enfoncerAnnuler()">Annuler</button>
+  </body>
+</html>

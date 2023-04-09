@@ -1,8 +1,1 @@
 node_modules
-.env
-server.js
-package.json
-package-lock.json
-public
-routes
-views

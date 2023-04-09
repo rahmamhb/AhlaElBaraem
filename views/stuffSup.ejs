@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Confirmation de suppression</title>
+</head>
+<body>
+	<h1>Êtes-vous sûr de vouloir supprimer <%=stuff.nom %> <%=stuff.prenom %> ?</h1>
+
+	<button id="cancelButton" onclick="enfoncerAnnuler()">Annuler</button>
+  <form action="#" method = "post">
+    <input type = "submit" value = "confirmer">
+  </form> 
+ 
+	<script>
+  function enfoncerAnnuler() {
+    document.getElementById("cancelButton").classList.add("active");
+    window.location.href = "http://localhost:8000/gestionDeLequipe";
+  }
+	</script>
+</body>
+</html>

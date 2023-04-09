@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>informations enfant</title>
+    <style>
+        .user-details {
+    display: flex;
+    align-items: center;
+}
+
+.user-image {
+    margin-right: 20px;
+}
+
+.user-info h1 {
+    font-size: 2em;
+}
+
+.user-info p {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+.user-info strong {
+    font-weight: bold;
+}
+    </style>
+    <script>
+        const photoPath = "<%= enfant.photo %>";
+        const photoUrl = `/${photoPath}`;
+    
+        fetch(photoUrl)
+            .then(response => response.blob())
+            .then(blob => {
+                const objectUrl = URL.createObjectURL(blob);
+                const img = document.getElementById("photo");
+                img.src = objectUrl;
+            })
+            .catch(error => console.error(error));
+    </script>
+</head>
+<body>
+    <div class="user-details">
+        <div class="user-image">
+            <img src="http://localhost:8000/public/uploads/3eebbb6221048494e75241e346c44010" alt="Photo d'identité de l'enfant">
+        </div>
+        <div class="user-info-1">
+            <h1>Informations</h1>
+            <p><strong>nom :</strong> <%= enfant.nom %></p>
+            <p><strong>prenom</strong> <%= enfant.prenom %></p>
+            <p><strong>date de naissance :</strong> <%= enfant.informations.infos_personnelles.dateDeNaissance.toLocaleDateString() %></p> <!--pour n'afficher que la date-->
+            <p><strong>sexe :</strong> <%= enfant.informations.infos_personnelles.sexe %></p>
+        </div>
+    </div>
+    <hr>
+    <div class="user-info-1">
+        <h1>Informations personneles</h1>
+        <p><strong>pere : </strong> <%=parent.pere.prenom %></p>
+        <p><strong>profession : </strong> <%=parent.pere.profession %></p>
+        <p><strong>mere : </strong> <%=parent.mere.nom %> <%=parent.mere.prenom %></p>
+        <p><strong>profession : </strong> <%=parent.mere.profession %></p>
+        <form id = "telephone" action="#" method="post">
+        <label for="email">Numéro de téléphone : </strong></label>
+        <input type="tel" id="num" name="num" value=<%=parent.num_tel %> required>
+        <input type = "submit" value = "Modifier">
+        </form>
+        <p><strong>email : </strong> <%=enfant.e_mail %></p>
+        <p><strong>Adresse: </strong> <%=enfant.informations.infos_personnelles.adresse %></p>
+        <p><strong>frères : </strong> <%=enfant.informations.infos_personnelles.nbrFreres %></p>
+    </div>
+    <hr>
+    <div class="user-info-2">
+        <h1>Informations medicales</h1>
+        <p><strong>Allergies : </strong> <%=enfant.informations.infos_medicales.allergies %></p>
+        <p><strong>medicaments: </strong><%=enfant.informations.infos_medicales.medicaments %></p>
+        <p><strong>conditions médicales : </strong><%=enfant.informations.infos_medicales.conditions_medicales %></p>
+        <p><strong>vaccins</strong><%=enfant.informations.infos_medicales.vaccins %></p>
+        <p><strong>antécédants médicaux : </strong><%=enfant.informations.infos_medicales.antecedants_medicaux %></p>
+        <p><strong>instructions spéciales : </strong><%=enfant.informations.infos_medicales.instructions_speciales %></p>
+    </div>
+    <hr>
+    <div class="user-info-3">
+        <h1>Habitudes alimentaires</h1>
+        <p><strong>Comment l'enfant est il habituellement nourri ( tasse ) - ( cuillère ) : </strong> <%=enfant.informations.habitudes_alimentaires.nutritionHabituelle %></p>
+        <p><strong>Se nourrit-il seul ? : </strong><%=enfant.informations.habitudes_alimentaires.nutritionSeul %></p>
+        <p><strong>Mange-t-il à l'aide de quelqu'un ? : </strong><%=enfant.informations.habitudes_alimentaires.nutritionAvecAide %></p>
+        <p><strong>Aliments qu'il n'aime pas : </strong><%=enfant.informations.habitudes_alimentaires.alimentsDetestes %></p>
+        <p><strong>Aliments préférés : </strong><%=enfant.informations.habitudes_alimentaires.alimentsPreferes %></p>
+        <p><strong>Quel est son appétit : </strong><%=enfant.informations.habitudes_alimentaires.sonAppetit %></p>
+    </div>
+    <hr>
+    <div class="user-info-4">
+        <h1>Elimination</h1>
+        <p><strong>L'enfant est-il indépendant? : </strong> <%=enfant.informations.elimination.independant %></p>
+        <p><strong>Quel est le terme employé pour signaler son besoin de miction ? : </strong><%=enfant.informations.elimination.signaleDeBesoin %></p>
+        <p><strong>L'élimination intestinale ? : </strong><%=enfant.informations.elimination.elimination_intestinale %></p>
+        <p><strong>L'enfant est-il habitué au pot ? : </strong><%=enfant.informations.elimination.pot %></p>
+        <p><strong>Joumelière : </strong><%=enfant.informations.elimination.joumeliere %></p>
+    </div>
+    <hr>
+    <div class="user-info-5">
+        <h1>Habitudes de sommeil</h1>
+        <p><strong>L'enfant fait il une sieste pendant la journée : </strong> <%=enfant.informations.habitudes_deSommeil.sieste %></p>
+        <p><strong>Quel est son heure habituelle ? : </strong><%=enfant.informations.habitudes_deSommeil.heure %></p>
+        <p><strong>Avec qui ? : </strong><%=enfant.informations.habitudes_deSommeil.avecQui %></p>
+        <p><strong>L'enfant a-t-il une routine spéciale avant d'aller au lit ? : </strong><%=enfant.informations.habitudes_deSommeil.routineSommeil %></p>
+    </div>
+</body>
+</html>

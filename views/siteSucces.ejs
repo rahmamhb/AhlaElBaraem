@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ajout avec succes</title>
+</head>
+<body>
+	<h1>votre element est ajouté avec succés</h1>
+    <button id="okButton" onclick="enfoncer()">ok</button>
+
+	<script>
+  function enfoncer() {
+    document.getElementById("okButton").classList.add("active");
+    window.location.href = "http://localhost:8000/gestionDuSite";
+  }
+	</script>
+</body>
+</html>
