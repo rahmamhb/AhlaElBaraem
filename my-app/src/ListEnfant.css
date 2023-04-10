@@ -38,6 +38,22 @@
     justify-items: center;
     width: 100%;
 }
+.enfant-info .nbr{
+    display: inline-block;
+    width: 50px;
+}
+.enfant-info .child-name{
+    display: inline-block;
+    width: 100px;
+}
+.enfant-info .parent-email{
+    display: inline-block;
+    width: 300px;
+}
+.enfant-info .last-edit{
+    display: inline-block;
+    width: 200px;
+}
 .comportement-overlay{
     width: 100%;
     height: 100vh;

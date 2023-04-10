@@ -23,11 +23,13 @@
     font-size: 55px;
     color: #FF4848;
 }
-.matiere-container{
+.matiere-container {
     display: inline-grid;
     grid-template-rows: auto auto;
     justify-items: end;
     row-gap: 20px;
+    width: 100%;
+    margin: auto 50%;
 }
 .matiere-container button svg{
  color: #FFB585;
@@ -45,6 +47,10 @@
     grid-template-columns: auto auto auto;
     grid-template-rows: repeat(var(--rowNumMat,auto));
     gap: 30px;
+}
+.matieres-of-the-day-container{
+    margin: auto 50%;
+    width: 100%;
 }
 .mat{
     display: inline-grid;
@@ -71,9 +77,12 @@
     width: 46px;
     color: rgb(var(--matiereColor));
 }
-.mat h3{
-    font-size:20px;
+
+.mat h3 {
+    width: max-content;
+    font-size: 1.5em;
 }
+
 .mat p{
     font-family: 'Poppins', sans-serif;
     font-size: 18px;

@@ -204,7 +204,7 @@
         width: max-content;
     }
     .text-apropos p {
-      font-size: 36px;
+        font-size: 3em;
     }
     .text-apropos span {
       font-size: 16px;
@@ -292,7 +292,7 @@
 }
 @media screen and (max-width: 960px) {
     .notre-equipe p {
-        font-size: 36px;
+        font-size: 3em;
         margin: 0px;
     }   
     .notre-equipe-members {
@@ -417,6 +417,30 @@
 @media screen and (max-width: 960px){
     .container-values p {
         font-size: 3em;
+    }
+    .card {
+        width: fit-content;
+        height: fit-content;
+        padding: 10px 3px;
+    }
+    .card p{
+        font-size: 1.5em;
+        padding: 0px 20px;
+
+    }
+    .card .circle{
+        height: 60px;
+        width: 60px;
+    }
+    .avis-container .heading{
+        font-size: 3em;
+    }
+    .avis-card .parentName {
+        font-size: 1em;
+    }
+    .avis-card .avi-content {
+        font-size: 16px;
+        width: 325px;
     }
 }
 .contact-us-container{

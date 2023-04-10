@@ -6,6 +6,7 @@
     display: inline-grid;
     grid-template-rows: repeat(var(--rowNum),auto);
     row-gap: 50px;
+    margin-left: 25%;
 }
 .comment{
     display: inline-grid;

@@ -203,6 +203,7 @@ a:hover span{
   .Nav-bar1{
     position: relative;
     padding: 42px 20px;
+    margin-bottom: 3em;
   }
   .NavInfo{/*nav-menu*/  
     display: flex;
@@ -236,6 +237,7 @@ a:hover span{
     left: 0;
     transform: translate(25%,5%);
     height: 74px;
+    margin: 0px;
   }
   .menu-icon{
     display: block;

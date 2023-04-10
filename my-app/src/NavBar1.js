@@ -1,6 +1,5 @@
 import './NavBar1.css';
 import CrecheLogo from "./assets/logo.png"
-import Logout from '@mui/icons-material/Logout';
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
@@ -49,12 +48,9 @@ const NavBar1 = ({showBtn}) => {
                 }
                 
                 {show && 
-                    <div className='monCompte nav-link'>
                         <NavLink to="/" className={({isActive})=>{return isActive? "active-mon-compte ConnectButton":"monCompteButton"}}>
                             <p>Mon Compte</p>   
                         </NavLink>
-                        <button onClick={()=>{setShow(false)}}><Logout></Logout></button>
-                    </div> 
                }
             </div>
         </div>
