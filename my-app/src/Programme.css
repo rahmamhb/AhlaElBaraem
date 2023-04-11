@@ -84,4 +84,41 @@
 .prog-spe a:hover{
     color: #FF5959;
 }
+@media screen and (max-width: 960px){
+    .programme-cards {
+        display: flex;
+        row-gap: 40px;
+        flex-direction: column;
+    }
+    .programme-container p {
+        font-size: 3.5em;
+    }
+    .card-txt p{
+        font-size: 1.8em;
+    }
+    .prog-card img {
+        height: 150px;
+        width: 150px;
+    }
+    .card-txt span, .card-txt a {
+        font-size: 1em;
+    }
+    .card-txt a {
+        height: 40px;
+        border-radius: 30px;
+        line-height: 40px;
+        padding: 0px 25px;
+    }
+    .prog-card {
+        width: fit-content;
+        row-gap: 15px;
+        padding: 20px 0px;
+    }
+    .card-txt {
+        row-gap: 10px;
+    }
+    .programme-container {
+        margin-bottom: 30px;
+    }
+}
 

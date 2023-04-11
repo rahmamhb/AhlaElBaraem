@@ -94,6 +94,10 @@
     .header .wave {
         display: none;
     }
+    .header{
+        background-color: #ff4848;
+        padding: 0px 42px;
+    }
 }
 
 /* Responsive styling for screens with min width of 961px and max width of 1023px */
@@ -432,16 +436,7 @@
         height: 60px;
         width: 60px;
     }
-    .avis-container .heading{
-        font-size: 3em;
-    }
-    .avis-card .parentName {
-        font-size: 1em;
-    }
-    .avis-card .avi-content {
-        font-size: 16px;
-        width: 325px;
-    }
+   
 }
 .contact-us-container{
     display: inline-grid;
@@ -571,4 +566,61 @@ input[type=text] ,input[type=email]  {
 
 form .message-home input{
     height: 180px;
+}
+@media screen and (max-width: 960px){
+    .contact-us-container{
+        display: flex;
+        row-gap: 10px;
+        flex-direction: column;
+        margin-bottom: 65px;
+    }
+    .map h2{
+        font-size: 2em;
+    }
+    .map p {
+        font-size: 1em;
+        width: 290px;
+        word-wrap:normal; 
+    }
+    .contact {
+        column-gap: 19px;
+    }
+    .contact .text {
+        font-size: 14px;
+    }
+    .contact svg {
+        width: 25px;
+        height: 25px;
+    }
+    .map {
+        row-gap: 15px;
+        width: fit-content;
+        padding: 14px 0px 14px 25px;
+        border-radius: 20px;
+    }
+    form {
+        padding: 10px 30px;
+        row-gap: 20px;
+        border-radius: 20px;
+    }
+    input[type=text], input[type=email] {
+        box-sizing:unset; 
+        width: 280px;
+        font-size: 18px;
+        margin: 0px;
+    }
+    .form label {
+        font-size: 0.85em;
+    }
+    form .message-home input {
+        height: 100px;
+    }
+    .form button {
+        border: 1.5px white solid;
+        height: fit-content;
+        width: fit-content;
+        font-size: 0.85em;
+        padding: 11px 19px;
+        column-gap: 50px;
+    }
 }

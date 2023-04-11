@@ -17,35 +17,30 @@ const Avis = () => {
             id : 1 ,
             ParentName : "Nour",
             childName : "rahma",
-            userName : "@nour_ch",
             avis :"les avis des parents sur la crèche peuvent varier en fonction de leur expérience "
         },
         {
             id : 2 ,
             ParentName : "Nour",
             childName : "rahma",
-            userName : "@nour_ch",
             avis :"les avis des parents sur la crèche peuvent varier en fonction de leur expérience "
         },
         {
             id : 3 ,
             ParentName : "Nour",
             childName : "rahma",
-            userName : "@nour_ch",
             avis :"les avis des parents sur la crèche peuvent varier en fonction de leur expérience "
         },
         {
             id : 4 ,
             ParentName : "Nour",
             childName : "rahma",
-            userName : "@nour_ch",
             avis :"les avis des parents sur la crèche peuvent varier en fonction de leur expérience "
         },
         {
             id : 5 ,
             ParentName : "Nour",
             childName : "rahma",
-            userName : "@nour_ch",
             avis :"les avis des parents sur la crèche peuvent varier en fonction de leur expérience "
         }
     ]
@@ -57,7 +52,7 @@ const Avis = () => {
                 grabCursor={true}
                 centeredSlides={true}
                 loop={true}
-                slidesPerView={'auto'}
+                slidesPerView={3}
                 coverflowEffect={{
                 rotate: 0,
                 stretch: 0,
@@ -87,10 +82,11 @@ const Avis = () => {
                     <div className="swiper-button-prev slider-arrow">
                         <ArrowLeft></ArrowLeft>
                     </div>
+                   
+                    <div className="swiper-pagination"></div>
                     <div className="swiper-button-next slider-arrow">
                         <ArrowRight></ArrowRight>
                     </div>
-                    <div className="swiper-pagination"></div>
                 </div>
             </Swiper>
         </div>
