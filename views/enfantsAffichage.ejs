@@ -91,6 +91,15 @@ table {
     </style>
   </head>
   <body>
+    <div>
+      <button id = "equipe" onclick="enfoncerEquipe()">gestion de l'equipe</button>
+      <button id = "enfants" onclick="enfoncerEnfant()">
+        gestion des enfants
+        </button>
+      <button id = "site" onclick="enfoncerSite()">
+        gestion du site
+      </button>
+    </div>
     <h1>Liste des enfants</h1>
     <!-- Barre de recherche -->
     <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Rechercher un enfant...">
@@ -168,6 +177,19 @@ table {
   function enfoncerInfos(id) {
     document.getElementById("infos-button").classList.add("active");
     window.location.href = "http://localhost:8000/gestionDesEnfants/" + id + "/informations";
+  }
+
+  function enfoncerEquipe() {
+  document.getElementById("equipe").classList.add("active");
+  window.location.href = "http://localhost:8000/gestionDeLequipe";
+  }
+  function enfoncerEnfant() {
+  document.getElementById("enfants").classList.add("active");
+  window.location.href = "http://localhost:8000/gestionDesEnfants";
+  }
+  function enfoncerSite() {
+  document.getElementById("site").classList.add("active");
+  window.location.href = "http://localhost:8000/gestionDuSite";
   }
   
 </script>

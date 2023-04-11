@@ -11,7 +11,9 @@ const SignUp = require("../models/SignUp")
 const Enfants = require("../models/Enfants")
 const Parents = require("../models/Parents")
 const SignIn = require("../models/SignIn")
+const ContactUs = require("../models/ContactUs")
 const nodemailer = require("nodemailer")
+
 
 
 
@@ -44,13 +46,63 @@ function ajouterDemande(req, res, next){
 // retourner la page
 siteRouter.get("/", async (req, res) =>{
   const signUp = await SignUp.find().sort({_id : -1}).select("-__v").lean()
-  if(!signUp){
+  const contactUs = await ContactUs.find().sort({_id : -1}).select("-__v").lean()
+  if(!signUp || !contactUs){
     console.log("erreur")
     res.status(500).send('il nexiste rien'); 
  }
-    res.render("siteAffichage", {signUp : signUp})
+    res.render("siteAffichage", {contactUs : contactUs , signUp : signUp})
 })
 
+// les messages
+     //retourner la page de reponse 
+     siteRouter.get("/:id/repondre",async (req, res) => {
+      try {
+        res.render("repondre")
+        }catch (err) {
+            console.log("erreur", err);
+            res.status(500).send("erreur lors de l'affichage des informations de l'enfant");
+        }
+  })
+      //envoyer la reponse
+  siteRouter.post("/:id/repondre", async (req, res) => { // j'ai utilisé le post pour le delete et le boutton est dans un form
+    try{
+      const contactUs = await ContactUs.findById(req.params.id)
+       //supprimer le message de la collection
+    await ContactUs.findByIdAndDelete(req.params.id)
+    console.log("message supprimé")
+    // configurer le transporteur 
+    const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'dihiadahdah@gmail.com',
+      pass: 'deyexszhixwjwigq' // c un mot de passe generé par google en activant la connexion en deux étapes et en créant un mot de passe d'applications 
+    }
+  });
+   console.log(transporter)
+  // Options de l'e-mail
+  const mailOptions = {
+    from: contactUs.e_mail,
+    to: 'dihiadahdah@gmail.com',
+    subject: `Nouveau message de ${contactUs.nom}`,
+    text: `Nom: ${contactUs.nom}\n\nEmail: ${contactUs.e_mail}\n\nMessage:\n${contactUs.message}`
+  };
+   console.log(mailOptions)
+  // Envoyer l'e-mail
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.error(error);
+      res.status(500).send('Erreur lors de l\'envoi du message');
+    } else {
+      console.log("E-mail envoyé");
+    }
+      res.redirect("/gestionDuSite")
+    })
+    }catch (err) {
+      console.log("erreur", err);
+      res.status(500).send("erreur lors de l'affichage des informations de l'enfant");
+  }
+  })
 // les demandes
      //supprimer une demande 
      siteRouter.get("/:id/supprimer",async (req, res) => {
@@ -77,13 +129,12 @@ siteRouter.get("/", async (req, res) =>{
   })
 
 
-
 // formulaires d'ajout
 siteRouter.post('/', upload.fields([{ name: 'photo' }, { name: 'titre' }, { name: 'description' }, { name: 'date' }, { name: 'heure' }]),  function(req, res) {
   var formId = req.body.formId; // Récupération de l'ID du formulaire en passant ce dernier comme input hidden dans le form
   console.log(formId)
   switch (formId) {
-    case 'formMenu':
+    case 'formMenu': // ajout d'un menu
       verifMenu(req, res,  
       async () => {
           const { jour, repas01, repas02, repas03 } = req.body;
@@ -112,7 +163,7 @@ siteRouter.post('/', upload.fields([{ name: 'photo' }, { name: 'titre' }, { name
             res.status(500).send('Erreur lors de l\'ajout d\'un élément à la base de données');
           }})
       break;
-    case 'formEvent' : 
+    case 'formEvent' : //ajout event
       verifEvent(req, res,
           async() => {
             try {
@@ -135,7 +186,7 @@ siteRouter.post('/', upload.fields([{ name: 'photo' }, { name: 'titre' }, { name
                }
       })
       break;
-    case 'formRecrutement':
+    case 'formRecrutement': //ajout recrutement
       verifRecrutement(req, res,
           async() => {
               const { titre, description, date, heure } = req.body;
@@ -156,7 +207,7 @@ siteRouter.post('/', upload.fields([{ name: 'photo' }, { name: 'titre' }, { name
                }
       })
       break;
-      case "demande" :
+      case "demande" : //gestion des demandes
         ajouterDemande(req, res, 
       async () => {
         const { id } = req.body; //on travail avec les name des elements html 
@@ -200,10 +251,6 @@ siteRouter.post('/', upload.fields([{ name: 'photo' }, { name: 'titre' }, { name
                 nbrFreres : demande.informations.infos_personnelles.nbrFreres,
                 parents : parent.id        
               },
-              infos_medicales : demande.informations.infos_medicales,
-              habitudes_alimentaires : demande.informations.habitudes_alimentaires,
-              elimination : demande.informations.elimination,
-              habitudes_deSommeil : demande.informations.habitudes_deSommeil
             }
           })
           console.log(enfant)
@@ -211,6 +258,7 @@ siteRouter.post('/', upload.fields([{ name: 'photo' }, { name: 'titre' }, { name
           console.log("succes enfant")
           // supprimer la demande 
           await SignUp.findByIdAndDelete(id)
+          console.log("succes suppression signUp")
           //envoie du mail 
     const transporter = nodemailer.createTransport({
       service: 'gmail',

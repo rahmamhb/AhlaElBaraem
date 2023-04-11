@@ -36,6 +36,32 @@
     </style>
   </head>
   <body>
+    <div>
+      <button class ="equipe" id = "equipe" onclick="enfoncerEquipe()">gestion de l'equipe</button>
+      <button class = "enfants" id = "enfants" onclick="enfoncerEnfant()">
+        gestion des enfants
+      </button>
+      <button class = "site" id = "site" onclick="enfoncerSite()">
+        gestion du site
+      </button>
+    </div>
+    <div class="container">
+      <% if (contactUs && contactUs.length > 0) { %>
+        <% contactUs.forEach(function(contactUs) { %>
+          <div class="card">
+            <h3>Nom</h3>
+            <p><%=contactUs.nom%></p>
+            <h3>e_mail</h3>
+            <p><%=contactUs.e_mail%></p>
+            <button class = "btn" id="rep-button" onclick="enfoncerRep('<%= contactUs._id %>')">Repondre</button>
+          </div>
+        <% }); %>
+      <% } else { %>
+        <tr>
+          <td colspan="5">Aucune donnée trouvée.</td>
+        </tr>
+      <% } %>
+    <div>
     <div class="container">
       <% if (signUp && signUp.length > 0) { %>
         <% signUp.forEach(function(signUp) { %>
@@ -135,9 +161,25 @@
 </div>
 
 <script>
+  function enfoncerEquipe() {
+  document.getElementById("equipe").classList.add("active");
+  window.location.href = "http://localhost:8000/gestionDeLequipe";
+  }
+  function enfoncerEnfant() {
+  document.getElementById("enfants").classList.add("active");
+  window.location.href = "http://localhost:8000/gestionDesEnfants";
+  }
+  function enfoncerSite() {
+  document.getElementById("site").classList.add("active");
+  window.location.href = "http://localhost:8000/gestionDuSite";
+  }
   function enfoncerDelete(id) {
   document.getElementById("delete-button").classList.add("active");
   window.location.href = "http://localhost:8000/gestionDuSite/" + id + "/supprimer";
+  }
+  function enfoncerRep(id) {
+  document.getElementById("rep-button").classList.add("active");
+  window.location.href = "http://localhost:8000/gestionDuSite/" + id + "/repondre";
 }
 </script>
   </body>
