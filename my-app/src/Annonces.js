@@ -16,7 +16,7 @@ const Annonces = () => {
                 </div>
             </div>
             <div className="annonces-container">
-                <p> Annonces</p>
+                <p style={{fontSize:"3.5em"}}> Annonces</p>
                 <div className="annonce-container">
                     <div className="ann-card">
                         <div className="card-text">

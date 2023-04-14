@@ -11,8 +11,8 @@
     font-size: 92px;
 }
 .annonce-container{
-    display: inline-grid;
-    grid-template-rows: auto auto;
+    display: flex;
+    flex-direction: column;
     row-gap: 40px;
 }
 .annonce-container .ann-card{
@@ -53,9 +53,11 @@
     grid-template-columns: auto auto;
     column-gap: 45px;
 }
-.card-text .date{
+.card-text .date {
     display: inline-grid;
     grid-template-columns: auto auto;
+    justify-content: center;
+    column-gap: 10px;
 }
 .card-text .date svg{
     color: #555;
@@ -71,4 +73,31 @@
 .ann-card img{
     height: 350px;
     width: 350px;
+}
+@media screen and (max-width: 960px){
+    .annonces-container p{
+        font-size: 3.5em;
+    }
+    .card-text .desc {
+        width: auto;
+    }
+    .card-text .desc , .card-text .dates .date p {
+        font-size: 1.5em;
+    }
+    .ann-card img {
+        height: 200px;
+        width: 200px;
+    }
+    .card-text .title {
+        font-size: 2.5em;
+    }
+    .annonce-container .ann-card {
+        height: fit-content;
+        width: fit-content;
+        border-radius: 100px 0px 100px 0px;
+        padding: 2em 3.5em;
+    }
+    .card-text span {
+        width: auto;
+    }
 }
