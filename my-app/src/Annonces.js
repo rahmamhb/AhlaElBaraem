@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import NavBar1 from "./NavBar1";
-import wave from "./assets/wave.png"
+import wave from "./assets/wave.svg"
 import recru from "./assets/recrutement.png"
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import ScheduleIcon from '@mui/icons-material/Schedule';
@@ -18,7 +18,7 @@ const Annonces = () => {
         <div className="grid w-full justify-items-center gap-16">
             <div className="w-full">
                 <NavBar1></NavBar1>
-                <img src={wave} alt="wave" className="w-full"/>
+                <img src={wave} alt="wave" className="-mt-px block w-full"/>
             </div>
             <div className="grid w-full max-w-5xl justify-items-center gap-16 px-6">
                 <p className="font-display text-5xl text-primary lg:text-7xl">Annonces</p>

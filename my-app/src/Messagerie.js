@@ -3,6 +3,7 @@ import Moment from "react-moment";
 import bgPattern from "./assets/background.png";
 import { useAuth } from "./context/AuthContext";
 import * as messagesApi from "./mock/api/messages";
+import { DASHBOARD_CONTAINER } from "./layout";
 
 const Messagerie = () => {
     const { user } = useAuth();
@@ -37,7 +38,7 @@ const Messagerie = () => {
     };
 
     return (
-        <div className="grid gap-8 bg-cover px-4 py-10 md:px-[10%]" style={{ backgroundImage: `url(${bgPattern})` }}>
+        <div className={`${DASHBOARD_CONTAINER} grid gap-8 bg-cover py-10`} style={{ backgroundImage: `url(${bgPattern})` }}>
             <div className="grid gap-12">
                 {messages.map((message) => (
                     <div className="grid w-full max-w-3xl justify-items-end gap-2 justify-self-center font-poppins text-lg" key={message.id}>

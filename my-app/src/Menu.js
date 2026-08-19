@@ -14,7 +14,7 @@ const Menu = () => {
     return (
         <div className="mt-8 flex flex-wrap justify-center gap-5 px-4">
             {menu.map((menuday) => (
-                <div key={menuday.id} className={`w-[280px] rounded-3xl p-6 shadow-[2px_2px_20px_rgba(0,0,0,0.25)] ${menuday.id === todayId ? "" : ""}`}>
+                <div key={menuday.id} className="w-full max-w-[280px] rounded-3xl p-6 shadow-[2px_2px_20px_rgba(0,0,0,0.25)]">
                     <div className={`mb-2 rounded-full px-4 py-2 text-center ${menuday.id === todayId ? "bg-[#FF5959]" : "bg-primary-light"}`}>
                         <h1 className="font-display text-2xl text-white">{menuday.day}</h1>
                     </div>

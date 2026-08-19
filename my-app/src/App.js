@@ -20,41 +20,37 @@ const App = () => {
     return (
         <Router>
             <AuthProvider>
-                <div className="App">
-                    <div className="content">
-                        <Routes>
-                            <Route exact path="/" element={<Home />}></Route>
-                            <Route path="/Gallery" element={<Gallery />}></Route>
-                            <Route path="/Annonces" element={<Annonces />}></Route>
-                            <Route path="/Programmes" element={<Programme />}></Route>
+                <Routes>
+                    <Route exact path="/" element={<Home />}></Route>
+                    <Route path="/Gallery" element={<Gallery />}></Route>
+                    <Route path="/Annonces" element={<Annonces />}></Route>
+                    <Route path="/Programmes" element={<Programme />}></Route>
 
-                            <Route path="/connexion" element={<Login />}></Route>
-                            <Route path="/inscription" element={<SignUp />}></Route>
-                            <Route path="/inscription/en-attente" element={
-                                <ProtectedRoute allowedRoles={["parent"]}><RegistrationPending /></ProtectedRoute>
-                            }></Route>
-                            <Route path="/inscription/finaliser" element={
-                                <ProtectedRoute allowedRoles={["parent"]}><FinishRegistration /></ProtectedRoute>
-                            }></Route>
+                    <Route path="/connexion" element={<Login />}></Route>
+                    <Route path="/inscription" element={<SignUp />}></Route>
+                    <Route path="/inscription/en-attente" element={
+                        <ProtectedRoute allowedRoles={["parent"]}><RegistrationPending /></ProtectedRoute>
+                    }></Route>
+                    <Route path="/inscription/finaliser" element={
+                        <ProtectedRoute allowedRoles={["parent"]}><FinishRegistration /></ProtectedRoute>
+                    }></Route>
 
-                            <Route path="/Nourrice" element={
-                                <ProtectedRoute allowedRoles={["staff"]} allowedStaffRoles={["nourrice"]}><Nourrice /></ProtectedRoute>
-                            }></Route>
-                            <Route path="/Orthophonist" element={
-                                <ProtectedRoute allowedRoles={["staff"]} allowedStaffRoles={["orthophoniste"]}><StaffCommentDashboard staffRole="orthophoniste" /></ProtectedRoute>
-                            }></Route>
-                            <Route path="/Psychologue" element={
-                                <ProtectedRoute allowedRoles={["staff"]} allowedStaffRoles={["psychologue"]}><StaffCommentDashboard staffRole="psychologue" /></ProtectedRoute>
-                            }></Route>
-                            <Route path="/Parent" element={
-                                <ProtectedRoute allowedRoles={["parent"]}><Parent /></ProtectedRoute>
-                            }></Route>
-                            <Route path="/Admin" element={
-                                <ProtectedRoute allowedRoles={["admin"]}><AdminLayout /></ProtectedRoute>
-                            }></Route>
-                        </Routes>
-                    </div>
-                </div>
+                    <Route path="/Nourrice" element={
+                        <ProtectedRoute allowedRoles={["staff"]} allowedStaffRoles={["nourrice"]}><Nourrice /></ProtectedRoute>
+                    }></Route>
+                    <Route path="/Orthophonist" element={
+                        <ProtectedRoute allowedRoles={["staff"]} allowedStaffRoles={["orthophoniste"]}><StaffCommentDashboard staffRole="orthophoniste" /></ProtectedRoute>
+                    }></Route>
+                    <Route path="/Psychologue" element={
+                        <ProtectedRoute allowedRoles={["staff"]} allowedStaffRoles={["psychologue"]}><StaffCommentDashboard staffRole="psychologue" /></ProtectedRoute>
+                    }></Route>
+                    <Route path="/Parent" element={
+                        <ProtectedRoute allowedRoles={["parent"]}><Parent /></ProtectedRoute>
+                    }></Route>
+                    <Route path="/Admin" element={
+                        <ProtectedRoute allowedRoles={["admin"]}><AdminLayout /></ProtectedRoute>
+                    }></Route>
+                </Routes>
             </AuthProvider>
         </Router>
     );

@@ -17,7 +17,7 @@ const InfoMedi = () => {
     if (!child) return <p className="text-center text-gray-mid">Chargement...</p>;
 
     return (
-        <div className="grid gap-8 text-left md:pl-[10%]">
+        <div className="grid gap-8 text-left">
             <div>
                 <h1 className="mb-2 text-sm font-semibold uppercase text-primary">allergies</h1>
                 <p className="flex flex-wrap gap-2">{(child.allergies || []).map((a) => <Pill key={a}>{a}</Pill>)}</p>

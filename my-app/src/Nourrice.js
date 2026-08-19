@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
-import wave from "./assets/wave.png"
-import waveTopWhite from "./assets/wavetopwhite.png"
-import waveBottomWhite from "./assets/wavebottomwhite.png"
-
-import NavBar1 from "./NavBar1";
+import DashboardShell from "./DashboardShell";
 import ChildList from "./ChildList";
 import Comment from "./Comment";
 import Matiere from "./Matiere";
 import * as childrenApi from "./mock/api/children";
 
+const TABS = [
+    { key: "matiere", label: "matieres et activitées" },
+    { key: "list", label: "liste des enfants" },
+    { key: "comment", label: "Commentaires" },
+];
+
 const Nourrice = () => {
-    const [list, setList] = useState(false);
-    const [comment, setComment] = useState(false);
-    const [matiere, setMatiere] = useState(true);
+    const [tab, setTab] = useState("matiere");
     const [matieres, setMatieres] = useState([]);
     const [comments, setComments] = useState([]);
 
@@ -21,37 +21,15 @@ const Nourrice = () => {
     }, []);
 
     useEffect(() => {
-        if (comment) childrenApi.getComments().then((all) => setComments(all.filter((c) => c.staffRole === "nourrice")));
-    }, [comment]);
+        if (tab === "comment") childrenApi.getComments().then((all) => setComments(all.filter((c) => c.staffRole === "nourrice")));
+    }, [tab]);
 
     return (
-        <div className="grid w-full">
-            <div className="relative">
-                <NavBar1 showBtn={true}></NavBar1>
-                <div className="pointer-events-none absolute inset-x-0 bottom-0">
-                    <img src={wave} alt="wave" className="w-full"/>
-                </div>
-            </div>
-            <div className="mt-6 grid w-fit grid-flow-col gap-5 rounded-full bg-white px-6 py-4 shadow-md md:ml-[25%]">
-                <button className={`border-r-2 border-gray-mid px-10 font-poppins text-lg ${list ? "font-semibold text-primary" : "text-gray-mid"}`} onClick={() => { setMatiere(false); setList(true); setComment(false); }}>liste des enfants</button>
-                <button className={`border-r-2 border-gray-mid px-10 font-poppins text-lg ${comment ? "font-semibold text-primary" : "text-gray-mid"}`} onClick={() => { setMatiere(false); setList(false); setComment(true); }}>Commentaires</button>
-                <button className={`px-10 font-poppins text-lg ${matiere ? "font-semibold text-primary" : "text-gray-mid"}`} onClick={() => { setMatiere(true); setList(false); setComment(false); }}>matieres et activitées</button>
-            </div>
-
-            <div className="relative mt-6 bg-white">
-                <div className="pointer-events-none absolute inset-x-0 top-0 -translate-y-full">
-                    <img src={waveTopWhite} alt="wave-top" className="w-full"/>
-                </div>
-                <div className="bg-white py-6">
-                    {list && <ChildList matiereData={matieres}></ChildList>}
-                    {comment && <Comment data={comments}></Comment>}
-                    {matiere && <Matiere data={matieres} onChange={() => childrenApi.getMatieres().then(setMatieres)}></Matiere>}
-                </div>
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-full">
-                    <img src={waveBottomWhite} alt="wave-bottom" className="w-full"/>
-                </div>
-            </div>
-        </div>
+        <DashboardShell tabs={TABS} active={tab} onChange={setTab}>
+            {tab === "list" && <ChildList matiereData={matieres}></ChildList>}
+            {tab === "comment" && <Comment data={comments}></Comment>}
+            {tab === "matiere" && <Matiere data={matieres} onChange={() => childrenApi.getMatieres().then(setMatieres)}></Matiere>}
+        </DashboardShell>
     );
 }
 

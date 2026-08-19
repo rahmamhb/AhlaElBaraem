@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import InfoPerso from './InfoPerso';
 import InfoMedi from './InfoMedi';
+import { DASHBOARD_CONTAINER } from './layout';
 
 const MonEnfant = () => {
     let [infoPerso, setInfoPerso] = useState(true);
@@ -11,7 +12,7 @@ const MonEnfant = () => {
                 <button className={`w-full max-w-[400px] border-0 bg-white px-5 font-display text-2xl md:text-3xl ${infoPerso ? "text-primary" : "text-gray-mid"}`} onClick={() => { setInfoPerso(true); setInfoMedi(false); }}>Informations personnelles</button>
                 <button className={`w-full max-w-[400px] border-0 bg-white px-5 font-display text-2xl md:text-3xl ${infoMedi ? "text-primary" : "text-gray-mid"}`} onClick={() => { setInfoPerso(false); setInfoMedi(true); }}>Informations médicales</button>
             </div>
-            <div className="mx-auto w-full max-w-4xl px-4 md:px-[6rem]">
+            <div className={DASHBOARD_CONTAINER}>
                 {infoPerso && <InfoPerso></InfoPerso>}
                 {infoMedi && <InfoMedi></InfoMedi>}
             </div>

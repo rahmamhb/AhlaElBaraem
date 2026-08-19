@@ -1,7 +1,7 @@
 import children from "./assets/children.jpg"
 import CloseIcon from '@mui/icons-material/Close';
 import { useState } from "react";
-import wave from "./assets/wave.png"
+import wave from "./assets/wave.svg"
 import NavBar1 from "./NavBar1";
 import Footer from "./Footer"
 
@@ -24,7 +24,7 @@ const Gallery = () => {
             <div className="grid w-full justify-items-center gap-10">
                 <div className="w-full">
                     <NavBar1></NavBar1>
-                    <img src={wave} alt="wave" className="w-full"/>
+                    <img src={wave} alt="wave" className="-mt-px block w-full"/>
                 </div>
                 <div className="grid w-full max-w-5xl justify-items-center gap-8 px-6">
                     <p className="font-display text-5xl text-primary lg:text-7xl">Gallerie</p>

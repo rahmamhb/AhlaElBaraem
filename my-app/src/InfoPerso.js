@@ -14,7 +14,7 @@ const InfoPerso = () => {
 
     return (
         <div className="grid gap-10 font-poppins text-gray-dark">
-            <div className="flex flex-wrap items-center justify-center gap-10 md:justify-start md:pl-[10%]">
+            <div className="flex flex-wrap items-center justify-center gap-10 md:justify-start">
                 <img src={child.photo} alt="" className="h-[200px] w-[200px] rounded-full object-cover" />
                 <div className="grid gap-3 text-left">
                     <p><span className="font-semibold">nom:</span> <span>{child.nom}</span></p>
@@ -24,7 +24,7 @@ const InfoPerso = () => {
                 </div>
             </div>
 
-            <div className="grid gap-4 text-left md:pl-[10%]">
+            <div className="grid gap-4 text-left">
                 <div className="flex flex-wrap gap-16">
                     <div className="grid gap-3">
                         <p><span className="font-semibold">père:</span> <span>{child.pere}</span></p>

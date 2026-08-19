@@ -1,16 +1,20 @@
 import { useState } from "react";
 import ChildList from "../../ChildList";
 import RegistrationRequests from "./RegistrationRequests";
+import PillTabs from "../../PillTabs";
+import { DASHBOARD_CONTAINER } from "../../layout";
+
+const TABS = [
+    { key: "liste", label: "Liste des enfants" },
+    { key: "demandes", label: "Demandes d'inscription" },
+];
 
 const ChildrenManagement = () => {
     const [tab, setTab] = useState("liste");
 
     return (
-        <div className="mx-auto grid w-full max-w-4xl gap-6 px-4">
-            <div className="flex gap-4">
-                <button className={`font-poppins text-lg ${tab === "liste" ? "font-semibold text-primary" : "text-gray-mid"}`} onClick={() => setTab("liste")}>Liste des enfants</button>
-                <button className={`font-poppins text-lg ${tab === "demandes" ? "font-semibold text-primary" : "text-gray-mid"}`} onClick={() => setTab("demandes")}>Demandes d'inscription</button>
-            </div>
+        <div className={`${DASHBOARD_CONTAINER} grid gap-6`}>
+            <PillTabs tabs={TABS} active={tab} onChange={setTab} variant="plain" />
             {tab === "liste" && <ChildList mode="admin"></ChildList>}
             {tab === "demandes" && <RegistrationRequests></RegistrationRequests>}
         </div>

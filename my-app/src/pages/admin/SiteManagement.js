@@ -4,6 +4,8 @@ import DeleteOutline from '@mui/icons-material/DeleteOutline';
 import * as messagesApi from "../../mock/api/messages";
 import * as menusApi from "../../mock/api/menus";
 import * as announcementsApi from "../../mock/api/announcements";
+import PillTabs from "../../PillTabs";
+import { DASHBOARD_CONTAINER } from "../../layout";
 
 const MessagerieTab = () => {
     const [threads, setThreads] = useState([]);
@@ -104,16 +106,18 @@ const AnnoncesTab = () => {
     );
 };
 
+const TABS = [
+    { key: "messagerie", label: "Messagerie" },
+    { key: "menu", label: "Menu" },
+    { key: "annonces", label: "Annonces" },
+];
+
 const SiteManagement = () => {
     const [tab, setTab] = useState("messagerie");
 
     return (
-        <div className="mx-auto grid w-full max-w-4xl gap-6 px-4">
-            <div className="flex flex-wrap gap-4">
-                <button className={`font-poppins text-lg ${tab === "messagerie" ? "font-semibold text-primary" : "text-gray-mid"}`} onClick={() => setTab("messagerie")}>Messagerie</button>
-                <button className={`font-poppins text-lg ${tab === "menu" ? "font-semibold text-primary" : "text-gray-mid"}`} onClick={() => setTab("menu")}>Menu</button>
-                <button className={`font-poppins text-lg ${tab === "annonces" ? "font-semibold text-primary" : "text-gray-mid"}`} onClick={() => setTab("annonces")}>Annonces</button>
-            </div>
+        <div className={`${DASHBOARD_CONTAINER} grid gap-6`}>
+            <PillTabs tabs={TABS} active={tab} onChange={setTab} variant="plain" />
             {tab === "messagerie" && <MessagerieTab />}
             {tab === "menu" && <MenuTab />}
             {tab === "annonces" && <AnnoncesTab />}

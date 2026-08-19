@@ -11,6 +11,7 @@ import Moment from "react-moment";
 import bgPattern from "./assets/background.png";
 import { useAuth } from "./context/AuthContext";
 import * as childrenApi from "./mock/api/children";
+import { DASHBOARD_CONTAINER } from "./layout";
 
 const Compétence = () => {
     const { user } = useAuth();
@@ -21,7 +22,7 @@ const Compétence = () => {
     }, [user]);
 
     return (
-        <div className="grid gap-8 bg-cover px-4 py-10 md:px-[10%]" style={{ backgroundImage: `url(${bgPattern})` }}>
+        <div className={`${DASHBOARD_CONTAINER} grid gap-8 bg-cover py-10`} style={{ backgroundImage: `url(${bgPattern})` }}>
             {competences.map((competence, index) => (
                 <div className="grid w-full max-w-3xl gap-3 justify-self-center px-4 py-5 font-poppins text-lg font-semibold" key={competence.id || index}>
                     <span className="text-center text-base font-normal text-gray-mid"><Moment format='dddd L'>{competence.addingDate}</Moment></span>

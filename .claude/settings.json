@@ -2,7 +2,15 @@
   "permissions": {
     "allow": [
       "PowerShell(cd \"d:\\\\rahma\\\\PFE\\\\Work\\\\1275\\\\AhlaElBaraem-main\\\\AhlaElBaraem-main\\\\my-app\"; $env:BROWSER=\"none\"; $env:CI=\"false\"; npm start 2>&1)",
-      "PowerShell(try { $r = Invoke-WebRequest -Uri \"http://localhost:3000\" -UseBasicParsing -TimeoutSec 10; \"STATUS: $\\($r.StatusCode\\)\" } catch { \"ERROR: $\\($_.Exception.Message\\)\" })"
+      "PowerShell(try { $r = Invoke-WebRequest -Uri \"http://localhost:3000\" -UseBasicParsing -TimeoutSec 10; \"STATUS: $\\($r.StatusCode\\)\" } catch { \"ERROR: $\\($_.Exception.Message\\)\" })",
+      "Bash(npx eslint *)",
+      "Bash(npm run *)",
+      "Read(//c/Users/salah/**)",
+      "Read(//c/Users/salah/Downloads/**)",
+      "Bash(awk '{print length, \"chars on line\", NR}' \"d:/rahma/PFE/Work/1275/AhlaElBaraem-main/AhlaElBaraem-main/my-app/src/assets/footerwave.svg\")",
+      "Bash(rm -f \"C:/Users/salah/AppData/Local/Temp/claude/d--rahma-PFE-Work-1275-AhlaElBaraem-main-AhlaElBaraem-main/abaf95a4-3f0e-4f88-91bb-b533fe4da8c9/scratchpad/footerwave_check.html\" \"C:/Users/salah/AppData/Local/Temp/claude/d--rahma-PFE-Work-1275-AhlaElBaraem-main-AhlaElBaraem-main/abaf95a4-3f0e-4f88-91bb-b533fe4da8c9/scratchpad/footerwave_check.png\")",
+      "Bash(grep -rl \"footerwave.svg\" \"/c/Users/salah/AppData/Roaming/Code/User/History\" 2>/dev/null)",
+      "Read(//c/Users/salah/AppData/Roaming/Code/User/History/**)"
     ]
   }
 }

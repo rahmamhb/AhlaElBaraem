@@ -1,6 +1,6 @@
 import { BRANDING } from "./config/branding"
 import HeroIllustration from "./assets/baraemHeader.png"
-import wave from './assets/wave.png';
+import wave from './assets/wave.svg';
 import waveTopWhite from "./assets/wavetopwhite.png"
 import waveBottomWhite from "./assets/wavebottomwhite.png"
 import staff from "./assets/staff.jpg"
@@ -60,7 +60,7 @@ const Home = () => {
                     </div>
                     <img src={HeroIllustration} alt="illustration" className="w-48 sm:w-64 md:w-72 lg:w-96"/>
                 </div>
-                <img src={wave} alt="" className="block w-full"/>
+                <img src={wave} alt="" className="-mt-px block w-full"/>
             </header>
 
             {/* About */}

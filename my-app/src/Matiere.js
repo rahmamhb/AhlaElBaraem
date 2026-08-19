@@ -4,6 +4,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import ChevronLeft from '@mui/icons-material/ChevronLeftRounded';
 import { useState } from 'react';
 import * as childrenApi from "./mock/api/children";
+import { DASHBOARD_CONTAINER } from "./layout";
 
 const COLOR_CHOICES = ["255 181 133", "255 231 148", "255 72 72", "154 219 255", "255 189 167", "255 153 0"];
 
@@ -45,11 +46,11 @@ const Matiere = ({ data, onChange }) => {
     };
 
     return (
-        <div className="grid gap-16 px-4 py-8 md:px-6">
+        <div className={`${DASHBOARD_CONTAINER} grid gap-16 py-8`}>
             <div className="grid gap-16">
                 <p className="font-display text-4xl text-primary md:text-5xl">Les matieres</p>
-                <div className="grid justify-items-end gap-5">
-                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:ml-[25%] md:grid-cols-3">
+                <div className="grid justify-items-center gap-5">
+                    <div className="grid w-full max-w-2xl grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
                         {data.map((item, index) => (
                             <div key={item.id || item.matiereName}>
                                 <div className={`fixed inset-0 z-[999] flex items-center justify-center bg-black/70 transition-all duration-300 ${currentOverlayIndex === index ? "visible opacity-100 scale-100" : "invisible opacity-0 scale-0"}`}>
@@ -116,7 +117,7 @@ const Matiere = ({ data, onChange }) => {
 
             <div className="grid gap-16">
                 <p className="font-display text-4xl text-primary md:text-5xl">Matieres d'aujourd'hui</p>
-                <div className="grid grid-cols-2 gap-6 md:ml-[25%] md:grid-cols-3">
+                <div className="mx-auto grid w-full max-w-2xl grid-cols-2 gap-6 md:grid-cols-3">
                     {data.map((item, index) => (
                         <span
                             key={index}

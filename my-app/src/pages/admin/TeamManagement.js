@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import DeleteOutline from '@mui/icons-material/DeleteOutline';
 import Pagination from "../../Pagination";
 import * as staffApi from "../../mock/api/staff";
+import { DASHBOARD_CONTAINER } from "../../layout";
 
 const ROLES = ["nourrice", "orthophoniste", "psychologue"];
 
@@ -36,19 +37,20 @@ const TeamManagement = () => {
     };
 
     return (
-        <div className="mx-auto grid w-full max-w-4xl gap-6 px-4">
-            <div className="flex items-center justify-between gap-4">
+        <div className={`${DASHBOARD_CONTAINER} grid gap-6`}>
+            <div className="flex flex-wrap items-center justify-between gap-4">
                 <input placeholder="Recherche" className="w-full max-w-xs rounded-full border border-gray-light px-4 py-2" value={search} onChange={(e) => setSearch(e.target.value)} />
                 <button onClick={() => setOverlay(true)} className="rounded-full bg-primary px-5 py-2 font-poppins font-bold text-white">Ajouter</button>
             </div>
 
             <div className="grid gap-3">
                 {current.map((s, i) => (
-                    <div key={s.id} className="grid grid-cols-[auto_1fr_1fr_1fr_auto] items-center gap-4 border-b border-gray-light py-3 font-poppins text-gray-dark">
+                    <div key={s.id} className="flex flex-wrap items-center gap-x-4 gap-y-2 border-b border-gray-light py-3 font-poppins text-gray-dark">
                         <span>{(page - 1) * perPage + i + 1}</span>
                         <span>{s.name}</span>
-                        <span className="truncate">{s.email}</span>
+                        <span className="max-w-[55vw] truncate sm:max-w-[220px]">{s.email}</span>
                         <span className="capitalize">{s.staffRole}</span>
+                        <span className="grow"></span>
                         <button onClick={() => handleDelete(s.id)} className="text-primary"><DeleteOutline /></button>
                     </div>
                 ))}

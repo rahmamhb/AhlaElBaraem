@@ -186,11 +186,12 @@ const ChildList = ({ matiereData, mode = "staff" }) => {
                             </div>
                         </div>
 
-                        <div className="grid grid-cols-[auto_1fr_1fr_1fr_auto_auto] items-center gap-6 border-b-2 border-primary py-4 font-poppins font-bold text-gray-dark">
+                        <div className="flex flex-wrap items-center gap-x-6 gap-y-2 border-b-2 border-primary py-4 font-poppins font-bold text-gray-dark">
                             <span>{index + 1}</span>
                             <span>{item.childName}</span>
-                            <span className="truncate">{item.email}</span>
+                            <span className="max-w-[55vw] truncate sm:max-w-[220px]">{item.email}</span>
                             <span><Moment format='lll'>{new Date()}</Moment></span>
+                            <span className="grow"></span>
                             <button className="rounded-full bg-accent-yellow-dark px-5 py-1 text-sm font-bold text-white hover:bg-accent-yellow-dark/80" onClick={() => openOverlay(index, item)}>
                                 {mode === "admin" ? "modifier" : "éditer"}
                             </button>
