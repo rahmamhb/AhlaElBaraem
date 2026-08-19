@@ -1,101 +1,47 @@
-import photoEnfant from './assets/picture.png'
-import './InfoPerso.css'
+import { useEffect, useState } from "react";
+import { useAuth } from "./context/AuthContext";
+import * as childrenApi from "./mock/api/children";
 
+const InfoPerso = () => {
+    const { user } = useAuth();
+    const [child, setChild] = useState(null);
 
-const infoPerso = () => {
-    const virtualchild={
-            nom: "Benkhalifa",
-            prenom: "Achref",
-            datedenaissance: ("13/5/2016"),
-            sexe : "masculin",
-            photo : photoEnfant
-        };
-    const virtualparent={
-        pere:'Salim', 
-        jobp: 'Directeur',
-        mere: 'Mechraoui Yasmine', 
-        jobm: '/',
-        numero: '0668788157', 
-        email : 'example@email.com',
-        adresse: 'cite aadl zaafrania z2  - annaba',
-        freres: 2
+    useEffect(() => {
+        if (user?.childId) childrenApi.getChildById(user.childId).then(setChild);
+    }, [user]);
 
-    }
-    
-        
-    return ( 
-    <div className="section">
-        <div className="child-info">
-            <img src={virtualchild.photo} alt="" />
-            <div className='info'>
-                <p>
-                    <span  className='bold'>nom:</span> 
-                    <span className='notbold'> {virtualchild.nom} </span>
-                </p>
-                <p>
-                    <span className='bold'>prénom:</span>
-                    <span className='notbold'> {virtualchild.prenom} </span>
-                </p>
-                <p>
-                    <span className='bold'>date de naissance:</span> 
-                    <span className='notbold'> {virtualchild.datedenaissance} </span>
-                </p>
-                <p>
-                    <span className='bold'>sexe:</span> 
-                    <span className='notbold'> {virtualchild.sexe} </span>
-                </p> 
-            </div>
-            
-        </div>
-        <div className='parent-info'>
-            <div className='container'>
-                <div className='left'>
-                    <p>
-                        <span  className='bold'>père:</span> 
-                        <span className='notbold'> {virtualparent.pere} </span>
-                    </p>
-                    <p>
-                        <span className='bold'>mère:</span> 
-                        <span className='notbold'> {virtualparent.mere} </span>
-                    </p>
+    if (!child) return <p className="text-center text-gray-mid">Chargement...</p>;
+
+    return (
+        <div className="grid gap-10 font-poppins text-gray-dark">
+            <div className="flex flex-wrap items-center justify-center gap-10 md:justify-start md:pl-[10%]">
+                <img src={child.photo} alt="" className="h-[200px] w-[200px] rounded-full object-cover" />
+                <div className="grid gap-3 text-left">
+                    <p><span className="font-semibold">nom:</span> <span>{child.nom}</span></p>
+                    <p><span className="font-semibold">prénom:</span> <span>{child.prenom}</span></p>
+                    <p><span className="font-semibold">date de naissance:</span> <span>{child.dateNaissance}</span></p>
+                    <p><span className="font-semibold">sexe:</span> <span>{child.sexe}</span></p>
                 </div>
+            </div>
 
-                <div className='right'>
-                    <p>
-                        <span className='bold'>proffession:</span>
-                        <span className='notbold'> {virtualparent.jobp} </span>
-                    </p>
-                    <p>
-                        <span className='bold'>proffession:</span>
-                        <span className='notbold'> {virtualparent.jobm} </span>
-                    </p>
+            <div className="grid gap-4 text-left md:pl-[10%]">
+                <div className="flex flex-wrap gap-16">
+                    <div className="grid gap-3">
+                        <p><span className="font-semibold">père:</span> <span>{child.pere}</span></p>
+                        <p><span className="font-semibold">mère:</span> <span>{child.mere}</span></p>
+                    </div>
+                    <div className="grid gap-3">
+                        <p><span className="font-semibold">profession:</span> <span>{child.jobPere}</span></p>
+                        <p><span className="font-semibold">profession:</span> <span>{child.jobMere}</span></p>
+                    </div>
+                </div>
+                <p><span className="font-semibold">N° de téléphone:</span> <span>{child.telephone}</span></p>
+                <p><span className="font-semibold">email:</span> <span>{child.email}</span></p>
+                <p><span className="font-semibold">adresse:</span> <span>{child.adresse}</span></p>
+                <p><span className="font-semibold">frères:</span> <span>{child.freres}</span></p>
             </div>
         </div>
-            
-
-                <p className='telephone'>
-                    <span>
-                        <span className='bold'>N° de téléphone:</span> 
-                        <span className='notbold'> {virtualparent.numero} </span>
-                    </span>
-                </p>
-                <p className='email'>
-                    <span className='bold'>email:</span> 
-                    <span className='notbold'> {virtualparent.email} </span>
-                </p>
-                <p className='adresse'>
-                    <span className='bold'>adresse:</span> 
-                    <span className='notbold'> {virtualparent.adresse} </span>
-                </p>
-                <p className='freres'>
-                    <span className='bold'>frères:</span> 
-                    <span className='notbold'> {virtualparent.freres} </span>
-                </p>
-        </div>
-
-
-    </div> 
     );
 }
- 
-export default infoPerso;
+
+export default InfoPerso;

@@ -1,85 +1,58 @@
-
 import Absent from "./assets/absent.png"
 import Present from "./assets/present.png"
 import Bud from "./assets/bud.png"
-import "./CetteSemaine.css"
 import Menu from './Menu'
 
+const EMOJIS = ["😒", "🙁", "😊", "🥰", "👏"];
 
+const BUDS_LIST = [
+    { day: "Dimanche", isPresent: true },
+    { day: "Lundi", isPresent: false },
+    { day: "Mardi", isPresent: true },
+    { day: "Mercredi", isPresent: "" },
+    { day: "Jeudi", isPresent: "" },
+];
 
 const CetteSemaine = () => {
-    const emojis = ["😒","🙁","😊","🥰","👏"];
-   
-
-    const budsList = [
-        {
-            day : "Dimanche",
-            isPresent : true
-        },
-        {
-            day: "Lundi",
-            isPresent : false
-        },
-        {
-            day : "Mardi",
-            isPresent : true,
-        },
-        
-        {
-            day : "Mercredi", 
-            isPresent : "",
-        }, 
-        {
-            day : "Jeudi",
-            isPresent : "",
-        }
-    ]
-  
-
     return (
-        <div className="cette-semaine-container">
-            <div className="comportement">
-                <div className="title">
-                    <h1 className="first-title">COMPORTEMENT</h1>
-                    <h2 className="second-title">d’aujourd’hui</h2>
+        <div className="grid gap-16 px-4 py-8">
+            <div className="grid gap-6">
+                <div className="grid gap-1 pt-10 text-center">
+                    <h1 className="font-display text-4xl text-primary lg:text-5xl">COMPORTEMENT</h1>
+                    <h2 className="font-display text-2xl text-primary lg:text-3xl">d'aujourd'hui</h2>
                 </div>
-                <div class="emoji-container">
-                    {emojis.map((emoji, index) => (
-                        <div className="emoji">
+                <div className="flex flex-wrap items-center justify-center gap-5">
+                    {EMOJIS.map((emoji, index) => (
+                        <div className="flex w-[100px] items-center justify-center text-6xl md:w-[120px] md:text-7xl" key={index}>
                             {emoji}
                         </div>
-                   
                     ))}
                 </div>
             </div>
 
-            <div className="absences">
-                <div className="title">
-                    <h1 className="first-title">ABSENCES</h1>
-                    <h2 className="second-title">de la semaine</h2>
+            <div className="grid gap-6">
+                <div className="grid gap-1 text-center">
+                    <h1 className="font-display text-4xl text-primary lg:text-5xl">ABSENCES</h1>
+                    <h2 className="font-display text-2xl text-primary lg:text-3xl">de la semaine</h2>
                 </div>
-                <div class="bud-container">
-                    {budsList.map((bud, index) => (
-                        <div className="bud">
-                            <img key={index} src= {bud.isPresent===true ? Present : bud.isPresent===false ? Absent : Bud} alt=""/>
-                            <p className="day">{bud.day}</p>
+                <div className="flex flex-wrap items-center justify-center gap-8">
+                    {BUDS_LIST.map((bud, index) => (
+                        <div className="grid justify-items-center gap-2" key={index}>
+                            <img className="h-[90px] w-[90px]" src={bud.isPresent === true ? Present : bud.isPresent === false ? Absent : Bud} alt="" />
+                            <p className="text-gray-mid">{bud.day}</p>
                         </div>
-                    
                     ))}
                 </div>
             </div>
 
-            <div className="menu">
-                <div className="title">
-                    <h1 className="first-title">MENU</h1>
+            <div className="grid gap-6">
+                <div className="text-center">
+                    <h1 className="font-display text-4xl text-primary lg:text-5xl">MENU</h1>
                     <Menu></Menu>
                 </div>
-                <div className="menu-container">
-                </div>
             </div>
-            
         </div>
     );
 }
- 
+
 export default CetteSemaine;

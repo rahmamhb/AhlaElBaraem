@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="SchoolSync">
+  <g transform="translate(60,60)">
+    <path d="M0,-8 C 16,-34 40,-34 40,-8 C 40,10 16,14 0,-8 Z" fill="#FF4848"/>
+    <path d="M8,0 C 34,-16 34,-40 8,-40 C -10,-40 -14,-16 8,0 Z" fill="#FFB585"/>
+    <path d="M0,8 C -16,34 -40,34 -40,8 C -40,-10 -16,-14 0,8 Z" fill="#FFE794"/>
+    <path d="M-8,0 C -34,16 -34,40 -8,40 C 10,40 14,16 -8,0 Z" fill="#FF9A9A"/>
+    <circle r="15" fill="#FFFFFF"/>
+    <circle r="15" fill="none" stroke="#FFDCB0" stroke-width="3"/>
+    <circle r="6" fill="#FF4848"/>
+  </g>
+</svg>

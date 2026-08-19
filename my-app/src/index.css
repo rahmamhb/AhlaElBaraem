@@ -1,15 +1,17 @@
-*{
-    margin: 0px;
-    padding: 0;
-}
-body{
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
     background-image: url("./assets/background.png");
     background-repeat: repeat-y;
     background-position: center;
     background-size: auto;
     height: 100%;
     max-width: 100%;
+    font-family: "Poppins", ui-sans-serif, system-ui, sans-serif;
 }
+
 html {
     scroll-behavior: smooth;
 }

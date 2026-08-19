@@ -1,4 +1,4 @@
-import "./Footer.css"
+import { BRANDING } from "./config/branding"
 import FooterWave from "./assets/footerwave.png"
 import Mail from '@mui/icons-material/MailOutline';
 import Place from '@mui/icons-material/PlaceOutlined';
@@ -7,47 +7,48 @@ import ScheduleIcon from '@mui/icons-material/Schedule';
 import Facebook from '@mui/icons-material/FacebookRounded';
 import Instagram from '@mui/icons-material/Instagram';
 import YouTube from '@mui/icons-material/YouTube';
+
 const Footer = () => {
-    return ( 
-        <div className="footer-page">
-            <div className="wave-top">
-                <img src={FooterWave} alt="footerwave" ></img>
+    return (
+        <div className="w-full">
+            <div>
+                <img src={FooterWave} alt="footerwave" className="w-full"></img>
             </div>
-            <div className="footer-container">
-                <div className="coordinates">
-                    <div className="coor1">
-                        <div className="contact1">
-                            <Mail></Mail>
-                            <p>ahlaelbaraem@gmail.com</p>
+            <div className="-mt-2 grid w-full grid-rows-2 justify-items-center gap-32 bg-primary px-4 py-10 font-poppins text-white">
+                <div className="grid grid-cols-1 justify-center gap-12 sm:grid-cols-2 sm:gap-24 md:gap-48">
+                    <div className="grid gap-3">
+                        <div className="grid grid-cols-[auto_1fr] items-center gap-6">
+                            <Mail style={{ height: 35, width: 40 }} />
+                            <p className="text-base">{BRANDING.contact.email}</p>
                         </div>
-                        <div className="contact1">
-                            <Phone></Phone>
-                            <p>0559 37 95 99 </p>
+                        <div className="grid grid-cols-[auto_1fr] items-center gap-6">
+                            <Phone style={{ height: 35, width: 40 }} />
+                            <p className="text-base">{BRANDING.contact.phone}</p>
                         </div>
-                        <div className="contact1">
-                            <Place></Place>
-                            <p>Rue Belkacem Omar , Béjaïa</p>
+                        <div className="grid grid-cols-[auto_1fr] items-center gap-6">
+                            <Place style={{ height: 35, width: 40 }} />
+                            <p className="text-base">{BRANDING.contact.addressLine1}, {BRANDING.contact.addressLine2}</p>
                         </div>
                     </div>
-                    <div className="coor2">
-                        <div className="contact2">
-                            <ScheduleIcon></ScheduleIcon>
-                            <div className="text">
-                                <p>Dim  - jeudi : 6 AM - 5.30 PM</p>
-                                <p>Ven - sam : fermée  </p>
+                    <div className="grid gap-3">
+                        <div className="grid grid-cols-[auto_1fr] items-center gap-6">
+                            <ScheduleIcon style={{ height: 35, width: 40 }} />
+                            <div>
+                                <p>{BRANDING.hours.openDays} : {BRANDING.hours.openHours}</p>
+                                <p>{BRANDING.hours.closedDays} : {BRANDING.hours.closedLabel}</p>
                             </div>
                         </div>
-                        <div className="social-media">
-                            <a href="https://www.facebook.com/Cr%C3%A8che-Bara%C3%A9m-1817554448293433" target="_blank" rel="noopener noreferrer"><Facebook></Facebook> </a>
-                            <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"> <Instagram></Instagram></a>
-                            <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer"><YouTube></YouTube> </a>
+                        <div className="flex gap-3">
+                            <a href={BRANDING.social.facebook} target="_blank" rel="noopener noreferrer"><Facebook /></a>
+                            <a href={BRANDING.social.instagram} target="_blank" rel="noopener noreferrer"><Instagram /></a>
+                            <a href={BRANDING.social.youtube} target="_blank" rel="noopener noreferrer"><YouTube /></a>
                         </div>
                     </div>
                 </div>
-                <p>Copyright © 2023 créche maternelle Ahla el baraem <a href="/"> - </a></p>
+                <p className="text-sm">Copyright © 2026 {BRANDING.institutionName} <a href="/"> - </a></p>
             </div>
         </div>
-     );
+    );
 }
- 
+
 export default Footer;

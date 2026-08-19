@@ -2,27 +2,28 @@ import { useEffect, useState } from "react";
 import wave from "./assets/wave.png"
 import waveTopWhite from "./assets/wavetopwhite.png"
 import waveBottomWhite from "./assets/wavebottomwhite.png"
-
 import NavBar1 from "./NavBar1";
-import ChildList from "./ChildList";
 import Comment from "./Comment";
-import Matiere from "./Matiere";
+import ChildList from "./ChildList";
 import * as childrenApi from "./mock/api/children";
 
-const Nourrice = () => {
-    const [list, setList] = useState(false);
+// Replaces the near-duplicate Orthophonist.js / Psychologue.js pair — same
+// shell, only the role differs, so it's parameterized instead of copy-pasted.
+const ROLE_LABELS = {
+    orthophoniste: "Orthophoniste",
+    psychologue: "Psychologue",
+};
+
+const StaffCommentDashboard = ({ staffRole }) => {
+    const [list, setList] = useState(true);
     const [comment, setComment] = useState(false);
-    const [matiere, setMatiere] = useState(true);
-    const [matieres, setMatieres] = useState([]);
     const [comments, setComments] = useState([]);
 
     useEffect(() => {
-        childrenApi.getMatieres().then(setMatieres);
-    }, []);
-
-    useEffect(() => {
-        if (comment) childrenApi.getComments().then((all) => setComments(all.filter((c) => c.staffRole === "nourrice")));
-    }, [comment]);
+        childrenApi.getComments().then((all) => {
+            setComments(all.filter((c) => c.staffRole === staffRole));
+        });
+    }, [staffRole, comment]);
 
     return (
         <div className="grid w-full">
@@ -33,9 +34,8 @@ const Nourrice = () => {
                 </div>
             </div>
             <div className="mt-6 grid w-fit grid-flow-col gap-5 rounded-full bg-white px-6 py-4 shadow-md md:ml-[25%]">
-                <button className={`border-r-2 border-gray-mid px-10 font-poppins text-lg ${list ? "font-semibold text-primary" : "text-gray-mid"}`} onClick={() => { setMatiere(false); setList(true); setComment(false); }}>liste des enfants</button>
-                <button className={`border-r-2 border-gray-mid px-10 font-poppins text-lg ${comment ? "font-semibold text-primary" : "text-gray-mid"}`} onClick={() => { setMatiere(false); setList(false); setComment(true); }}>Commentaires</button>
-                <button className={`px-10 font-poppins text-lg ${matiere ? "font-semibold text-primary" : "text-gray-mid"}`} onClick={() => { setMatiere(true); setList(false); setComment(false); }}>matieres et activitées</button>
+                <button className={`border-r-2 border-gray-mid px-10 font-poppins text-lg ${list ? "font-semibold text-primary" : "text-gray-mid"}`} onClick={() => { setList(true); setComment(false); }}>liste des enfants</button>
+                <button className={`px-10 font-poppins text-lg ${comment ? "font-semibold text-primary" : "text-gray-mid"}`} onClick={() => { setList(false); setComment(true); }}>Commentaires</button>
             </div>
 
             <div className="relative mt-6 bg-white">
@@ -43,9 +43,9 @@ const Nourrice = () => {
                     <img src={waveTopWhite} alt="wave-top" className="w-full"/>
                 </div>
                 <div className="bg-white py-6">
-                    {list && <ChildList matiereData={matieres}></ChildList>}
+                    <h1 className="mb-4 px-6 font-display text-2xl text-gray-dark md:px-[10%]">{ROLE_LABELS[staffRole] || "Staff"}</h1>
+                    {list && <ChildList></ChildList>}
                     {comment && <Comment data={comments}></Comment>}
-                    {matiere && <Matiere data={matieres} onChange={() => childrenApi.getMatieres().then(setMatieres)}></Matiere>}
                 </div>
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-full">
                     <img src={waveBottomWhite} alt="wave-bottom" className="w-full"/>
@@ -55,4 +55,4 @@ const Nourrice = () => {
     );
 }
 
-export default Nourrice;
+export default StaffCommentDashboard;

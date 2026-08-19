@@ -1,86 +1,45 @@
 import children from "./assets/children.jpg"
-import "./Gallery.css"
 import CloseIcon from '@mui/icons-material/Close';
 import { useState } from "react";
 import wave from "./assets/wave.png"
 import NavBar1 from "./NavBar1";
 import Footer from "./Footer"
 
+const data = Array.from({ length: 8 }, (_, i) => ({ id: i + 1, imgSrc: children }));
+
 const Gallery = () => {
-    var data = [
-        {
-            id : 1 ,
-            imgSrc : children ,
-        },
-        {
-            id : 2 ,
-            imgSrc : children ,
-        },
-        {
-            id : 3 ,
-            imgSrc : children ,
-        },
-        {
-            id : 4 ,
-            imgSrc : children ,
-        },
-        {
-            id : 5,
-            imgSrc : children ,
-        },
-        {
-            id : 6 ,
-            imgSrc : children ,
-        },
-        {
-            id : 7 ,
-            imgSrc : children ,
-        },
-        {
-            id : 8,
-            imgSrc : children ,
-        },
-    
-    ]
-    const [model , setModel] = useState(false);
-    const [tempImgSrc , setTempImgSrc] = useState("");
-    
-    const getImg = (imgSrc)=>{
+    const [model, setModel] = useState(false);
+    const [tempImgSrc, setTempImgSrc] = useState("");
+
+    const getImg = (imgSrc) => {
         setTempImgSrc(imgSrc);
         setModel(true);
     }
-    return ( 
+    return (
         <>
-        <div className={model? "model open" : "model"}>
-            <img src={tempImgSrc} alt="children"/>
-            <CloseIcon onClick={()=>{setModel(false)}} />
-        </div>
-        <div className="gallery-page">
-
-            <div className="galHeader">
-                <NavBar1></NavBar1>
-                <div className="wave-top">
-                    <img src={wave} alt="wave" className="wave"/>
+            <div className={`fixed inset-0 z-[999] flex items-center justify-center bg-black transition-all duration-300 ${model ? "visible scale-100 opacity-100" : "invisible scale-0 opacity-0"}`}>
+                <img src={tempImgSrc} alt="children" className="max-h-full max-w-full py-5" />
+                {model && <CloseIcon onClick={() => setModel(false)} className="fixed right-3 top-3 h-8 w-8 cursor-pointer bg-black/40 p-1 text-white" />}
+            </div>
+            <div className="grid w-full justify-items-center gap-10">
+                <div className="w-full">
+                    <NavBar1></NavBar1>
+                    <img src={wave} alt="wave" className="w-full"/>
                 </div>
-            </div>
-            <div className="gallery-container"> 
-                    <p>Gallerie </p>
-                    <div className="images">
-                        {
-                            data.map((item,index)=>{
-                                return(
-                                    <div className="pics" key={index} onClick={()=>{getImg(item.imgSrc)}}>
-                                        <img src={item.imgSrc} alt={`img${index}`} style={{width:"100%"}} />
-                                    </div>
-                                )
-                            })
-                        }
+                <div className="grid w-full max-w-5xl justify-items-center gap-8 px-6">
+                    <p className="font-display text-5xl text-primary lg:text-7xl">Gallerie</p>
+                    <div className="columns-1 gap-3 sm:columns-2 md:columns-3">
+                        {data.map((item, index) => (
+                            <div className="mb-3 cursor-pointer break-inside-avoid transition hover:opacity-80" key={index} onClick={() => getImg(item.imgSrc)}>
+                                <img src={item.imgSrc} alt={`img${index}`} className="w-full rounded-lg" />
+                            </div>
+                        ))}
                     </div>
+                </div>
+                <Footer></Footer>
             </div>
-            <Footer></Footer>
-        </div>
         </>
-     );
+    );
 }
- 
+
 export default Gallery;

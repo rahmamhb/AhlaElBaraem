@@ -6,49 +6,42 @@ import progSpe from "./assets/hautistes.png"
 import wave from "./assets/wave.png"
 import pdf1 from "./assets/Reglementinter.pdf"
 import pdf2 from "./assets/programmepédagogique.pdf"
-import "./Programme.css"
+
+const CARDS = [
+    { key: "reg", img: reglInter, alt: "reglinter", bg: "bg-accent-yellow-dark", hoverText: "hover:text-accent-yellow-dark", title: "Reglement Interieur", desc: "Organiser la vie au sein de l'établissement", href: pdf1, cta: "Voir plus" },
+    { key: "gene", img: progGeneral, alt: "progGeneral", bg: "bg-accent-orange", hoverText: "hover:text-accent-orange", title: "Programme général", desc: "les objectifs éducatifs pour les enfants", href: pdf2, cta: "Voir plus" },
+    { key: "spe", img: progSpe, alt: "progSpecial", bg: "bg-[#FF5959]", hoverText: "hover:text-[#FF5959]", title: "Programme autiste", desc: "les activités proposées pour les enfants spéciaux", href: null, cta: "Document dédié bientôt disponible" },
+];
 
 const Programme = () => {
-    return ( 
-        <div className="programme-page">
-             <div className="progHeader">
+    return (
+        <div className="grid w-full justify-items-center gap-16">
+            <div className="w-full">
                 <NavBar1></NavBar1>
-                <div className="wave-top">
-                    <img src={wave} alt="wave" className="wave"/>
-                </div>
+                <img src={wave} alt="wave" className="w-full"/>
             </div>
-            <div className="programme-container">
-                <p>Programmes</p>
-                <div className="programme-cards">
-                    <div className="reg-inter prog-card">
-                        <img src={reglInter} alt="reglinter"></img>
-                        <div className="card-txt">
-                            <p>Reglement Interieur</p>
-                            <span>Organiser la vie au sein de notre crèche</span>
-                            <a href={pdf1}target="_blank" rel="noopener noreferrer" >Voir plus</a>
+            <div className="grid w-full max-w-6xl justify-items-center gap-16 px-6">
+                <p className="font-display text-5xl text-primary lg:text-7xl">Programmes</p>
+                <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
+                    {CARDS.map((c) => (
+                        <div key={c.key} className={`grid w-[320px] justify-items-center gap-8 rounded-3xl py-8 ${c.bg}`}>
+                            <img src={c.img} alt={c.alt} className="h-[250px] w-[250px]"></img>
+                            <div className="grid justify-items-center gap-5 text-white">
+                                <p className="text-3xl">{c.title}</p>
+                                <span className="w-[280px] text-center font-poppins text-lg">{c.desc}</span>
+                                {c.href ? (
+                                    <a href={c.href} target="_blank" rel="noopener noreferrer" className={`grid h-[45px] items-center rounded-full border-2 border-white px-10 text-center font-poppins transition hover:bg-white ${c.hoverText}`}>{c.cta}</a>
+                                ) : (
+                                    <span className="text-center font-poppins text-sm italic text-white/80">{c.cta}</span>
+                                )}
+                            </div>
                         </div>
-                    </div>
-                    <div className="prog-gene prog-card">
-                        <img src={progGeneral} alt="progGeneral"></img>
-                        <div className="card-txt">
-                            <p>Programme général</p>
-                            <span>les objectifs éducatifs pour les enfants</span>
-                            <a href={pdf2} target="_blank" rel="noopener noreferrer" >Voir plus</a>
-                        </div>
-                    </div>
-                    <div className="prog-spe prog-card">
-                        <img src={progSpe} alt="progSpecial"></img>
-                        <div className="card-txt">
-                            <p>Programme autiste</p>
-                            <span>les activités proposées pour les enfants spéciaux</span>
-                            <a  href={pdf2} target="_blank" rel="noopener noreferrer">Voir plus</a>
-                        </div>
-                    </div>
-                </div>  
+                    ))}
+                </div>
             </div>
             <Footer></Footer>
         </div>
-     );
+    );
 }
- 
+
 export default Programme;

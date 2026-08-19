@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(cd \"d:\\\\rahma\\\\PFE\\\\Work\\\\1275\\\\AhlaElBaraem-main\\\\AhlaElBaraem-main\\\\my-app\"; $env:BROWSER=\"none\"; $env:CI=\"false\"; npm start 2>&1)",
+      "PowerShell(try { $r = Invoke-WebRequest -Uri \"http://localhost:3000\" -UseBasicParsing -TimeoutSec 10; \"STATUS: $\\($r.StatusCode\\)\" } catch { \"ERROR: $\\($_.Exception.Message\\)\" })"
+    ]
+  }
+}
