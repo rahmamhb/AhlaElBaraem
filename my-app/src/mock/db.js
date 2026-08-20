@@ -2,7 +2,7 @@ import { buildSeed } from "./seed";
 
 // Bump this whenever the seed shape changes so demo browsers auto-reseed
 // instead of crashing on a stale localStorage shape.
-const DB_KEY = "schoolsync_db_v1";
+const DB_KEY = "schoolsync_db_v2";
 const SESSION_KEY = "schoolsync_session_v1";
 
 function readRaw(key) {

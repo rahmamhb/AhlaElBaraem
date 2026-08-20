@@ -1,7 +1,10 @@
+import { useEffect, useState } from "react";
 import Absent from "./assets/absent.png"
 import Present from "./assets/present.png"
 import Bud from "./assets/bud.png"
 import Menu from './Menu'
+import { useAuth } from "./context/AuthContext";
+import * as childrenApi from "./mock/api/children";
 
 const EMOJIS = ["😒", "🙁", "😊", "🥰", "👏"];
 
@@ -14,6 +17,17 @@ const BUDS_LIST = [
 ];
 
 const CetteSemaine = () => {
+    const { user } = useAuth();
+    const [mood, setMood] = useState(null);
+
+    useEffect(() => {
+        if (!user?.childId) return;
+        childrenApi.getComments(user.childId).then((comments) => {
+            const moodComment = comments.find((c) => EMOJIS.some((e) => c.commentContent?.includes(e)));
+            setMood(moodComment ? EMOJIS.find((e) => moodComment.commentContent.includes(e)) : null);
+        });
+    }, [user]);
+
     return (
         <div className="grid gap-16 px-4 py-8">
             <div className="grid gap-6">
@@ -23,7 +37,12 @@ const CetteSemaine = () => {
                 </div>
                 <div className="flex flex-wrap items-center justify-center gap-5">
                     {EMOJIS.map((emoji, index) => (
-                        <div className="flex w-[100px] items-center justify-center text-6xl md:w-[120px] md:text-7xl" key={index}>
+                        <div
+                            className={`flex w-[100px] items-center justify-center transition-all md:w-[120px] ${
+                                emoji === mood ? "text-7xl md:text-8xl" : "text-4xl grayscale opacity-50 md:text-5xl"
+                            }`}
+                            key={index}
+                        >
                             {emoji}
                         </div>
                     ))}

@@ -16,7 +16,7 @@ const Parent = () => {
     const [tab, setTab] = useState("cettesemaine");
 
     return (
-        <DashboardShell tabs={TABS} active={tab} onChange={setTab} footer wave={tab === "cettesemaine" || tab === "monenfant"}>
+        <DashboardShell tabs={TABS} active={tab} onChange={setTab} footer>
             {tab === "cettesemaine" && <CetteSemaine></CetteSemaine>}
             {tab === "competence" && <Compétence></Compétence>}
             {tab === "messagerie" && <Messagerie></Messagerie>}

@@ -22,8 +22,8 @@ const PillTabs = ({ tabs, active, onChange, variant = "pill", className = "" }) 
     }
 
     return (
-        <div className={`flex w-full justify-center overflow-x-auto px-4 ${className}`}>
-            <div className="flex shrink-0 items-center rounded-full bg-white px-2 py-2 shadow-md sm:px-4 sm:py-3">
+        <div className={`flex w-full justify-start px-4 sm:justify-center ${className}`}>
+            <div className="flex max-w-full shrink-0 items-center overflow-x-auto rounded-full bg-white px-2 py-2 shadow-lg [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:px-4 sm:py-3">
                 {tabs.map((tab, i) => (
                     <button
                         key={tab.key}

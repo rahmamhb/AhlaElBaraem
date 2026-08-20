@@ -129,6 +129,7 @@ export const STAFF = USERS.filter((u) => u.role === "staff").map((u) => ({
 }));
 
 const commentSeed = [
+    { childId: "child-1", staffId: "u-staff-1", content: "Comportement du jour : 🥰 — Yanis a été très câlin et joyeux toute la journée." },
     { childId: "child-1", staffId: "u-staff-1", content: "Yanis a très bien participé à l'atelier dessin aujourd'hui, il progresse sur la tenue du crayon." },
     { childId: "child-2", staffId: "u-staff-1", content: "Lina a partagé ses jouets sans qu'on lui demande, très beau geste ce matin." },
     { childId: "child-3", staffId: "u-staff-3", content: "Amira commence à mieux articuler les sons 'r' et 's', on continue les exercices la semaine prochaine." },
