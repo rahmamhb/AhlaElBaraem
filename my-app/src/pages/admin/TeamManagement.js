@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import DeleteOutline from '@mui/icons-material/DeleteOutline';
+import SearchIcon from '@mui/icons-material/Search';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Pagination from "../../Pagination";
 import * as staffApi from "../../mock/api/staff";
 import { DASHBOARD_CONTAINER } from "../../layout";
@@ -39,8 +41,13 @@ const TeamManagement = () => {
     return (
         <div className={`${DASHBOARD_CONTAINER} grid gap-6`}>
             <div className="flex flex-wrap items-center justify-between gap-4">
-                <input placeholder="Recherche" className="w-full max-w-xs rounded-full border border-gray-light px-4 py-2" value={search} onChange={(e) => setSearch(e.target.value)} />
-                <button onClick={() => setOverlay(true)} className="rounded-full bg-primary px-5 py-2 font-poppins font-bold text-white">Ajouter</button>
+                <div className="relative w-full max-w-xs">
+                    <SearchIcon className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-gray-mid" fontSize="small" />
+                    <input placeholder="Recherche" className="w-full rounded-full border border-gray-light py-2 pl-10 pr-4" value={search} onChange={(e) => setSearch(e.target.value)} />
+                </div>
+                <button onClick={() => setOverlay(true)} className="flex items-center gap-2 rounded-full bg-primary px-5 py-2 font-poppins font-bold text-white">
+                    <AddCircleIcon fontSize="small" /> Ajouter
+                </button>
             </div>
 
             <div className="grid gap-3 overflow-x-auto">
@@ -66,7 +73,9 @@ const TeamManagement = () => {
                     </select>
                     <div className="flex gap-3">
                         <button type="button" onClick={() => setOverlay(false)} className="rounded-full border border-gray-light px-5 py-2 text-gray-dark">annuler</button>
-                        <button className="rounded-full bg-accent-yellow-dark px-5 py-2 font-bold text-white">confirmer</button>
+                        <button className="flex items-center gap-2 rounded-full bg-accent-yellow-dark px-5 py-2 font-bold text-white">
+                            <AddCircleIcon fontSize="small" /> confirmer
+                        </button>
                     </div>
                 </form>
             </div>

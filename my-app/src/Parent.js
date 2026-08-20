@@ -4,12 +4,14 @@ import Compétence from './Compétence';
 import Messagerie from './Messagerie';
 import MonEnfant from './MonEnfant';
 import CetteSemaine from './CetteSemaine';
+import MonAvis from './MonAvis';
 
 const TABS = [
     { key: "cettesemaine", label: "cette semaine" },
     { key: "competence", label: "compétences" },
     { key: "messagerie", label: "messagerie" },
     { key: "monenfant", label: "mon enfant" },
+    { key: "monavis", label: "mon avis" },
 ];
 
 const Parent = () => {
@@ -21,6 +23,7 @@ const Parent = () => {
             {tab === "competence" && <Compétence></Compétence>}
             {tab === "messagerie" && <Messagerie></Messagerie>}
             {tab === "monenfant" && <MonEnfant></MonEnfant>}
+            {tab === "monavis" && <MonAvis></MonAvis>}
         </DashboardShell>
     );
 }

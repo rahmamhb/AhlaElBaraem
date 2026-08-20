@@ -217,6 +217,25 @@ export const MESSAGES = messageSeed.map((m, index) => {
     };
 });
 
+const avisSeed = [
+    { parentId: "u-parent-1", childName: "Yanis", message: "Une équipe très à l'écoute, notre fils s'épanouit chaque jour un peu plus depuis son inscription.", status: "approved", daysAgo: 12 },
+    { parentId: "u-parent-2", childName: "Lina", message: "Le suivi quotidien et les échanges avec les éducatrices nous rassurent énormément en tant que parents.", status: "approved", daysAgo: 6 },
+    { parentId: "u-parent-3", childName: "Amira", message: "Amira progresse très bien avec l'orthophoniste, merci à toute l'équipe pour leur patience.", status: "pending", daysAgo: 1 },
+];
+
+export const AVIS = avisSeed.map((a, index) => {
+    const parent = USERS.find((u) => u.id === a.parentId);
+    return {
+        id: `avis-${index + 1}`,
+        parentId: a.parentId,
+        parentName: parent ? parent.name : "",
+        childName: a.childName,
+        message: a.message,
+        status: a.status,
+        addingDate: new Date(Date.now() - a.daysAgo * 864e5).toISOString(),
+    };
+});
+
 export function buildSeed() {
     return {
         users: USERS,
@@ -229,5 +248,6 @@ export function buildSeed() {
         attendance: ATTENDANCE,
         announcements: ANNOUNCEMENTS,
         messages: MESSAGES,
+        avis: AVIS,
     };
 }

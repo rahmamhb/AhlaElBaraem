@@ -4,13 +4,11 @@ import reglInter from "./assets/reglement.png"
 import progGeneral from "./assets/normaux.png"
 import progSpe from "./assets/hautistes.png"
 import wave from "./assets/wave.svg"
-import pdf1 from "./assets/Reglementinter.pdf"
-import pdf2 from "./assets/programmepédagogique.pdf"
 
 const CARDS = [
-    { key: "reg", img: reglInter, alt: "reglinter", bg: "bg-accent-yellow-dark", hoverText: "hover:text-accent-yellow-dark", title: "Reglement Interieur", desc: "Organiser la vie au sein de l'établissement", href: pdf1, cta: "Voir plus" },
-    { key: "gene", img: progGeneral, alt: "progGeneral", bg: "bg-accent-orange", hoverText: "hover:text-accent-orange", title: "Programme général", desc: "les objectifs éducatifs pour les enfants", href: pdf2, cta: "Voir plus" },
-    { key: "spe", img: progSpe, alt: "progSpecial", bg: "bg-[#FF5959]", hoverText: "hover:text-[#FF5959]", title: "Programme autiste", desc: "les activités proposées pour les enfants spéciaux", href: null, cta: "Document dédié bientôt disponible" },
+    { key: "reg", img: reglInter, alt: "reglinter", bg: "bg-accent-yellow-dark", title: "Reglement Interieur", desc: "Organiser la vie au sein de l'établissement" },
+    { key: "gene", img: progGeneral, alt: "progGeneral", bg: "bg-accent-orange", title: "Programme général", desc: "les objectifs éducatifs pour les enfants" },
+    { key: "spe", img: progSpe, alt: "progSpecial", bg: "bg-[#FF5959]", title: "Programme autiste", desc: "les activités proposées pour les enfants spéciaux" },
 ];
 
 const Programme = () => {
@@ -24,16 +22,11 @@ const Programme = () => {
                 <p className="font-display text-5xl text-primary lg:text-7xl">Programmes</p>
                 <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
                     {CARDS.map((c) => (
-                        <div key={c.key} className={`grid w-full max-w-[320px] justify-items-center gap-8 rounded-3xl py-8 ${c.bg}`}>
-                            <img src={c.img} alt={c.alt} className="h-[250px] w-[250px]"></img>
-                            <div className="grid justify-items-center gap-5 text-white">
-                                <p className="text-3xl">{c.title}</p>
-                                <span className="w-full max-w-[280px] text-center font-poppins text-lg">{c.desc}</span>
-                                {c.href ? (
-                                    <a href={c.href} target="_blank" rel="noopener noreferrer" className={`grid h-[45px] items-center rounded-full border-2 border-white px-10 text-center font-poppins transition hover:bg-white ${c.hoverText}`}>{c.cta}</a>
-                                ) : (
-                                    <span className="text-center font-poppins text-sm italic text-white/80">{c.cta}</span>
-                                )}
+                        <div key={c.key} className={`grid w-full max-w-[320px] justify-items-center gap-6 rounded-3xl px-8 py-10 ${c.bg}`}>
+                            <img src={c.img} alt={c.alt} className="h-[200px] w-[200px]"></img>
+                            <div className="grid justify-items-center gap-3 text-white">
+                                <p className="text-2xl">{c.title}</p>
+                                <span className="w-full text-center font-poppins text-base leading-relaxed text-white/90">{c.desc}</span>
                             </div>
                         </div>
                     ))}

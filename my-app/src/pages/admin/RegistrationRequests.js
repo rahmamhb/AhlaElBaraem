@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import CheckRounded from '@mui/icons-material/CheckRounded';
+import CloseRounded from '@mui/icons-material/CloseRounded';
 import * as childrenApi from "../../mock/api/children";
 import * as authApi from "../../mock/api/auth";
 
@@ -29,8 +31,12 @@ const RegistrationRequests = () => {
                     <p className="font-poppins text-gray-dark"><span className="font-semibold">Nom complet de l'enfant :</span> {child.childName}</p>
                     <p className="font-poppins text-gray-dark"><span className="font-semibold">Âge :</span> {child.age ?? "—"}</p>
                     <div className="flex gap-3">
-                        <button onClick={() => handleApprove(child.id)} className="rounded-full bg-accent-yellow-dark px-5 py-2 font-bold text-white">Confirmer</button>
-                        <button onClick={() => handleReject(child.id)} className="rounded-full border border-gray-light px-5 py-2 text-gray-dark">Annuler</button>
+                        <button onClick={() => handleApprove(child.id)} className="flex items-center gap-2 rounded-full bg-accent-yellow-dark px-5 py-2 font-bold text-white">
+                            <CheckRounded fontSize="small" /> Confirmer
+                        </button>
+                        <button onClick={() => handleReject(child.id)} className="flex items-center gap-2 rounded-full border border-gray-light px-5 py-2 text-gray-dark">
+                            <CloseRounded fontSize="small" /> Annuler
+                        </button>
                     </div>
                 </div>
             ))}

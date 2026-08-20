@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import EditRounded from '@mui/icons-material/EditRounded';
 import CloseRounded from '@mui/icons-material/CloseRounded';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { useAuth } from "./context/AuthContext";
 import * as childrenApi from "./mock/api/children";
 
@@ -39,8 +40,8 @@ const EditableList = ({ items, onChange }) => {
                     onChange={(e) => setDraft(e.target.value)}
                     onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); add(); } }}
                 />
-                <button type="button" onClick={add} className="w-fit rounded-full bg-accent-yellow-dark px-4 py-2 text-white transition hover:bg-accent-yellow-dark/80">
-                    ajouter
+                <button type="button" onClick={add} className="flex w-fit items-center gap-1.5 rounded-full bg-accent-yellow-dark px-4 py-2 text-white transition hover:bg-accent-yellow-dark/80">
+                    <AddCircleIcon fontSize="small" /> ajouter
                 </button>
             </div>
         </div>

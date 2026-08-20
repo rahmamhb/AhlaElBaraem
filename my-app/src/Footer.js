@@ -8,44 +8,46 @@ import Facebook from '@mui/icons-material/FacebookRounded';
 import Instagram from '@mui/icons-material/Instagram';
 import YouTube from '@mui/icons-material/YouTube';
 
+const ICON_SIZE = { height: 20, width: 20 };
+
 const Footer = () => {
     return (
         <div className="w-full">
             <div>
                 <img src={FooterWave} alt="footerwave" className="w-full"></img>
             </div>
-            <div className="-mt-2 grid w-full grid-rows-2 justify-items-center gap-32 bg-primary px-4 py-10 font-poppins text-white">
-                <div className="grid grid-cols-1 justify-center gap-12 sm:grid-cols-2 sm:gap-24 md:gap-48">
+            <div className="-mt-2 w-full bg-primary px-6 py-12 font-poppins text-white sm:px-10 lg:px-16">
+                <div className="mx-auto grid w-full max-w-5xl gap-10 sm:grid-cols-3">
                     <div className="grid gap-3">
-                        <div className="grid grid-cols-[auto_1fr] items-center gap-6">
-                            <Mail style={{ height: 35, width: 40 }} />
-                            <p className="text-base">{BRANDING.contact.email}</p>
+                        <div className="flex items-center gap-3">
+                            <Mail style={ICON_SIZE} className="flex-shrink-0" />
+                            <p className="text-sm">{BRANDING.contact.email}</p>
                         </div>
-                        <div className="grid grid-cols-[auto_1fr] items-center gap-6">
-                            <Phone style={{ height: 35, width: 40 }} />
-                            <p className="text-base">{BRANDING.contact.phone}</p>
+                        <div className="flex items-center gap-3">
+                            <Phone style={ICON_SIZE} className="flex-shrink-0" />
+                            <p className="text-sm">{BRANDING.contact.phone}</p>
                         </div>
-                        <div className="grid grid-cols-[auto_1fr] items-center gap-6">
-                            <Place style={{ height: 35, width: 40 }} />
-                            <p className="text-base">{BRANDING.contact.addressLine1}, {BRANDING.contact.addressLine2}</p>
+                        <div className="flex items-center gap-3">
+                            <Place style={ICON_SIZE} className="flex-shrink-0" />
+                            <p className="text-sm">{BRANDING.contact.addressLine1}, {BRANDING.contact.addressLine2}</p>
                         </div>
                     </div>
-                    <div className="grid gap-3">
-                        <div className="grid grid-cols-[auto_1fr] items-center gap-6">
-                            <ScheduleIcon style={{ height: 35, width: 40 }} />
-                            <div>
-                                <p>{BRANDING.hours.openDays} : {BRANDING.hours.openHours}</p>
-                                <p>{BRANDING.hours.closedDays} : {BRANDING.hours.closedLabel}</p>
-                            </div>
+                    <div className="flex items-start gap-3">
+                        <ScheduleIcon style={ICON_SIZE} className="flex-shrink-0" />
+                        <div className="text-sm">
+                            <p>{BRANDING.hours.openDays} : {BRANDING.hours.openHours}</p>
+                            <p>{BRANDING.hours.closedDays} : {BRANDING.hours.closedLabel}</p>
                         </div>
-                        <div className="flex gap-3">
-                            <a href={BRANDING.social.facebook} target="_blank" rel="noopener noreferrer"><Facebook /></a>
-                            <a href={BRANDING.social.instagram} target="_blank" rel="noopener noreferrer"><Instagram /></a>
-                            <a href={BRANDING.social.youtube} target="_blank" rel="noopener noreferrer"><YouTube /></a>
-                        </div>
+                    </div>
+                    <div className="flex gap-4 sm:justify-end">
+                        <a href={BRANDING.social.facebook} target="_blank" rel="noopener noreferrer"><Facebook style={ICON_SIZE} /></a>
+                        <a href={BRANDING.social.instagram} target="_blank" rel="noopener noreferrer"><Instagram style={ICON_SIZE} /></a>
+                        <a href={BRANDING.social.youtube} target="_blank" rel="noopener noreferrer"><YouTube style={ICON_SIZE} /></a>
                     </div>
                 </div>
-                <p className="text-sm">Copyright © 2026 {BRANDING.institutionName} <a href="/"> - </a></p>
+                <div className="mx-auto mt-10 w-full max-w-5xl border-t border-white/20 pt-6 text-center text-xs text-white/70">
+                    Copyright © 2026 {BRANDING.institutionName}. Tous droits réservés.
+                </div>
             </div>
         </div>
     );

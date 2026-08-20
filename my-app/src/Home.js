@@ -96,13 +96,13 @@ const Home = () => {
                 <img src={waveTopWhite} alt="" className="block w-full"/>
                 <div className={`${SECTION} flex flex-col items-center gap-12 py-4 lg:py-8`}>
                     <h2 className="font-display text-4xl text-primary sm:text-5xl lg:text-6xl">Nos valeurs</h2>
-                    <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 sm:gap-8">
+                    <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-6">
                         {VALUES.map((v) => (
-                            <div key={v.label} className="flex w-36 cursor-pointer flex-col items-center gap-4 rounded-3xl bg-white px-4 py-8 shadow-md transition duration-300 hover:-translate-y-1 hover:shadow-xl sm:w-44">
-                                <span className="grid h-16 w-16 place-items-center rounded-full bg-accent-yellow/20 sm:h-20 sm:w-20">
-                                    <img src={v.icon} alt="" className="h-9 w-9 rounded-full object-cover sm:h-10 sm:w-10"/>
+                            <div key={v.label} className="flex items-center gap-3">
+                                <span className="grid h-12 w-12 flex-shrink-0 place-items-center rounded-full bg-accent-yellow/20">
+                                    <img src={v.icon} alt="" className="h-6 w-6 rounded-full object-cover"/>
                                 </span>
-                                <p className="text-center text-base text-gray-dark sm:text-lg lg:text-xl">{v.label}</p>
+                                <p className="text-base capitalize text-gray-dark sm:text-lg">{v.label}</p>
                             </div>
                         ))}
                     </div>
@@ -113,53 +113,57 @@ const Home = () => {
             <Avis></Avis>
 
             {/* Contact */}
-            <section className="w-full" id="contact-us">
-                <div className="grid grid-cols-1 md:grid-cols-2">
-                    <div
-                        className="flex flex-col items-center gap-8 bg-no-repeat px-6 py-16 sm:px-10 md:items-start md:justify-center md:bg-contain md:bg-right md:px-12 lg:px-16"
-                        style={{ backgroundImage: `url(${mapBg})` }}
-                    >
-                        <h2 className="text-3xl font-normal text-primary sm:text-4xl lg:text-5xl">Contactez nous</h2>
-                        <p className="max-w-sm text-center font-poppins text-gray-dark md:text-left">nous sommes ouverts à toutes suggestions vous allez proposer</p>
-                        <div className="flex flex-col gap-5">
-                            <div className="flex items-center gap-6">
-                                <Mail style={{ height: 28, width: 28, color: "#555", flexShrink: 0 }} />
-                                <div className="font-poppins text-gray-dark">
-                                    <p>{BRANDING.contact.email}</p>
-                                    <p>{BRANDING.contact.secondaryEmail}</p>
-                                </div>
-                            </div>
-                            <div className="flex items-center gap-6">
-                                <Phone style={{ height: 28, width: 28, color: "#555", flexShrink: 0 }} />
-                                <p className="font-poppins text-gray-dark">{BRANDING.contact.phone}</p>
-                            </div>
-                            <div className="flex items-center gap-6">
-                                <Place style={{ height: 28, width: 28, color: "#555", flexShrink: 0 }} />
-                                <div className="font-poppins text-gray-dark">
-                                    <p>{BRANDING.contact.addressLine1}</p>
-                                    <p>{BRANDING.contact.addressLine2}</p>
+            <section className="w-full bg-white py-16 lg:py-24" id="contact-us">
+                <div className={SECTION}>
+                    <div className="mx-auto grid w-full max-w-5xl overflow-hidden rounded-3xl shadow-xl md:grid-cols-2">
+                        <div
+                            className="flex flex-col items-center justify-center bg-cover bg-center px-6 py-12 sm:px-10"
+                            style={{ backgroundImage: `url(${mapBg})` }}
+                        >
+                            <div className="flex w-full max-w-sm flex-col items-center gap-6 rounded-2xl bg-white/90 px-6 py-8 text-center shadow-md backdrop-blur-sm">
+                                <h2 className="text-3xl font-normal text-primary sm:text-4xl">Contactez nous</h2>
+                                <p className="font-poppins text-sm text-gray-dark">nous sommes ouverts à toutes suggestions vous allez proposer</p>
+                                <div className="flex w-full flex-col gap-4 text-left">
+                                    <div className="flex items-center gap-4">
+                                        <Mail style={{ height: 22, width: 22, color: "#555", flexShrink: 0 }} />
+                                        <div className="font-poppins text-sm text-gray-dark">
+                                            <p>{BRANDING.contact.email}</p>
+                                            <p>{BRANDING.contact.secondaryEmail}</p>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center gap-4">
+                                        <Phone style={{ height: 22, width: 22, color: "#555", flexShrink: 0 }} />
+                                        <p className="font-poppins text-sm text-gray-dark">{BRANDING.contact.phone}</p>
+                                    </div>
+                                    <div className="flex items-center gap-4">
+                                        <Place style={{ height: 22, width: 22, color: "#555", flexShrink: 0 }} />
+                                        <div className="font-poppins text-sm text-gray-dark">
+                                            <p>{BRANDING.contact.addressLine1}</p>
+                                            <p>{BRANDING.contact.addressLine2}</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center gap-6 bg-primary px-6 py-12 text-white sm:px-10">
+                            <div className="w-full max-w-xs">
+                                <label className="font-poppins text-base">Nom</label>
+                                <input type="text" className="w-full border-0 border-b-2 border-white/40 bg-primary py-1.5 font-poppins text-lg text-white focus:outline-none" value={nom} onChange={(e) => setNom(e.target.value)}></input>
+                            </div>
+                            <div className="w-full max-w-xs">
+                                <label className="font-poppins text-base">email</label>
+                                <input type="email" className="w-full border-0 border-b-2 border-white/40 bg-primary py-1.5 font-poppins text-lg text-white focus:outline-none" value={email} onChange={(e) => setEmail(e.target.value)}></input>
+                            </div>
+                            <div className="w-full max-w-xs">
+                                <label className="font-poppins text-base">message</label>
+                                <input type="text" className="w-full border-0 border-b-2 border-white/40 bg-primary py-1.5 font-poppins text-lg text-white focus:outline-none" value={msg} onChange={(e) => setMsg(e.target.value)}></input>
+                            </div>
+                            <button className="flex items-center gap-6 border-2 border-white px-8 py-3 font-poppins font-bold text-white transition hover:bg-white/90 hover:text-primary">
+                                <span>envoyer</span>
+                                <ArrowForward></ArrowForward>
+                            </button>
+                        </form>
                     </div>
-                    <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center gap-6 bg-primary px-6 py-16 text-white sm:px-10 md:px-16">
-                        <div className="w-full max-w-xs">
-                            <label className="font-poppins text-base">Nom</label>
-                            <input type="text" className="w-full border-0 border-b-2 border-white/40 bg-primary py-1.5 font-poppins text-lg text-white focus:outline-none" value={nom} onChange={(e) => setNom(e.target.value)}></input>
-                        </div>
-                        <div className="w-full max-w-xs">
-                            <label className="font-poppins text-base">email</label>
-                            <input type="email" className="w-full border-0 border-b-2 border-white/40 bg-primary py-1.5 font-poppins text-lg text-white focus:outline-none" value={email} onChange={(e) => setEmail(e.target.value)}></input>
-                        </div>
-                        <div className="w-full max-w-xs">
-                            <label className="font-poppins text-base">message</label>
-                            <input type="text" className="w-full border-0 border-b-2 border-white/40 bg-primary py-1.5 font-poppins text-lg text-white focus:outline-none" value={msg} onChange={(e) => setMsg(e.target.value)}></input>
-                        </div>
-                        <button className="flex items-center gap-6 border-2 border-white px-8 py-3 font-poppins font-bold text-white transition hover:bg-white/90 hover:text-primary">
-                            <span>envoyer</span>
-                            <ArrowForward></ArrowForward>
-                        </button>
-                    </form>
                 </div>
             </section>
 

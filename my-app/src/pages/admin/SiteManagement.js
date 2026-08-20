@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import Moment from "react-moment";
 import DeleteOutline from '@mui/icons-material/DeleteOutline';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import CheckRounded from '@mui/icons-material/CheckRounded';
+import CloseRounded from '@mui/icons-material/CloseRounded';
 import * as messagesApi from "../../mock/api/messages";
 import * as menusApi from "../../mock/api/menus";
 import * as announcementsApi from "../../mock/api/announcements";
+import * as avisApi from "../../mock/api/avis";
 import PillTabs from "../../PillTabs";
 import { DASHBOARD_CONTAINER } from "../../layout";
 
@@ -103,7 +107,9 @@ const AnnoncesTab = () => {
                     <input type="file" accept="image/*" className="text-sm text-gray-dark" onChange={handleImageChange} />
                 </label>
                 {image && <img src={image} alt="aperçu" className="h-24 w-24 rounded-lg object-cover" />}
-                <button className="w-fit rounded-full bg-accent-yellow-dark px-5 py-2 font-bold text-white">ajouter</button>
+                <button className="flex w-fit items-center gap-2 rounded-full bg-accent-yellow-dark px-5 py-2 font-bold text-white">
+                    <AddCircleIcon fontSize="small" /> ajouter
+                </button>
             </form>
             <div className="grid gap-3">
                 {announcements.map((a) => (
@@ -123,10 +129,54 @@ const AnnoncesTab = () => {
     );
 };
 
+const AvisTab = () => {
+    const [pending, setPending] = useState([]);
+
+    const refresh = () => avisApi.getPendingAvis().then(setPending);
+    useEffect(() => { refresh(); }, []);
+
+    const handleApprove = async (id) => {
+        await avisApi.approveAvis(id);
+        refresh();
+    };
+
+    const handleReject = async (id) => {
+        await avisApi.rejectAvis(id);
+        refresh();
+    };
+
+    if (pending.length === 0) {
+        return <p className="text-center text-gray-mid">Aucun avis en attente de validation.</p>;
+    }
+
+    return (
+        <div className="grid gap-4">
+            {pending.map((a) => (
+                <div key={a.id} className="grid gap-3 rounded-2xl bg-white p-5 shadow">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                        <p className="font-poppins font-semibold text-gray-dark">{a.parentName}{a.childName ? ` — parent de ${a.childName}` : ""}</p>
+                        <span className="text-sm text-gray-mid"><Moment format='lll'>{a.addingDate}</Moment></span>
+                    </div>
+                    <p className="font-poppins text-gray-dark">{a.message}</p>
+                    <div className="flex gap-3">
+                        <button onClick={() => handleApprove(a.id)} className="flex items-center gap-2 rounded-full bg-accent-yellow-dark px-5 py-2 font-bold text-white">
+                            <CheckRounded fontSize="small" /> publier
+                        </button>
+                        <button onClick={() => handleReject(a.id)} className="flex items-center gap-2 rounded-full border border-gray-light px-5 py-2 text-gray-dark">
+                            <CloseRounded fontSize="small" /> refuser
+                        </button>
+                    </div>
+                </div>
+            ))}
+        </div>
+    );
+};
+
 const TABS = [
     { key: "messagerie", label: "Messagerie" },
     { key: "menu", label: "Menu" },
     { key: "annonces", label: "Annonces" },
+    { key: "avis", label: "Avis" },
 ];
 
 const SiteManagement = () => {
@@ -138,6 +188,7 @@ const SiteManagement = () => {
             {tab === "messagerie" && <MessagerieTab />}
             {tab === "menu" && <MenuTab />}
             {tab === "annonces" && <AnnoncesTab />}
+            {tab === "avis" && <AvisTab />}
         </div>
     );
 }
