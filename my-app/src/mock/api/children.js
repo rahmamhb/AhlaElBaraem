@@ -17,6 +17,10 @@ export function getChildByParentId(parentId) {
     return asPromise(getCollection("children").find((c) => c.parentId === parentId) || null);
 }
 
+export function getChildrenByParentId(parentId) {
+    return asPromise(getCollection("children").filter((c) => c.parentId === parentId && c.registrationStatus !== "pending"));
+}
+
 export function getPendingRegistrations() {
     return asPromise(getCollection("children").filter((c) => c.registrationStatus === "pending"));
 }
@@ -64,6 +68,14 @@ export function addActivityToMatiere(matiereId, activity) {
     return asPromise({ ok: true });
 }
 
+export function setMatiereToday(matiereId, isToday) {
+    updateDb((db) => {
+        const matiere = db.matieres.find((m) => m.id === matiereId);
+        if (matiere) matiere.isToday = isToday;
+    });
+    return asPromise({ ok: true });
+}
+
 export function getComments(childId) {
     const all = getCollection("comments");
     return asPromise(childId ? all.filter((c) => c.childId === childId) : all);
@@ -89,4 +101,23 @@ export function addComment({ childId, childName, staffId, staffName, staffRole, 
 export function getCompetences(childId) {
     const all = getCollection("competences");
     return asPromise(childId ? all.filter((c) => c.childId === childId) : all);
+}
+
+export function getAttendance(childId) {
+    return asPromise(getCollection("attendance").filter((a) => a.childId === childId));
+}
+
+// status is "present", "absent", or null to clear back to "not marked yet".
+export function setAttendance(childId, dayId, status) {
+    updateDb((db) => {
+        const existing = db.attendance.find((a) => a.childId === childId && a.dayId === dayId);
+        if (!status) {
+            db.attendance = db.attendance.filter((a) => a !== existing);
+        } else if (existing) {
+            existing.status = status;
+        } else {
+            db.attendance.push({ id: nextId("att"), childId, dayId, status });
+        }
+    });
+    return asPromise({ ok: true });
 }

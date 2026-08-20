@@ -2,7 +2,7 @@ import { buildSeed } from "./seed";
 
 // Bump this whenever the seed shape changes so demo browsers auto-reseed
 // instead of crashing on a stale localStorage shape.
-const DB_KEY = "schoolsync_db_v2";
+const DB_KEY = "schoolsync_db_v4";
 const SESSION_KEY = "schoolsync_session_v1";
 
 function readRaw(key) {
@@ -32,9 +32,16 @@ function persist() {
     writeRaw(DB_KEY, cache);
 }
 
+// Mutations (updateDb) often mutate records in place (push, Object.assign)
+// rather than reassigning, so the cached array/object references never
+// change. Returning those live references straight to callers means a
+// `setState(freshlyFetched)` after a mutation can be === the previous state,
+// and React bails out of re-rendering. Shallow-copying here guarantees every
+// fetch hands back new references, so state updates are always genuinely new.
 export function getCollection(name) {
     const db = load();
-    return db[name] || [];
+    const collection = db[name] || [];
+    return collection.map((item) => (item && typeof item === "object" ? { ...item } : item));
 }
 
 export function setCollection(name, items) {

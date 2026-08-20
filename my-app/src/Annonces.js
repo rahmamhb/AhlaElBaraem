@@ -40,7 +40,7 @@ const Annonces = () => {
                                     </div>
                                 </div>
                             </div>
-                            <img src={recru} alt="illustration" className="mx-auto h-[220px] w-[220px] lg:h-[300px] lg:w-[300px]"></img>
+                            <img src={item.image || recru} alt="illustration" className="mx-auto h-[220px] w-[220px] rounded-3xl object-cover lg:h-[300px] lg:w-[300px]"></img>
                         </div>
                     ))}
                 </div>

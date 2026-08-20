@@ -9,9 +9,9 @@ import { DASHBOARD_CONTAINER } from "./layout";
 const COLOR_CHOICES = ["255 181 133", "255 231 148", "255 72 72", "154 219 255", "255 189 167", "255 153 0"];
 
 const Matiere = ({ data, onChange }) => {
-    const [selectedItems, setSelectedItems] = useState([]);
-    const handleClick = (item) => {
-        setSelectedItems((prev) => prev.includes(item) ? prev.filter((i) => i !== item) : [...prev, item]);
+    const handleToggleToday = async (item) => {
+        await childrenApi.setMatiereToday(item.id, !item.isToday);
+        onChange && onChange();
     };
 
     const [currentOverlayIndex, setCurrentOverlayIndex] = useState(null);
@@ -68,7 +68,7 @@ const Matiere = ({ data, onChange }) => {
                                             ))}
                                         </div>
                                         <form onSubmit={(e) => handleAddActivity(e, item.id)} className="grid grid-cols-[1fr_auto] items-center gap-3">
-                                            <input className="border-0 border-b-2 border-gray-dark bg-white text-gray-dark focus:outline-none" type="text" placeholder='Ajouter une activité' value={act} onChange={(e) => setAct(e.target.value)}></input>
+                                            <input className="rounded-md border border-gray-light px-3 py-2 text-gray-dark focus:border-primary focus:outline-none" type="text" placeholder='Ajouter une activité' value={act} onChange={(e) => setAct(e.target.value)}></input>
                                             <button className="text-gray-dark"><AddCircleIcon style={{ height: 30, width: 30 }} /></button>
                                         </form>
                                     </div>
@@ -92,10 +92,10 @@ const Matiere = ({ data, onChange }) => {
                                 <h3 className="w-fit text-lg text-gray-dark underline">Ajouter une matière</h3>
                             </span>
                             <form onSubmit={handleAddMatiere} className="grid gap-5">
-                                <input className="border-0 border-b-2 border-gray-dark text-gray-dark focus:outline-none" type="text" placeholder='nom de la matiere' value={mat} onChange={(e) => setMat(e.target.value)}></input>
-                                <input className="border-0 border-b-2 border-gray-dark text-gray-dark focus:outline-none" type="text" placeholder='activité 1' value={act1} onChange={(e) => setAct1(e.target.value)}></input>
-                                <input className="border-0 border-b-2 border-gray-dark text-gray-dark focus:outline-none" type="text" placeholder='activité 2' value={act2} onChange={(e) => setAct2(e.target.value)}></input>
-                                <input className="border-0 border-b-2 border-gray-dark text-gray-dark focus:outline-none" type="text" placeholder='activité 3' value={act3} onChange={(e) => setAct3(e.target.value)}></input>
+                                <input className="rounded-md border border-gray-light px-3 py-2 text-gray-dark focus:border-primary focus:outline-none" type="text" placeholder='nom de la matiere' value={mat} onChange={(e) => setMat(e.target.value)}></input>
+                                <input className="rounded-md border border-gray-light px-3 py-2 text-gray-dark focus:border-primary focus:outline-none" type="text" placeholder='activité 1' value={act1} onChange={(e) => setAct1(e.target.value)}></input>
+                                <input className="rounded-md border border-gray-light px-3 py-2 text-gray-dark focus:border-primary focus:outline-none" type="text" placeholder='activité 2' value={act2} onChange={(e) => setAct2(e.target.value)}></input>
+                                <input className="rounded-md border border-gray-light px-3 py-2 text-gray-dark focus:border-primary focus:outline-none" type="text" placeholder='activité 3' value={act3} onChange={(e) => setAct3(e.target.value)}></input>
 
                                 <div className="grid gap-3">
                                     <p className="font-poppins text-sm text-gray-dark">Choisissez une couleur :</p>
@@ -103,7 +103,10 @@ const Matiere = ({ data, onChange }) => {
                                         {COLOR_CHOICES.map((c) => (
                                             <label className="cursor-pointer" key={c}>
                                                 <input className="peer hidden" type="radio" name="matColor" value={c} checked={matColor === c} onChange={(e) => setMatColor(e.target.value)} />
-                                                <span className="block h-5 w-5 rounded-full ring-0 peer-checked:scale-150 peer-checked:ring-2 peer-checked:ring-gray-dark" style={{ backgroundColor: `rgb(${c})` }}></span>
+                                                <span
+                                                    className="block h-5 w-5 rounded-full ring-0 ring-offset-2 transition peer-checked:scale-125 peer-checked:ring-2"
+                                                    style={{ backgroundColor: `rgb(${c})`, "--tw-ring-color": `rgb(${c})` }}
+                                                ></span>
                                             </label>
                                         ))}
                                     </div>
@@ -121,12 +124,12 @@ const Matiere = ({ data, onChange }) => {
                     {data.map((item, index) => (
                         <span
                             key={index}
-                            onClick={() => handleClick(item.matiereName)}
-                            className={`flex h-[70px] cursor-pointer items-center justify-center rounded-2xl transition ${selectedItems.includes(item.matiereName) ? "gap-5 bg-accent-yellow" : "border-2 border-accent-yellow bg-white hover:bg-accent-yellow/30"}`}
+                            onClick={() => handleToggleToday(item)}
+                            className={`flex h-[70px] cursor-pointer items-center justify-center rounded-2xl transition ${item.isToday ? "gap-5 bg-accent-yellow" : "border-2 border-accent-yellow bg-white hover:bg-accent-yellow/30"}`}
                         >
-                            <p className={`font-poppins font-bold ${selectedItems.includes(item.matiereName) ? "text-white" : "text-gray-mid"}`}>{item.matiereName}</p>
-                            {selectedItems.includes(item.matiereName) && (
-                                <button className="h-full border-l-2 border-white px-3 text-white" onClick={(e) => { e.stopPropagation(); handleClick(item.matiereName); }}><CloseIcon /></button>
+                            <p className={`font-poppins font-bold ${item.isToday ? "text-white" : "text-gray-mid"}`}>{item.matiereName}</p>
+                            {item.isToday && (
+                                <button className="h-full border-l-2 border-white px-3 text-white" onClick={(e) => { e.stopPropagation(); handleToggleToday(item); }}><CloseIcon /></button>
                             )}
                         </span>
                     ))}

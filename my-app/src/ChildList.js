@@ -3,6 +3,8 @@ import Pagination from "./Pagination";
 import { useEffect, useState } from "react";
 import ChevronLeft from '@mui/icons-material/ChevronLeftRounded';
 import DeleteOutline from '@mui/icons-material/DeleteOutline';
+import CheckRounded from '@mui/icons-material/CheckRounded';
+import CloseRounded from '@mui/icons-material/CloseRounded';
 import * as childrenApi from "./mock/api/children";
 import { useAuth } from "./context/AuthContext";
 
@@ -12,6 +14,15 @@ const LEVELS = [
     { value: "orange", className: "border-status-orange" },
     { value: "yellow", className: "border-status-yellow" },
     { value: "green", className: "border-status-green" },
+];
+// day ids aligned with JS Date.getDay() (0 = Dimanche ... 4 = Jeudi), same
+// convention as the weekly menu.
+const DAYS = [
+    { id: 0, label: "Dim" },
+    { id: 1, label: "Lun" },
+    { id: 2, label: "Mar" },
+    { id: 3, label: "Mer" },
+    { id: 4, label: "Jeu" },
 ];
 
 // Replaces the old ListEnfants.js / ListEnfantStaff.js duplicate pair.
@@ -39,6 +50,7 @@ const ChildList = ({ matiereData, mode = "staff" }) => {
     const [level, setLevel] = useState("");
     const [comment, setComment] = useState("");
     const [editChild, setEditChild] = useState(null);
+    const [attendance, setAttendanceState] = useState([]);
 
     function handleMatiereChange(event) {
         const found = matiereData.find((m) => m.matiereName === event.target.value);
@@ -52,7 +64,15 @@ const ChildList = ({ matiereData, mode = "staff" }) => {
         setChoosenAct("");
         setLevel("");
         setEditChild(mode === "admin" ? { ...child } : null);
+        if (mode === "admin") childrenApi.getAttendance(child.id).then(setAttendanceState);
     }
+
+    const toggleAttendance = async (childId, dayId, nextStatus) => {
+        const current = attendance.find((a) => a.dayId === dayId)?.status;
+        const status = current === nextStatus ? null : nextStatus;
+        await childrenApi.setAttendance(childId, dayId, status);
+        childrenApi.getAttendance(childId).then(setAttendanceState);
+    };
 
     const handleSubmit = async (e, child) => {
         e.preventDefault();
@@ -84,8 +104,8 @@ const ChildList = ({ matiereData, mode = "staff" }) => {
     };
 
     return (
-        <div className="grid w-full grid-rows-[auto_auto] justify-items-center">
-            <div className="grid w-full grid-flow-row gap-4 px-4 pb-16 pt-5 md:px-8">
+        <div className="grid w-full min-w-0 grid-rows-[auto_auto] justify-items-center">
+            <div className="grid w-full grid-flow-row gap-4 overflow-x-auto px-4 pb-16 pt-5 md:px-8">
                 {currentChild.map((item, index) => (
                     <div key={item.id}>
                         <div
@@ -129,6 +149,39 @@ const ChildList = ({ matiereData, mode = "staff" }) => {
                                             <span className="text-gray-dark underline">Email du parent</span>
                                             <input className="w-full rounded-md border border-gray-light px-3 py-2" value={editChild?.email || ""} onChange={(e) => setEditChild({ ...editChild, email: e.target.value })} />
                                         </label>
+
+                                        <div className="grid w-full gap-2">
+                                            <span className="text-gray-dark underline">Présence de la semaine</span>
+                                            <div className="flex flex-wrap gap-4">
+                                                {DAYS.map((d) => {
+                                                    const status = attendance.find((a) => a.dayId === d.id)?.status;
+                                                    return (
+                                                        <div className="grid justify-items-center gap-1" key={d.id}>
+                                                            <span className="text-sm text-gray-mid">{d.label}</span>
+                                                            <div className="flex gap-1">
+                                                                <button
+                                                                    type="button"
+                                                                    aria-label={`présent ${d.label}`}
+                                                                    onClick={() => toggleAttendance(item.id, d.id, "present")}
+                                                                    className={`grid h-8 w-8 place-items-center rounded-full border-2 transition ${
+                                                                        status === "present" ? "border-status-green bg-status-green text-white" : "border-gray-light text-gray-light hover:border-status-green hover:text-status-green"
+                                                                    }`}
+                                                                ><CheckRounded fontSize="small" /></button>
+                                                                <button
+                                                                    type="button"
+                                                                    aria-label={`absent ${d.label}`}
+                                                                    onClick={() => toggleAttendance(item.id, d.id, "absent")}
+                                                                    className={`grid h-8 w-8 place-items-center rounded-full border-2 transition ${
+                                                                        status === "absent" ? "border-status-red bg-status-red text-white" : "border-gray-light text-gray-light hover:border-status-red hover:text-status-red"
+                                                                    }`}
+                                                                ><CloseRounded fontSize="small" /></button>
+                                                            </div>
+                                                        </div>
+                                                    );
+                                                })}
+                                            </div>
+                                        </div>
+
                                         <button className="rounded-full bg-accent-yellow-dark px-6 py-2 font-bold text-white hover:bg-accent-yellow-dark/80">enregistrer</button>
                                     </form>
                                 ) : (
@@ -186,20 +239,21 @@ const ChildList = ({ matiereData, mode = "staff" }) => {
                             </div>
                         </div>
 
-                        <div className="flex flex-wrap items-center gap-x-6 gap-y-2 border-b-2 border-primary py-4 font-poppins font-bold text-gray-dark">
+                        <div className="grid min-w-[720px] grid-cols-[2rem_minmax(0,1fr)_minmax(0,1fr)_12rem_auto] items-center gap-4 border-b-2 border-primary py-4 font-poppins font-bold text-gray-dark">
                             <span>{index + 1}</span>
-                            <span>{item.childName}</span>
-                            <span className="max-w-[55vw] truncate sm:max-w-[220px]">{item.email}</span>
-                            <span><Moment format='lll'>{new Date()}</Moment></span>
-                            <span className="grow"></span>
-                            <button className="rounded-full bg-accent-yellow-dark px-5 py-1 text-sm font-bold text-white hover:bg-accent-yellow-dark/80" onClick={() => openOverlay(index, item)}>
-                                {mode === "admin" ? "modifier" : "éditer"}
-                            </button>
-                            {mode === "admin" && (
-                                <button className="text-primary hover:text-primary/70" onClick={() => handleDelete(item)} aria-label="supprimer">
-                                    <DeleteOutline />
+                            <span className="truncate">{item.childName}</span>
+                            <span className="truncate">{item.email}</span>
+                            <span className="whitespace-nowrap"><Moment format='lll'>{new Date()}</Moment></span>
+                            <span className="flex items-center justify-end gap-3">
+                                <button className="rounded-full bg-accent-yellow-dark px-5 py-1 text-sm font-bold text-white hover:bg-accent-yellow-dark/80" onClick={() => openOverlay(index, item)}>
+                                    {mode === "admin" ? "modifier" : "évaluer"}
                                 </button>
-                            )}
+                                {mode === "admin" && (
+                                    <button className="text-primary hover:text-primary/70" onClick={() => handleDelete(item)} aria-label="supprimer">
+                                        <DeleteOutline />
+                                    </button>
+                                )}
+                            </span>
                         </div>
                     </div>
                 ))}

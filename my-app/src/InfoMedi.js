@@ -48,15 +48,15 @@ const EditableList = ({ items, onChange }) => {
 };
 
 const InfoMedi = () => {
-    const { user } = useAuth();
+    const { activeChildId } = useAuth();
     const [child, setChild] = useState(null);
     const [editing, setEditing] = useState(false);
     const [form, setForm] = useState(null);
     const [saving, setSaving] = useState(false);
 
-    const refresh = () => user?.childId && childrenApi.getChildById(user.childId).then(setChild);
+    const refresh = () => activeChildId && childrenApi.getChildById(activeChildId).then(setChild);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    useEffect(() => { refresh(); }, [user]);
+    useEffect(() => { refresh(); setEditing(false); }, [activeChildId]);
 
     const startEdit = () => {
         setForm({

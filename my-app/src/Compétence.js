@@ -13,15 +13,27 @@ import * as childrenApi from "./mock/api/children";
 import { DASHBOARD_CONTAINER } from "./layout";
 
 const Compétence = () => {
-    const { user } = useAuth();
+    const { activeChildId } = useAuth();
     const [competences, setCompetences] = useState([]);
+    const [todayMatieres, setTodayMatieres] = useState([]);
 
     useEffect(() => {
-        if (user?.childId) childrenApi.getCompetences(user.childId).then(setCompetences);
-    }, [user]);
+        if (activeChildId) childrenApi.getCompetences(activeChildId).then(setCompetences);
+        childrenApi.getMatieres().then((all) => setTodayMatieres(all.filter((m) => m.isToday)));
+    }, [activeChildId]);
 
     return (
         <div className={`${DASHBOARD_CONTAINER} grid gap-8 py-10`}>
+            {todayMatieres.length > 0 && (
+                <div className="grid w-full max-w-3xl justify-self-center gap-3 px-4">
+                    <h2 className="font-display text-2xl text-primary">Matières d'aujourd'hui</h2>
+                    <div className="flex flex-wrap gap-3">
+                        {todayMatieres.map((m) => (
+                            <span key={m.id} className="rounded-full bg-accent-yellow px-5 py-2 font-poppins font-bold text-white">{m.matiereName}</span>
+                        ))}
+                    </div>
+                </div>
+            )}
             {competences.map((competence, index) => (
                 <div className="grid w-full max-w-3xl gap-3 justify-self-center px-4 py-5 font-poppins text-lg font-semibold" key={competence.id || index}>
                     <span className="text-center text-base font-normal text-gray-mid"><Moment format='dddd L'>{competence.addingDate}</Moment></span>

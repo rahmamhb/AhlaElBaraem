@@ -104,6 +104,7 @@ function buildChild({ id, prenom, nom, age, sexe, parentId, registrationStatus =
 
 export const CHILDREN = [
     buildChild({ id: "child-1", prenom: "Yanis", nom: "Haddad", age: 3, sexe: "masculin", parentId: "u-parent-1" }),
+    buildChild({ id: "child-1b", prenom: "Sami", nom: "Haddad", age: 5, sexe: "masculin", parentId: "u-parent-1" }),
     buildChild({ id: "child-2", prenom: "Lina", nom: "Ouali", age: 4, sexe: "féminin", parentId: "u-parent-2" }),
     buildChild({ id: "child-3", prenom: "Amira", nom: "Belkacem", age: 3, sexe: "féminin", parentId: "u-parent-3" }),
     buildChild({ id: "child-4", prenom: "Ilyes", nom: "Toumi", age: 5, sexe: "masculin", parentId: "u-parent-4" }),
@@ -176,6 +177,15 @@ export const MENU = [
     { id: 4, day: "Jeudi", petitdejeuner: "Galette et miel", dejeuner: "Couscous légumes", snack: "Fromage et fruits" },
 ];
 
+// day ids aligned with JS Date.getDay() (0 = Dimanche ... 4 = Jeudi), same
+// convention as MENU. One record per (childId, dayId) — no absent record
+// means "not marked yet" (shown neutral, not present/absent).
+export const ATTENDANCE = [
+    { id: "att-1", childId: "child-1", dayId: 0, status: "absent" },
+    { id: "att-2", childId: "child-1", dayId: 1, status: "present" },
+    { id: "att-3", childId: "child-1", dayId: 2, status: "present" },
+];
+
 export const ANNOUNCEMENTS = [
     { id: "ann-1", title: "Recrutement : éducateur/éducatrice", description: "Nous recherchons un(e) éducateur/éducatrice passionné(e) pour rejoindre notre équipe pédagogique.", date: "2026-09-02", time: "09:00 - 12:00" },
     { id: "ann-2", title: "Recrutement : assistant(e) orthophoniste", description: "Poste à pourvoir pour accompagner le suivi du langage des enfants inscrits.", date: "2026-09-10", time: "14:00 - 17:00" },
@@ -216,6 +226,7 @@ export function buildSeed() {
         comments: COMMENTS,
         competences: COMPETENCES,
         menu: MENU,
+        attendance: ATTENDANCE,
         announcements: ANNOUNCEMENTS,
         messages: MESSAGES,
     };

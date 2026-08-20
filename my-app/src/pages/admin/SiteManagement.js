@@ -62,15 +62,24 @@ const AnnoncesTab = () => {
     const [description, setDescription] = useState("");
     const [date, setDate] = useState("");
     const [time, setTime] = useState("");
+    const [image, setImage] = useState(null);
 
     const refresh = () => announcementsApi.getAnnouncements().then(setAnnouncements);
     useEffect(() => { refresh(); }, []);
 
+    const handleImageChange = (e) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = () => setImage(reader.result);
+        reader.readAsDataURL(file);
+    };
+
     const handleAdd = async (e) => {
         e.preventDefault();
         if (!title) return;
-        await announcementsApi.createAnnouncement({ title, description, date, time });
-        setTitle(""); setDescription(""); setDate(""); setTime("");
+        await announcementsApi.createAnnouncement({ title, description, date, time, image });
+        setTitle(""); setDescription(""); setDate(""); setTime(""); setImage(null);
         refresh();
     };
 
@@ -89,14 +98,22 @@ const AnnoncesTab = () => {
                     <input type="date" className="rounded-md border border-gray-light px-3 py-2" value={date} onChange={(e) => setDate(e.target.value)} />
                     <input placeholder="14:00 - 17:00" className="rounded-md border border-gray-light px-3 py-2" value={time} onChange={(e) => setTime(e.target.value)} />
                 </div>
+                <label className="grid gap-1">
+                    <span className="text-sm text-gray-dark">Image (optionnel — l'illustration par défaut sera utilisée sinon)</span>
+                    <input type="file" accept="image/*" className="text-sm text-gray-dark" onChange={handleImageChange} />
+                </label>
+                {image && <img src={image} alt="aperçu" className="h-24 w-24 rounded-lg object-cover" />}
                 <button className="w-fit rounded-full bg-accent-yellow-dark px-5 py-2 font-bold text-white">ajouter</button>
             </form>
             <div className="grid gap-3">
                 {announcements.map((a) => (
                     <div key={a.id} className="flex items-center justify-between gap-4 rounded-2xl bg-white p-4 shadow">
-                        <div>
-                            <p className="font-poppins font-semibold text-gray-dark">{a.title}</p>
-                            <p className="text-sm text-gray-mid">{a.date} · {a.time}</p>
+                        <div className="flex items-center gap-4">
+                            {a.image && <img src={a.image} alt="" className="h-12 w-12 rounded-lg object-cover" />}
+                            <div>
+                                <p className="font-poppins font-semibold text-gray-dark">{a.title}</p>
+                                <p className="text-sm text-gray-mid">{a.date} · {a.time}</p>
+                            </div>
                         </div>
                         <button onClick={() => handleDelete(a.id)} className="text-primary"><DeleteOutline /></button>
                     </div>

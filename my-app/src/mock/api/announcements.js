@@ -6,10 +6,10 @@ export function getAnnouncements() {
     return asPromise(all.slice().sort((a, b) => new Date(a.date) - new Date(b.date)));
 }
 
-export function createAnnouncement({ title, description, date, time }) {
+export function createAnnouncement({ title, description, date, time, image }) {
     const id = nextId("ann");
     updateDb((db) => {
-        db.announcements.push({ id, title, description, date, time });
+        db.announcements.push({ id, title, description, date, time, image: image || null });
     });
     return asPromise({ ok: true, id });
 }

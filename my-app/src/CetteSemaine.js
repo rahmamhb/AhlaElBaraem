@@ -8,25 +8,29 @@ import * as childrenApi from "./mock/api/children";
 
 const EMOJIS = ["😒", "🙁", "😊", "🥰", "👏"];
 
-const BUDS_LIST = [
-    { day: "Dimanche", isPresent: true },
-    { day: "Lundi", isPresent: false },
-    { day: "Mardi", isPresent: true },
-    { day: "Mercredi", isPresent: "" },
-    { day: "Jeudi", isPresent: "" },
+// day ids aligned with JS Date.getDay() (0 = Dimanche ... 4 = Jeudi), same
+// convention the admin uses when marking attendance.
+const DAYS = [
+    { id: 0, day: "Dimanche" },
+    { id: 1, day: "Lundi" },
+    { id: 2, day: "Mardi" },
+    { id: 3, day: "Mercredi" },
+    { id: 4, day: "Jeudi" },
 ];
 
 const CetteSemaine = () => {
-    const { user } = useAuth();
+    const { activeChildId } = useAuth();
     const [mood, setMood] = useState(null);
+    const [attendance, setAttendance] = useState([]);
 
     useEffect(() => {
-        if (!user?.childId) return;
-        childrenApi.getComments(user.childId).then((comments) => {
+        if (!activeChildId) return;
+        childrenApi.getComments(activeChildId).then((comments) => {
             const moodComment = comments.find((c) => EMOJIS.some((e) => c.commentContent?.includes(e)));
             setMood(moodComment ? EMOJIS.find((e) => moodComment.commentContent.includes(e)) : null);
         });
-    }, [user]);
+        childrenApi.getAttendance(activeChildId).then(setAttendance);
+    }, [activeChildId]);
 
     return (
         <div className="grid gap-16 px-4 py-8">
@@ -55,12 +59,15 @@ const CetteSemaine = () => {
                     <h2 className="font-display text-2xl text-primary lg:text-3xl">de la semaine</h2>
                 </div>
                 <div className="flex flex-wrap items-center justify-center gap-8">
-                    {BUDS_LIST.map((bud, index) => (
-                        <div className="grid justify-items-center gap-2" key={index}>
-                            <img className="h-[90px] w-[90px]" src={bud.isPresent === true ? Present : bud.isPresent === false ? Absent : Bud} alt="" />
-                            <p className="text-gray-mid">{bud.day}</p>
-                        </div>
-                    ))}
+                    {DAYS.map((d) => {
+                        const status = attendance.find((a) => a.dayId === d.id)?.status;
+                        return (
+                            <div className="grid justify-items-center gap-2" key={d.id}>
+                                <img className="h-[90px] w-[90px]" src={status === "present" ? Present : status === "absent" ? Absent : Bud} alt="" />
+                                <p className="text-gray-mid">{d.day}</p>
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
 
